@@ -1,0 +1,462 @@
+EFFF Club Dashboard - Replit AI Prompt
+
+Build a premium role-based dashboard for EFFF Club, a women-focused egg freezing and fertility planning ecosystem.
+
+The public marketing website already exists on Wix.
+
+The dashboard is a members-only portal that users receive access to after purchasing a membership plan on the website.
+
+The purpose of this dashboard is to guide users throughout their fertility journey while providing education, financial planning, doctor consultations, community support, and long-term engagement.
+
+The dashboard should feel like:
+
+Healthcare Concierge
+Premium Fintech App
+Community Platform
+Fertility Journey Tracker
+
+Avoid building a hospital ERP system.
+
+Avoid clutter.
+
+Keep the experience simple and guided.
+
+Architecture
+Wix Website
+    ↓
+Membership Purchase
+    ↓
+Dashboard Access Granted
+    ↓
+Features Unlock Based On Membership Plan
+
+The dashboard should be hosted separately and support future integration with Wix CMS and APIs.
+
+Role Based Login System
+
+Create fully working demo login flows for:
+
+1. User Login
+
+Example:
+
+user@efffclub.com
+2. Doctor Login
+
+Example:
+
+doctor@efffclub.com
+3. Admin Login
+
+Example:
+
+admin@efffclub.com
+
+Provide a role selector or demo credentials so all flows can be tested easily.
+
+Each role should see only their own dashboard.
+
+Membership Plans
+Basic
+
+Price: Free
+
+Features:
+
+Learning Center
+Community Access
+Webinar Access
+Seminar Discounts 20%
+Exclusive Content
+
+Platform Fee:
+7%
+
+Gold
+
+Price: ₹999/month
+
+Features:
+
+Everything in Basic
+SIP Planning
+Financial Guidance
+Priority Support
+Seminar Discount 40%
+
+Platform Fee:
+3.5%
+
+Platinum
+
+Price: ₹4999/month
+
+Features:
+
+Everything in Gold
+Higher Seminar Discount
+Advanced Support
+Premium Financial Services
+
+Platform Fee:
+2.5%
+
+Seminar Discount:
+50%
+
+FemmeElite
+
+Price: ₹9999/month
+
+Features:
+
+Everything in Platinum
+White Glove Concierge Support
+Dedicated Relationship Manager
+Maximum Discounts
+
+Platform Fee:
+1.5%
+
+Seminar Discount:
+60%
+
+Dashboard modules should automatically show or hide based on membership plan.
+
+USER DASHBOARD
+
+Keep navigation simple:
+
+Dashboard
+My Membership
+My Appointments
+My Doctors
+Reports
+Finance & SIP
+Community
+Learning Center
+Webinars & Seminars
+Messages
+Support
+
+No more than 10 navigation items.
+
+Dashboard Home Screen
+
+Show:
+
+Welcome section
+Membership Plan
+Journey Progress
+Recommended Next Action
+Upcoming Appointments
+Latest Learning Resources
+Upcoming Seminars
+Notifications
+
+Example:
+
+Current Stage:
+"Consultation Pending"
+
+Next Action:
+"Upload your AMH blood report."
+
+The dashboard should always guide the user.
+
+Appointment System
+
+User selects:
+
+City
+Area
+Preferred Language
+Preferred Consultation Mode
+
+The system recommends doctors based on location proximity.
+
+Example:
+
+User Location:
+Dadar
+
+Recommended:
+
+Dr Jatin Shah - Colaba
+
+Future:
+Doctor A - Dadar
+Doctor B - Bandra
+
+The user submits an appointment request.
+
+Doctor receives notification.
+
+Doctor can:
+
+Accept
+Reject
+Request More Information
+
+User automatically receives status updates.
+
+Statuses:
+
+Pending
+Approved
+Rejected
+Rescheduled
+Completed
+Reports Module
+
+The blood test should NOT be mandatory.
+
+Some users already have reports.
+
+Flow:
+
+Do you already have reports?
+
+YES:
+
+Upload Report
+
+NO:
+
+Book Blood Test
+
+If user chooses blood test:
+
+Select Partner Lab
+Select Date
+Select Time Slot
+Confirm Home Collection
+
+Current Partner:
+
+Metropolis Healthcare
+
+Future partners can be added by admin.
+
+Supported uploads:
+
+AMH Reports
+Fertility Reports
+Metropolis Reports
+External Reports
+Doctor Recommendations
+
+Uploaded reports become visible to assigned doctors.
+
+Doctors can add notes and recommendations.
+
+Doctor Dashboard
+
+Doctor Navigation:
+
+Dashboard
+Appointment Requests
+Upcoming Appointments
+Assigned Patients
+Patient Reports
+Messages
+Profile
+
+Doctor Capabilities:
+
+Approve Appointment
+Reject Appointment
+Request Additional Reports
+Upload Notes
+Recommend Next Steps
+Chat With Patients
+
+Doctor should only see assigned patients.
+
+Admin Dashboard
+
+Admin Navigation:
+
+Dashboard
+Users
+Membership Plans
+Doctors
+Appointments
+Reports
+Finance Partners
+Seminars
+Community Moderation
+Support Tickets
+Analytics
+Settings
+
+Admin has full control.
+
+Admin can:
+
+Add Doctors
+Remove Doctors
+Add Banks
+Add Lab Partners
+Add Membership Plans
+Create Seminars
+Moderate Community
+View Analytics
+Manage Users
+Community Center
+
+Build a Reddit-style community.
+
+Features:
+
+Categories
+Anonymous Posting
+Upvotes
+Comments
+Search
+Trending Discussions
+
+Examples:
+
+Egg Freezing Experience
+AMH Discussions
+Recovery Stories
+Financial Planning
+Career Planning
+
+No private user-to-user messaging.
+
+Community is public within members.
+
+Admin can moderate content.
+
+Messaging System
+
+Private conversations only between:
+
+User ↔ Doctor
+User ↔ Support Team
+User ↔ Financial Advisor
+
+Medical conversations remain private.
+
+Webinar & Seminar System
+
+Admin creates events.
+
+Users can:
+
+View Upcoming Events
+Register
+Pay
+Receive Membership Discounts
+
+Discounts:
+
+Basic:
+20%
+
+Gold:
+40%
+
+Platinum:
+50%
+
+FemmeElite:
+60%
+
+Show:
+
+Upcoming Events
+Registered Events
+Past Events
+Finance & SIP Module
+
+This is a core EFFF differentiator.
+
+Sections:
+
+SIP Planning
+
+Show:
+
+Monthly Contribution
+Goal Amount
+Progress Tracking
+Estimated Completion Date
+Loan Marketplace
+
+Show multiple banks:
+
+HDFC
+Bajaj Finance
+ICICI
+Axis
+
+Display:
+
+Interest Rate
+EMI
+Tenure
+Eligibility
+
+User can apply.
+
+Admin processes applications manually for Phase 1.
+
+Financial Guidance
+
+Show:
+
+Cost Breakdown
+Savings Recommendations
+Funding Suggestions
+Future Ready Features
+
+Design architecture to support future:
+
+Multiple Cities
+Multiple Doctors
+Multiple Clinics
+Multiple Labs
+Multiple Finance Partners
+
+Current setup:
+
+One Doctor
+One Lab Partner
+Few Finance Partners
+
+Future expansion should require no redesign.
+
+UI Requirements
+
+The UI should feel like:
+
+Apple Health
+Cred
+Practo Premium
+Wealth Management Apps
+
+Use:
+
+Premium design
+Soft gradients
+Clean cards
+Modern typography
+Glassmorphism where appropriate
+Minimal navigation
+Mobile responsive
+Fast and intuitive workflows
+
+Everything should be clickable.
+
+Use realistic mock data.
+
+Provide working demo flows for every role so that:
+
+User flow can be tested.
+Doctor flow can be tested.
+Admin flow can be tested.
+
+The goal is to demonstrate a complete fertility journey ecosystem rather than a simple dashboard.
