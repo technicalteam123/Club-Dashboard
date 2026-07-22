@@ -28,15 +28,13 @@ import DoctorProfile from '@/pages/doctor/Profile';
 // Admin Pages
 import AdminDashboard from '@/pages/admin/Dashboard';
 import AdminUsers from '@/pages/admin/Users';
-
-// Add dummy components for the rest of admin so routing works
-const AdminDoctors = () => <div className="p-8">Doctors Management</div>;
-const AdminAppointments = () => <div className="p-8">Global Appointments</div>;
-const AdminReports = () => <div className="p-8">Global Reports</div>;
-const AdminWebinars = () => <div className="p-8">Webinar Management</div>;
-const AdminCommunity = () => <div className="p-8">Community Moderation</div>;
-const AdminFinance = () => <div className="p-8">Loan Partners & Finance</div>;
-const AdminSupport = () => <div className="p-8">Support Tickets Queue</div>;
+import AdminDoctors from '@/pages/admin/Doctors';
+import AdminAppointments from '@/pages/admin/Appointments';
+import AdminReports from '@/pages/admin/Reports';
+import AdminWebinars from '@/pages/admin/Webinars';
+import AdminCommunity from '@/pages/admin/Community';
+import AdminFinance from '@/pages/admin/Finance';
+import AdminSupport from '@/pages/admin/Support';
 
 export function AppRoutes() {
   return (
