@@ -1,0 +1,432 @@
+"use strict";
+var __create = Object.create;
+var __defProp = Object.defineProperty;
+var __getOwnPropDesc = Object.getOwnPropertyDescriptor;
+var __getOwnPropNames = Object.getOwnPropertyNames;
+var __getProtoOf = Object.getPrototypeOf;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
+};
+var __copyProps = (to, from, except, desc) => {
+  if (from && typeof from === "object" || typeof from === "function") {
+    for (let key of __getOwnPropNames(from))
+      if (!__hasOwnProp.call(to, key) && key !== except)
+        __defProp(to, key, { get: () => from[key], enumerable: !(desc = __getOwnPropDesc(from, key)) || desc.enumerable });
+  }
+  return to;
+};
+var __toESM = (mod, isNodeMode, target) => (target = mod != null ? __create(__getProtoOf(mod)) : {}, __copyProps(
+  // If the importer is in node compatibility mode or this is not an ESM
+  // file that has been converted to a CommonJS file using a Babel-
+  // compatible transform (i.e. "__esModule" has not been set), then set
+  // "default" to the CommonJS "module.exports" for node compatibility.
+  isNodeMode || !mod || !mod.__esModule ? __defProp(target, "default", { value: mod, enumerable: true }) : target,
+  mod
+));
+var __toCommonJS = (mod) => __copyProps(__defProp({}, "__esModule", { value: true }), mod);
+
+// schemas.ts
+var schemas_exports = {};
+__export(schemas_exports, {
+  CreateRedirectSessionRequest: () => CreateRedirectSessionRequest,
+  CreateRedirectSessionResponse: () => CreateRedirectSessionResponse
+});
+module.exports = __toCommonJS(schemas_exports);
+
+// src/headless-v1-redirect-session-redirects.schemas.ts
+var z = __toESM(require("zod"));
+var CreateRedirectSessionRequest = z.object({
+  options: z.intersection(
+    z.object({
+      callbacks: z.object({
+        thankYouPageUrl: z.string().describe(
+          "The URL for a custom thank you page implemented on a site outside of Wix. The visitor is directed to this page after the Wix-managed process is completed.\nWhen redirecting to this URL, Wix passes different query parameters depending on the preceding transaction:\n\nAfter a pricing plans checkout:\n+ `planOrderId`: ID of a pricing plan order.\n\nAfter an eCommerce checkout:\n+ `orderId`: ID of an eCommerce order.\n\nAfter an Events checkout:\n+ `orderNumber`: Unique order number for the transaction.\n+ `eventId`: ID of the event.\n\nIf the process is abandoned or interrupted, the visitor is redirected to the URL specified in `postFlowUrl` instead.\n\nDefault: If you don't specify a URL, the visitor is redirected to a Wix thank you page, and from there to the URL specified in `postFlowUrl`."
+        ).max(2048).optional().nullable(),
+        postFlowUrl: z.string().describe(
+          "The URL Wix should redirect the visitor to when the Wix-managed process is completed, abandoned, or interrupted.\n\n**Note**: For an authentication redirect, don't specify a URL here. Instead, specify one in `auth.authRequest.redirectUri`."
+        ).max(2048).optional().nullable(),
+        loginUrl: z.string().describe(
+          "The URL for a custom login page implemented outside of Wix.\n\nDefault: If you don't specify a URL, a Wix login page is used."
+        ).max(2048).optional().nullable(),
+        bookingsServiceListUrl: z.string().describe(
+          "The URL for a custom bookings services page implemented outside of Wix.\n\nDefault: If you don't specify a URL, a Wix bookings services page is used."
+        ).max(2048).optional().nullable(),
+        cartPageUrl: z.string().describe(
+          "The URL for a custom eCommerce cart page implemented outside of Wix.\n\nDefault: If you don't specify a URL, a Wix cart page is used."
+        ).max(2048).optional().nullable(),
+        planListUrl: z.string().describe(
+          "The URL for a custom pricing plans page implemented outside of Wix.\nWhen redirecting to this URL, Wix specifies the following query parameters:\n+ `planIds`:  IDs of the pricing plans on the custom page.\n+ `checkoutData`: Pass this string back in `paidPlansCheckout.checkoutData` when redirecting back to Wix for checkout.\n\nDefault: If you don't specify a URL, a Wix pricing plans page is used."
+        ).max(2048).optional().nullable()
+      }).describe(
+        "Details of pages to redirect the visitor back to on the Wix Headless client site.\nWhen redirecting to any callback URL, Wix specifies the boolean `wixMemberLoggedIn` parameter.\nIf `true`, a member logged in during the preceding Wix-managed process.\n\n**Note**: For an authentication redirect, don't specify a post-flow URL here. Instead, specify one in `auth.authRequest.redirectUri`."
+      ).optional(),
+      preferences: z.object({
+        useGenericWixPages: z.boolean().describe(
+          "Whether to use a standard Wix template for Wix-managed pages the visitor is redirected to. Set to `false` only if your client site connects with a Wix site that has custom pages.\n\nDefault: `true`"
+        ).optional().nullable(),
+        maintainIdentity: z.boolean().describe(
+          "Whether to maintain the identity used in the redirect to Wix (not relevant for `logout` and `auth` intents), or to use a new visitor identity.\n\nDefault: `true`"
+        ).optional().nullable(),
+        additionalQueryParameters: z.record(z.string(), z.string()).describe(
+          "Map of global query parameters to append to the Wix URL.\n\nCommon parameters include:\n- [UTM parameters](https://en.wikipedia.org/wiki/UTM_parameters): Use to track the source of site traffic.\n\n- `lang`: Use to control the displayed language of the Wix-managed page. For supported values, see [ISO 639 language codes](https://en.wikipedia.org/wiki/List_of_ISO_639_language_codes)."
+        ).optional(),
+        checkIfPublish: z.boolean().describe(
+          "Check if Wix page for the requested intent is published and return it if possible. Otherwise, return a standard Wix template for it.\nDefault: `false`"
+        ).optional().nullable()
+      }).describe(
+        "Optional preferences for customizing redirection to Wix pages."
+      ).optional(),
+      origin: z.string().describe("The origin of the request").max(2048).optional().nullable()
+    }),
+    z.xor([
+      z.object({
+        ecomCheckout: z.never().optional(),
+        eventsCheckout: z.never().optional(),
+        paidPlansCheckout: z.never().optional(),
+        logout: z.never().optional(),
+        auth: z.never().optional(),
+        storesProduct: z.never().optional(),
+        bookingsBook: z.never().optional(),
+        ecomOrderPaymentRequest: z.never().optional(),
+        bookingsCheckout: z.object({
+          timezone: z.string().describe(
+            "The timezone to use when presenting the selected slot to users, in [tz database](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones) format. For example, `America/Santiago`.\n\nDefault: If you don't specify a timezone, the timezone in `slotAvailability.slot.timezone` is used."
+          ).max(40).optional(),
+          slotAvailability: z.object({
+            slot: z.object({
+              sessionId: z.string().describe(
+                "ID for the slot's corresponding session, when the session is either a single session\nor a specific session generated from a recurring session.\n\nDeprecated. Please use `eventId` instead."
+              ).optional().nullable(),
+              serviceId: z.string().describe("Service ID.").optional(),
+              scheduleId: z.string().describe("Schedule ID.").optional(),
+              startDate: z.string().describe(
+                "The start time of this slot in [RFC 3339](https://www.rfc-editor.org/rfc/rfc3339)\nformat.\n\nIf `timezone` is specified,\ndates are based on the local date/time. This means that the timezone offset\nin the `start_date` is ignored."
+              ).optional().nullable(),
+              endDate: z.string().describe(
+                "The end time of this slot in\n[RFC 3339](https://www.rfc-editor.org/rfc/rfc3339) format.\n\nIf `timezone` is specified,\ndates are based on the local date/time. This means that the timezone offset\nin the `end_date` is ignored."
+              ).optional().nullable(),
+              timezone: z.string().describe(
+                "The timezone for which slot availability is to be calculated.\n\nLearn more about [handling Daylight Savings Time (DST) for local time zones](https://dev.wix.com/api/rest/wix-bookings/availability-calendar/query-availability#wix-bookings_availability-calendar_query-availability_handling-daylight-savings-time-dst-for-local-time-zones)\nwhen calculating availability."
+              ).optional().nullable(),
+              resource: z.object({
+                _id: z.string().describe("Resource ID.").regex(
+                  /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/,
+                  "Must be a valid GUID"
+                ).optional().nullable(),
+                name: z.string().describe("Resource name. Read only.").max(1200).optional().nullable()
+              }).describe(
+                "The resource required for this slot. Currently, the only supported resource\nis the relevant staff member for the slot."
+              ).optional(),
+              location: z.object({
+                _id: z.string().describe(
+                  'Business location ID. Available only for locations that are business locations,\nmeaning the `location_type` is `"OWNER_BUSINESS"`.'
+                ).regex(
+                  /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/,
+                  "Must be a valid GUID"
+                ).optional().nullable(),
+                name: z.string().describe("Location name.").optional().nullable(),
+                formattedAddress: z.string().describe("The full address of this location.").optional().nullable(),
+                formattedAddressTranslated: z.string().describe(
+                  "The full translated address of this location."
+                ).max(512).optional().nullable(),
+                locationType: z.enum([
+                  "UNDEFINED",
+                  "OWNER_BUSINESS",
+                  "OWNER_CUSTOM",
+                  "CUSTOM"
+                ]).optional()
+              }).describe("Geographic location of the slot.").optional(),
+              eventId: z.string().describe(
+                "ID for the slot's corresponding event, when the event is either a single event\nor a specific event generated from a recurring event."
+              ).min(36).max(250).optional().nullable()
+            }).describe(
+              "The slot for the corresponding session, when the session is either a single session\nor a specific session generated from a recurring session."
+            ).optional(),
+            bookable: z.boolean().describe(
+              "Whether the slot is bookable. Bookability is determined by checking a\nsession's open slots and booking policies. Locks are not taken into\naccount."
+            ).optional(),
+            totalSpots: z.number().int().describe(
+              "Total number of spots for this slot.\nFor example, if a session has a total of 10 spots and 3 spots are booked,\n`spotsTotal` is 10 and `openSpots` is 7."
+            ).optional().nullable(),
+            openSpots: z.number().int().describe("Number of open spots for this slot.").optional().nullable(),
+            waitingList: z.object({
+              totalSpots: z.number().int().describe(
+                "Total number of spots and open spots for this waitlist.\nFor example, a Yoga class with 10 waitlist spots and 3 registered\non the waitlist has 10 `total_spots` and 7 `open_spots`."
+              ).optional().nullable(),
+              openSpots: z.number().int().describe("Number of open spots for this waitlist.").optional().nullable()
+            }).describe(
+              "An object describing the slot's waitlist and its occupancy."
+            ).optional(),
+            bookingPolicyViolations: z.object({
+              tooEarlyToBook: z.boolean().describe(
+                "Bookings policy violation. Too early to book this slot."
+              ).optional().nullable(),
+              tooLateToBook: z.boolean().describe(
+                "Bookings policy violation. Too late to book this slot."
+              ).optional().nullable(),
+              bookOnlineDisabled: z.boolean().describe(
+                "Bookings policy violation. Online booking is disabled for this slot."
+              ).optional().nullable(),
+              validSubmissionRequired: z.boolean().describe(
+                "Bookings policy violation. Intake Form submission is required for this slot."
+              ).optional().nullable()
+            }).describe("Booking policy violations for the slot.").optional(),
+            locked: z.boolean().describe(
+              "Indicates whether the slot is locked because a waitlist exists.\nWhen a slot frees up, the slot is offered to the next customer on the waitlist. Read-only."
+            ).optional().nullable(),
+            isFromV2: z.boolean().describe("Deprecated. not in use since 2025-06-15.").optional()
+          }).describe(
+            "<b>Required</b>. The selected calendar slots to begin a booking checkout."
+          ).optional()
+        }).describe(
+          "Information required for generating a custom URL for a Wix Bookings checkout."
+        )
+      }),
+      z.object({
+        bookingsCheckout: z.never().optional(),
+        eventsCheckout: z.never().optional(),
+        paidPlansCheckout: z.never().optional(),
+        logout: z.never().optional(),
+        auth: z.never().optional(),
+        storesProduct: z.never().optional(),
+        bookingsBook: z.never().optional(),
+        ecomOrderPaymentRequest: z.never().optional(),
+        ecomCheckout: z.object({
+          checkoutId: z.string().describe(
+            "<b>Required</b>. ID of the checkout to process.\nTo retrieve this ID, create a checkout and the relevant ID is returned in the response.\n\nCreate a checkout using one of the following:\n- SDK: [Create Checkout](https://dev.wix.com/docs/sdk/backend-modules/ecom/checkout/create-checkout) or [Create Checkout From Current Cart](https://dev.wix.com/docs/sdk/backend-modules/ecom/current-cart/create-checkout-from-current-cart).\n- REST: [Create Checkout From Cart](https://dev.wix.com/docs/rest/business-solutions/e-commerce/cart/create-checkout-from-cart)."
+          ).regex(
+            /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/,
+            "Must be a valid GUID"
+          ).optional()
+        }).describe(
+          "Information required for generating a custom URL for a Wix eCommerce checkout."
+        )
+      }),
+      z.object({
+        bookingsCheckout: z.never().optional(),
+        ecomCheckout: z.never().optional(),
+        paidPlansCheckout: z.never().optional(),
+        logout: z.never().optional(),
+        auth: z.never().optional(),
+        storesProduct: z.never().optional(),
+        bookingsBook: z.never().optional(),
+        ecomOrderPaymentRequest: z.never().optional(),
+        eventsCheckout: z.object({
+          reservationId: z.string().describe(
+            "<b>Required</b>. ID of the temporary event reservation. Call Create Reservation ([SDK](https://dev.wix.com/docs/sdk/backend-modules/events/orders/create-reservation) | [REST](https://dev.wix.com/docs/rest/business-solutions/events/orders/create-reservation)) to reserve a ticket temporarily and obtain a reservation ID."
+          ).regex(
+            /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/,
+            "Must be a valid GUID"
+          ).optional(),
+          eventSlug: z.string().describe(
+            "<b>Required</b>. URL-friendly event slug, generated from the event title of the event. For example, `my-event-4`. To obtain an event slug, call Get Event ([SDK](https://dev.wix.com/docs/sdk/backend-modules/calendar/events/get-event) | [REST](https://dev.wix.com/docs/rest/business-management/calendar/events-v3/get-event))."
+          ).max(150).optional()
+        }).describe(
+          "Information required for generating a custom URL for a Wix Events checkout."
+        )
+      }),
+      z.object({
+        bookingsCheckout: z.never().optional(),
+        ecomCheckout: z.never().optional(),
+        eventsCheckout: z.never().optional(),
+        logout: z.never().optional(),
+        auth: z.never().optional(),
+        storesProduct: z.never().optional(),
+        bookingsBook: z.never().optional(),
+        ecomOrderPaymentRequest: z.never().optional(),
+        paidPlansCheckout: z.object({
+          planId: z.string().describe(
+            "<b>Required</b>. ID of the paid plan selected. To get a plan ID, call Query Public Plans ([SDK](https://dev.wix.com/docs/sdk/backend-modules/pricing-plans/plans/query-public-plans) | [REST](https://dev.wix.com/docs/rest/business-solutions/pricing-plans/pricing-plans/plans/query-public-plans))."
+          ).regex(
+            /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/,
+            "Must be a valid GUID"
+          ).optional(),
+          checkoutData: z.string().describe(
+            "For use when pricing plan selection is part of a checkout flow, only if the paid plan selection page is implemented on an external Wix Headless client site.\nIn this case, a string is received by the external pricing plans page as a `checkoutData` query parameter. Pass this string back here when redirecting back to Wix for checkout."
+          ).max(2048).optional().nullable()
+        }).describe(
+          "Information required for generating a custom URL for a Wix Paid Plans checkout."
+        )
+      }),
+      z.object({
+        bookingsCheckout: z.never().optional(),
+        ecomCheckout: z.never().optional(),
+        eventsCheckout: z.never().optional(),
+        paidPlansCheckout: z.never().optional(),
+        auth: z.never().optional(),
+        storesProduct: z.never().optional(),
+        bookingsBook: z.never().optional(),
+        ecomOrderPaymentRequest: z.never().optional(),
+        logout: z.object({
+          clientId: z.string().describe(
+            "<b>Required</b>. ID of the OAuth app authorizing the client. To get this ID, go to your [Headless settings](https://www.wix.com/my-account/site-selector/?buttonText=Select%20Site&title=Select%20a%20Site&autoSelectOnSingleSite=true&actionUrl=https:%2F%2Fwww.wix.com%2Fdashboard%2F%7B%7BmetaSiteId%7D%7D%2F{{oauth-apps-settings/manage}}) and copy the Client ID of your OAuth app."
+          ).regex(
+            /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/,
+            "Must be a valid GUID"
+          ).optional()
+        }).describe(
+          "Information required for generating a custom URL to log out from a Wix account. This process invalidates the visitor or member token and clears cookies associated with the Wix domain from their browser."
+        )
+      }),
+      z.object({
+        bookingsCheckout: z.never().optional(),
+        ecomCheckout: z.never().optional(),
+        eventsCheckout: z.never().optional(),
+        paidPlansCheckout: z.never().optional(),
+        logout: z.never().optional(),
+        storesProduct: z.never().optional(),
+        bookingsBook: z.never().optional(),
+        ecomOrderPaymentRequest: z.never().optional(),
+        auth: z.object({
+          authRequest: z.object({
+            clientId: z.string().describe(
+              "ID of the Wix OAuth app requesting authorization."
+            ).regex(
+              /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/,
+              "Must be a valid GUID"
+            ).optional(),
+            responseType: z.string().describe(
+              "Desired authorization [grant type](https://auth0.com/docs/authenticate/protocols/oauth#grant-types).\n\nSupported values:\n+ `code`: The endpoint returns an authorization code that can be used to obtain an access token."
+            ).min(1).optional(),
+            redirectUri: z.string().describe(
+              "URI to redirect the browser to after authentication and authorization. The browser is redirected to this URI whether the authentication and authorization process is successful or not."
+            ).min(1).optional().nullable(),
+            scope: z.string().describe(
+              "Desired scope of access. If this field is left empty, only an access token is granted.\nTo received a refresh token, pass `offline_access` as the value of this field."
+            ).optional().nullable(),
+            state: z.string().describe(
+              "A value used to confirm the state of an application before and after it makes an authorization\nrequest. If a value for this field is set in the request, it's added to the `redirectUri` when the browser\nis redirected there.\nLearn more about [using the state parameter](https://auth0.com/docs/secure/attack-protection/state-parameters)."
+            ).min(1).optional(),
+            responseMode: z.string().describe(
+              "esired response format.\n\nSupported values:\n+ `query`: The response parameters are encoded as query string parameters and added to the `redirectUri` when redirecting.\n+ `fragment`: The response parameters are encoded as URI fragment parameters and added to the `redirectUri` when redirecting.\n+ `web_message`: The response parameters are encoded as a JSON object and added to the body of a [web message response](https://datatracker.ietf.org/doc/html/draft-sakimura-oauth-wmrm-00).\n\nDefault value: `query`"
+            ).optional().nullable(),
+            codeChallenge: z.string().describe(
+              "Code challenge to use for PKCE verification.\nThis field is only used if `responseType` is set to `code`."
+            ).optional().nullable(),
+            codeChallengeMethod: z.string().describe(
+              "Code challenge method to use for PKCE verification.\nThis field is only used if `responseType` is set to `code`.\n\nSupported values:\n+ `S256`: The code challenge is transformed using SHA-256 encyption.\n+ `S512`: The code challenge is transformed using SHA-512 encyption."
+            ).optional().nullable(),
+            sessionToken: z.string().describe(
+              "Token returned by a successful [login](https://dev.wix.com/docs/api-reference/business-management/headless/authentication/login-v-2) or [register](https://dev.wix.com/docs/api-reference/business-management/headless/authentication/register-v-2) call that identifies the authenticated member.\n\nIn the default SDK flow, session context is passed through a hidden iframe automatically. When using a [full-page redirect](https://dev.wix.com/docs/go-headless/develop-your-project/self-managed-headless/authentication/members/custom-login-page/custom-login/custom-login-using-the-js-sdk#use-a-full-page-redirect-desktop-and-mobile-browsers) instead, you must pass this field explicitly because there is no iframe to carry the session context."
+            ).optional().nullable(),
+            signInUrl: z.string().describe(
+              "DEPRECATED: no longer read. The sign-in URL is resolved from the client's OAuthClientConfiguration\ncomponent (sign_in_url), falling back to the default Wix sign-in page."
+            ).url().optional().nullable(),
+            userConsented: z.boolean().describe(
+              "Indicates whether the user has consented to the requested scopes"
+            ).optional().nullable(),
+            optionalLogin: z.boolean().describe(
+              "Indicates whether login is optional. If true, will not redirect to the sign_in_url if user is not logged in."
+            ).optional().nullable(),
+            metaSiteId: z.string().describe("The site id the authorization is requested for.").regex(
+              /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/,
+              "Must be a valid GUID"
+            ).optional().nullable(),
+            idp: z.string().describe(
+              "ID of the IAM IdP connection to authenticate with when no member session exists.\nWhen set, the sign-in redirect initiates an OIDC login against this IdP connection\n(IAM's `/sso/login` endpoint) instead of the default Wix login page."
+            ).regex(
+              /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/,
+              "Must be a valid GUID"
+            ).optional().nullable(),
+            nonce: z.string().describe(
+              "OIDC nonce, bound to the authorization request and echoed back in the id_token."
+            ).max(512).optional().nullable()
+          }).describe(
+            "<b>Required</b>. Details of the authorization request."
+          ).optional(),
+          prompt: z.enum(["login", "none"]).optional()
+        }).describe(
+          "Information required for generating a custom URL for Wix authentication."
+        )
+      }),
+      z.object({
+        bookingsCheckout: z.never().optional(),
+        ecomCheckout: z.never().optional(),
+        eventsCheckout: z.never().optional(),
+        paidPlansCheckout: z.never().optional(),
+        logout: z.never().optional(),
+        auth: z.never().optional(),
+        bookingsBook: z.never().optional(),
+        ecomOrderPaymentRequest: z.never().optional(),
+        storesProduct: z.object({
+          productSlug: z.string().describe(
+            "<b>Required</b>. Unique slug of the product to redirect to. To obtain a product slug, call Query Products [SDK](https://dev.wix.com/docs/sdk/backend-modules/stores/catalog-v3/products-v3/get-product-by-slug) | [REST](https://dev.wix.com/docs/rest/business-solutions/stores/catalog-v3/products-v3/query-products))."
+          ).max(150).optional()
+        }).describe(
+          "Information required for generating a custom URL for a Wix stores product page."
+        )
+      }),
+      z.object({
+        bookingsCheckout: z.never().optional(),
+        ecomCheckout: z.never().optional(),
+        eventsCheckout: z.never().optional(),
+        paidPlansCheckout: z.never().optional(),
+        logout: z.never().optional(),
+        auth: z.never().optional(),
+        storesProduct: z.never().optional(),
+        ecomOrderPaymentRequest: z.never().optional(),
+        bookingsBook: z.object({
+          resourceId: z.string().describe(
+            "For use when filtering the bookings page by a specific resource."
+          ).regex(
+            /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/,
+            "Must be a valid GUID"
+          ).optional()
+        }).describe(
+          "Information required for generating a custom URL for Wix bookings book page."
+        )
+      }),
+      z.object({
+        bookingsCheckout: z.never().optional(),
+        ecomCheckout: z.never().optional(),
+        eventsCheckout: z.never().optional(),
+        paidPlansCheckout: z.never().optional(),
+        logout: z.never().optional(),
+        auth: z.never().optional(),
+        storesProduct: z.never().optional(),
+        bookingsBook: z.never().optional(),
+        ecomOrderPaymentRequest: z.object({
+          paymentRequestId: z.string().describe(
+            "<b>Required</b>. ID of the order payment request to process."
+          ).regex(
+            /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/,
+            "Must be a valid GUID"
+          ).optional()
+        }).describe(
+          "Information required for generating a custom URL for a Wix eCommerce order payment request page."
+        )
+      })
+    ])
+  ).describe("Options for creating a redirect session.")
+});
+var CreateRedirectSessionResponse = z.object({
+  redirectSession: z.object({
+    _id: z.string().describe("ID of the redirect session created.").regex(
+      /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/,
+      "Must be a valid GUID"
+    ).optional(),
+    fullUrl: z.string().describe(
+      "The full URL of the Wix page to redirect the visitor to. This URL includes query parameters informing Wix where to redirect the visitor back to on the Wix Headless client site."
+    ).max(2048).optional(),
+    urlDetails: z.object({
+      endpoint: z.string().describe(
+        "Endpoint of the url. This includes the base URL and the path to the endpoint, without query parameters.\nFor example: `https://mysite.com/_api/oauth2/authorize`."
+      ).max(2048).optional(),
+      searchParams: z.record(z.string(), z.string()).describe("URL query parameters.").optional()
+    }).describe("Details about the URL of the redirect session.").optional(),
+    sessionToken: z.string().describe(
+      "The session token to pass to the Wix page to maintain the visitor's identity."
+    ).max(2048).optional().nullable(),
+    shortUrl: z.string().describe(
+      "The short URL of the Wix page to redirect the visitor to. This URL includes query parameters informing Wix where to redirect the visitor back to on the Wix Headless client site."
+    ).max(2048).optional()
+  }).describe("Details for redirecting the visitor to a Wix page.").optional()
+});
+// Annotate the CommonJS export names for ESM import in node:
+0 && (module.exports = {
+  CreateRedirectSessionRequest,
+  CreateRedirectSessionResponse
+});
+//# sourceMappingURL=schemas.js.map

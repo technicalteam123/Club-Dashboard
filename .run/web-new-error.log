@@ -1,0 +1,5 @@
+$ vite --config vite.config.ts --host 0.0.0.0
+[2m4:55:02 pm[22m [31m[1m[vite][22m[39m [31m[2m(client)[22m[39m Pre-transform error: Failed to load url /src/pages/login.tsx (resolved id: C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/pages/login.tsx) in C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/components/layout/Router.tsx. Does the file exist?
+[31mfailed to load config from C:\Users\PC-4\Club-Dashboard\artifacts\efff-dashboard\vite.config.ts[39m
+[2m5:50:48 pm[22m [31m[1m[vite][22m[39m PORT environment variable is required but was not provided.
+[2m5:50:48 pm[22m [31m[1m[vite][22m[39m server restart failed

@@ -1,0 +1,61 @@
+{
+  "name": "@wix/auto_sdk_identity_oauth",
+  "version": "1.0.50",
+  "license": "MIT",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public"
+  },
+  "keywords": [],
+  "sideEffects": false,
+  "main": "./build/cjs/index.js",
+  "types": "./build/cjs/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./build/es/index.mjs",
+      "require": "./build/cjs/index.js",
+      "types": "./build/es/index.d.mts"
+    },
+    "./package.json": "./package.json",
+    "./meta": {
+      "import": "./build/es/meta.mjs",
+      "require": "./build/cjs/meta.js",
+      "types": "./build/es/meta.d.mts"
+    },
+    "./schemas": {
+      "import": "./build/es/schemas.mjs",
+      "require": "./build/cjs/schemas.js",
+      "types": "./build/es/schemas.d.mts"
+    }
+  },
+  "files": [
+    "build",
+    "meta",
+    "service-plugins",
+    "schemas"
+  ],
+  "dependencies": {
+    "@wix/sdk-runtime": "^1.0.12",
+    "@wix/sdk-types": "^1.17.7",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "tsup": "^8.4.0",
+    "typescript": "^5.3.2"
+  },
+  "scripts": {
+    "build": "tsup",
+    "test": ":"
+  },
+  "wix": {
+    "artifact": {
+      "artifactId": "auto-sdk-identity-oauth",
+      "groupId": "com.wixpress.public-sdk-dependencies"
+    },
+    "sdkDependency": {
+      "fqdnNamespace": "oauth",
+      "fqdn": "wix.identity.oauth.v1.refresh_token"
+    }
+  },
+  "falconPackageHash": "99215348b0eab67870ce05591cd2b47e95e3b300f6014f63176d3e3f"
+}

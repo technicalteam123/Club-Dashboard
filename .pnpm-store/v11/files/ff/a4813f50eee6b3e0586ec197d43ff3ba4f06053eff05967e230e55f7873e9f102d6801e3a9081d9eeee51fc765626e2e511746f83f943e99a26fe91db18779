@@ -1,0 +1,109 @@
+import { createHostModule } from '@wix/sdk-runtime/host-modules';
+export const authenticationRuntime = createHostModule({
+    applySessionToken: ({ channel }) => function applySessionToken(...args) {
+        return channel.invoke({
+            namespace: 'members',
+            method: 'authentication.applySessionToken',
+            args,
+        });
+    },
+    changePassword: ({ channel }) => function changePassword(...args) {
+        return channel.invoke({
+            namespace: 'members',
+            method: 'authentication.changePassword',
+            args,
+        });
+    },
+    loggedIn: ({ channel }) => function loggedIn(...args) {
+        return channel.invoke({
+            namespace: 'members',
+            method: 'authentication.loggedIn',
+            args,
+        });
+    },
+    login: ({ channel }) => function login(...args) {
+        return channel.invoke({
+            namespace: 'members',
+            method: 'authentication.login',
+            args,
+        });
+    },
+    logout: ({ channel }) => function logout(...args) {
+        return channel.invoke({
+            namespace: 'members',
+            method: 'authentication.logout',
+            args,
+        });
+    },
+    onLogin: ({ channel }) => function onLogin(...args) {
+        return channel.invoke({
+            namespace: 'members',
+            method: 'authentication.onLogin',
+            args,
+        });
+    },
+    onLogout: ({ channel }) => function onLogout(...args) {
+        return channel.invoke({
+            namespace: 'members',
+            method: 'authentication.onLogout',
+            args,
+        });
+    },
+    promptForgotPassword: ({ channel }) => function promptForgotPassword(...args) {
+        return channel.invoke({
+            namespace: 'members',
+            method: 'authentication.promptForgotPassword',
+            args,
+        });
+    },
+    promptLogin: ({ channel }) => function promptLogin(...args) {
+        return channel.invoke({
+            namespace: 'members',
+            method: 'authentication.promptLogin',
+            args,
+        });
+    },
+    register: ({ channel }) => function register(...args) {
+        return channel.invoke({
+            namespace: 'members',
+            method: 'authentication.register',
+            args,
+        });
+    },
+    resendVerificationCodeEmail: ({ channel }) => function resendVerificationCodeEmail(...args) {
+        return channel.invoke({
+            namespace: 'members',
+            method: 'authentication.resendVerificationCodeEmail',
+            args,
+        });
+    },
+    sendForgotPasswordEmail: ({ channel }) => function sendForgotPasswordEmail(...args) {
+        return channel.invoke({
+            namespace: 'members',
+            method: 'authentication.sendForgotPasswordEmail',
+            args,
+        });
+    },
+    sendResetPasswordEmail: ({ channel }) => function sendResetPasswordEmail(...args) {
+        return channel.invoke({
+            namespace: 'members',
+            method: 'authentication.sendResetPasswordEmail',
+            args,
+        });
+    },
+    sendSetPasswordEmail: ({ channel }) => function sendSetPasswordEmail(...args) {
+        return channel.invoke({
+            namespace: 'members',
+            method: 'authentication.sendSetPasswordEmail',
+            args,
+        });
+    },
+    verifyEmail: ({ channel }) => function verifyEmail(...args) {
+        return channel.invoke({
+            namespace: 'members',
+            method: 'authentication.verifyEmail',
+            args,
+        });
+    },
+});
+//# sourceMappingURL=authentication.runtime.js.map

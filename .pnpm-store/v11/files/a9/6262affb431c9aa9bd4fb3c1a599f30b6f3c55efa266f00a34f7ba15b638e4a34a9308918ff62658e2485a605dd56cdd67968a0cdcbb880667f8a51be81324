@@ -1,0 +1,9 @@
+import { contextualizeHostModule } from "@wix/sdk-runtime/context";
+import { currentMemberRuntime as currentMemberModule } from './currentMember.runtime';
+export const currentMemberContext = {
+    getMember: contextualizeHostModule(currentMemberModule, 'getMember'),
+    getRoles: contextualizeHostModule(currentMemberModule, 'getRoles'),
+    makeProfilePrivate: contextualizeHostModule(currentMemberModule, 'makeProfilePrivate'),
+    makeProfilePublic: contextualizeHostModule(currentMemberModule, 'makeProfilePublic'),
+};
+//# sourceMappingURL=currentMember.context.js.map

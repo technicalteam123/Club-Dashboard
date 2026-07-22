@@ -1,0 +1,93 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.createFilterFactory = createFilterFactory;
+exports.createSortFactory = createSortFactory;
+/**
+ * Creates a chainable field filter for a specific field.
+ * Allows chaining multiple operators on the same field.
+ * @param field - The field name to create filters for
+ * @param existingOps - Existing operators to include (used for chaining)
+ * @returns A chainable field filter with methods for creating filter expressions
+ * @example
+ * // Single operator
+ * Filter('price').gt(50) // { price: { $gt: 50 } }
+ *
+ * // Chained operators
+ * Filter('price').gt(50).lt(100) // { price: { $gt: 50, $lt: 100 } }
+ */
+function createFieldFilter(field, existingOps = {}) {
+    const createChained = (op, value) => {
+        const newOps = { ...existingOps, [op]: value };
+        return createFieldFilter(field, newOps);
+    };
+    // Build the filter object dynamically
+    const getFilter = () => {
+        if (Object.keys(existingOps).length === 0) {
+            return {};
+        }
+        return { [field]: existingOps };
+    };
+    return {
+        // FilterExpression interface - makes this usable directly
+        get filter() {
+            return getFilter();
+        },
+        // Chainable methods
+        eq: (value) => createChained('$eq', value),
+        ne: (value) => createChained('$ne', value),
+        gt: (value) => createChained('$gt', value),
+        gte: (value) => createChained('$gte', value),
+        lt: (value) => createChained('$lt', value),
+        lte: (value) => createChained('$lte', value),
+        startsWith: (value) => createChained('$startsWith', value),
+        endsWith: (value) => createChained('$endsWith', value),
+        contains: (value) => createChained('$contains', value),
+        in: (values) => createChained('$in', values),
+        nin: (values) => createChained('$nin', values),
+        hasSome: (values) => createChained('$hasSome', values),
+        hasAll: (values) => createChained('$hasAll', values),
+        exists: (value = true) => createChained('$exists', value),
+        isEmpty: (value = true) => createChained('$isEmpty', value),
+        isNotEmpty: () => createChained('$ne', null),
+    };
+}
+/**
+ * Creates the Filter factory with field selector and logical operators
+ * @returns A FilterFactory with field selector and logical operators (and, or, not)
+ */
+function createFilterFactory() {
+    const filterFn = (field) => {
+        return createFieldFilter(field);
+    };
+    // Add static methods for logical operators
+    const Filter = Object.assign(filterFn, {
+        and: (...filters) => ({
+            filter: {
+                $and: filters.map((f) => f.filter),
+            },
+        }),
+        or: (...filters) => ({
+            filter: {
+                $or: filters.map((f) => f.filter),
+            },
+        }),
+        not: (filter) => ({
+            filter: { $not: filter.filter },
+        }),
+    });
+    return Filter;
+}
+/**
+ * Creates the Sort factory
+ * @returns A SortFactory for creating sort expressions
+ */
+function createSortFactory() {
+    return ((field) => ({
+        asc: () => ({
+            sort: { fieldName: field, order: 'ASC' },
+        }),
+        desc: () => ({
+            sort: { fieldName: field, order: 'DESC' },
+        }),
+    }));
+}

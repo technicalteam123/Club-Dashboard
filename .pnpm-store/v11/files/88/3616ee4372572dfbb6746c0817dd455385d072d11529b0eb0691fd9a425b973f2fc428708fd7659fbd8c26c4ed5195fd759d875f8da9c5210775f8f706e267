@@ -1,0 +1,89 @@
+import * as z from 'zod';
+
+declare const TokenRequest: z.ZodObject<{
+    options: z.ZodOptional<z.ZodObject<{
+        body: z.ZodOptional<z.ZodString>;
+        pathParams: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            key: z.ZodOptional<z.ZodString>;
+            value: z.ZodOptional<z.ZodString>;
+        }, z.core.$strip>>>;
+        queryParams: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            key: z.ZodOptional<z.ZodString>;
+            value: z.ZodOptional<z.ZodString>;
+        }, z.core.$strip>>>;
+        headers: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            key: z.ZodOptional<z.ZodString>;
+            value: z.ZodOptional<z.ZodString>;
+        }, z.core.$strip>>>;
+        method: z.ZodOptional<z.ZodString>;
+        rawPath: z.ZodOptional<z.ZodString>;
+        rawQuery: z.ZodOptional<z.ZodString>;
+    }, z.core.$strip>>;
+}, z.core.$strip>;
+declare const TokenResponse: z.ZodObject<{
+    body: z.ZodOptional<z.ZodString>;
+    statusCode: z.ZodNullable<z.ZodOptional<z.ZodNumber>>;
+    headers: z.ZodOptional<z.ZodArray<z.ZodObject<{
+        key: z.ZodOptional<z.ZodString>;
+        value: z.ZodOptional<z.ZodString>;
+    }, z.core.$strip>>>;
+}, z.core.$strip>;
+declare const JwksRequest: z.ZodObject<{}, z.core.$strip>;
+declare const JwksResponse: z.ZodObject<{
+    body: z.ZodOptional<z.ZodString>;
+    statusCode: z.ZodNullable<z.ZodOptional<z.ZodNumber>>;
+    headers: z.ZodOptional<z.ZodArray<z.ZodObject<{
+        key: z.ZodOptional<z.ZodString>;
+        value: z.ZodOptional<z.ZodString>;
+    }, z.core.$strip>>>;
+}, z.core.$strip>;
+declare const TokenInfoRequest: z.ZodObject<{
+    options: z.ZodOptional<z.ZodObject<{
+        body: z.ZodOptional<z.ZodString>;
+        pathParams: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            key: z.ZodOptional<z.ZodString>;
+            value: z.ZodOptional<z.ZodString>;
+        }, z.core.$strip>>>;
+        queryParams: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            key: z.ZodOptional<z.ZodString>;
+            value: z.ZodOptional<z.ZodString>;
+        }, z.core.$strip>>>;
+        headers: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            key: z.ZodOptional<z.ZodString>;
+            value: z.ZodOptional<z.ZodString>;
+        }, z.core.$strip>>>;
+        method: z.ZodOptional<z.ZodString>;
+        rawPath: z.ZodOptional<z.ZodString>;
+        rawQuery: z.ZodOptional<z.ZodString>;
+    }, z.core.$strip>>;
+}, z.core.$strip>;
+declare const TokenInfoResponse: z.ZodObject<{
+    active: z.ZodOptional<z.ZodBoolean>;
+    subjectType: z.ZodOptional<z.ZodEnum<{
+        UNKNOWN: "UNKNOWN";
+        USER: "USER";
+        VISITOR: "VISITOR";
+        MEMBER: "MEMBER";
+        APP: "APP";
+    }>>;
+    subjectId: z.ZodOptional<z.ZodString>;
+    exp: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+    iat: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+    clientId: z.ZodOptional<z.ZodString>;
+    accountId: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+    siteId: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+    instanceId: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+    vendorProductId: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+}, z.core.$strip>;
+declare const UserInfoRequest: z.ZodObject<{}, z.core.$strip>;
+declare const UserInfoResponse: z.ZodObject<{
+    sub: z.ZodOptional<z.ZodString>;
+    givenName: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+    familyName: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+    email: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+    emailVerified: z.ZodNullable<z.ZodOptional<z.ZodBoolean>>;
+    picture: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+    language: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+}, z.core.$strip>;
+
+export { JwksRequest, JwksResponse, TokenInfoRequest, TokenInfoResponse, TokenRequest, TokenResponse, UserInfoRequest, UserInfoResponse };

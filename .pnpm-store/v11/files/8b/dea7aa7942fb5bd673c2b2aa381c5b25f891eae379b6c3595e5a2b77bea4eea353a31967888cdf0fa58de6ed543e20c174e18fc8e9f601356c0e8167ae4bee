@@ -1,0 +1,628 @@
+import * as z from 'zod';
+
+declare const RegisterV2Request: z.ZodObject<{
+    loginId: z.ZodIntersection<z.ZodObject<{}, z.core.$strip>, z.ZodXor<readonly [z.ZodObject<{
+        email: z.ZodOptional<z.ZodNever>;
+    }, z.core.$strip>, z.ZodObject<{
+        email: z.ZodString;
+    }, z.core.$strip>]>>;
+    options: z.ZodOptional<z.ZodObject<{
+        password: z.ZodOptional<z.ZodString>;
+        profile: z.ZodOptional<z.ZodObject<{
+            firstName: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+            lastName: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+            nickname: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+            picture: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+            emails: z.ZodOptional<z.ZodArray<z.ZodString>>;
+            phones: z.ZodOptional<z.ZodArray<z.ZodString>>;
+            labels: z.ZodOptional<z.ZodArray<z.ZodString>>;
+            language: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+            privacyStatus: z.ZodOptional<z.ZodEnum<{
+                UNDEFINED: "UNDEFINED";
+                PUBLIC: "PUBLIC";
+                PRIVATE: "PRIVATE";
+            }>>;
+            customFields: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                name: z.ZodOptional<z.ZodString>;
+                value: z.ZodOptional<z.ZodType<any, unknown, z.core.$ZodTypeInternals<any, unknown>>>;
+            }, z.core.$strip>>>;
+            secondaryEmails: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                email: z.ZodOptional<z.ZodString>;
+                tag: z.ZodOptional<z.ZodEnum<{
+                    UNTAGGED: "UNTAGGED";
+                    MAIN: "MAIN";
+                    HOME: "HOME";
+                    WORK: "WORK";
+                }>>;
+            }, z.core.$strip>>>;
+            phonesV2: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                countryCode: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+                phone: z.ZodOptional<z.ZodString>;
+                tag: z.ZodOptional<z.ZodEnum<{
+                    UNTAGGED: "UNTAGGED";
+                    MAIN: "MAIN";
+                    HOME: "HOME";
+                    WORK: "WORK";
+                    MOBILE: "MOBILE";
+                    FAX: "FAX";
+                }>>;
+            }, z.core.$strip>>>;
+            addresses: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                address: z.ZodOptional<z.ZodObject<{
+                    city: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+                    subdivision: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+                    country: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+                    postalCode: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+                    addressLine2: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+                }, z.core.$strip>>;
+                tag: z.ZodOptional<z.ZodEnum<{
+                    UNTAGGED: "UNTAGGED";
+                    HOME: "HOME";
+                    WORK: "WORK";
+                    BILLING: "BILLING";
+                    SHIPPING: "SHIPPING";
+                }>>;
+            }, z.core.$strip>>>;
+            company: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+            position: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+            birthdate: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+            slug: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+            subscription: z.ZodNullable<z.ZodOptional<z.ZodBoolean>>;
+            vatId: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+        }, z.core.$strip>>;
+        captchaTokens: z.ZodOptional<z.ZodArray<z.ZodIntersection<z.ZodObject<{}, z.core.$strip>, z.ZodXor<readonly [z.ZodObject<{
+            Recaptcha: z.ZodOptional<z.ZodNever>;
+            InvisibleRecaptcha: z.ZodOptional<z.ZodNever>;
+            NoCaptcha: z.ZodOptional<z.ZodNever>;
+            recaptchaForClientSiteKey: z.ZodOptional<z.ZodNever>;
+        }, z.core.$strip>, z.ZodObject<{
+            InvisibleRecaptcha: z.ZodOptional<z.ZodNever>;
+            NoCaptcha: z.ZodOptional<z.ZodNever>;
+            recaptchaForClientSiteKey: z.ZodOptional<z.ZodNever>;
+            Recaptcha: z.ZodString;
+        }, z.core.$strip>, z.ZodObject<{
+            Recaptcha: z.ZodOptional<z.ZodNever>;
+            NoCaptcha: z.ZodOptional<z.ZodNever>;
+            recaptchaForClientSiteKey: z.ZodOptional<z.ZodNever>;
+            InvisibleRecaptcha: z.ZodString;
+        }, z.core.$strip>, z.ZodObject<{
+            Recaptcha: z.ZodOptional<z.ZodNever>;
+            InvisibleRecaptcha: z.ZodOptional<z.ZodNever>;
+            recaptchaForClientSiteKey: z.ZodOptional<z.ZodNever>;
+            NoCaptcha: z.ZodString;
+        }, z.core.$strip>, z.ZodObject<{
+            Recaptcha: z.ZodOptional<z.ZodNever>;
+            InvisibleRecaptcha: z.ZodOptional<z.ZodNever>;
+            NoCaptcha: z.ZodOptional<z.ZodNever>;
+            recaptchaForClientSiteKey: z.ZodObject<{
+                token: z.ZodOptional<z.ZodString>;
+                siteKeyId: z.ZodOptional<z.ZodString>;
+            }, z.core.$strip>;
+        }, z.core.$strip>]>>>>;
+        clientMetaData: z.ZodNullable<z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>>;
+    }, z.core.$strip>>;
+}, z.core.$strip>;
+declare const RegisterV2Response: z.ZodObject<{
+    state: z.ZodOptional<z.ZodEnum<{
+        UNKNOWN_STATE: "UNKNOWN_STATE";
+        SUCCESS: "SUCCESS";
+        REQUIRE_OWNER_APPROVAL: "REQUIRE_OWNER_APPROVAL";
+        REQUIRE_EMAIL_VERIFICATION: "REQUIRE_EMAIL_VERIFICATION";
+        STATUS_CHECK: "STATUS_CHECK";
+    }>>;
+    sessionToken: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+    stateToken: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+    identity: z.ZodOptional<z.ZodObject<{
+        _id: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+        revision: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+        _createdDate: z.ZodNullable<z.ZodOptional<z.ZodDate>>;
+        _updatedDate: z.ZodNullable<z.ZodOptional<z.ZodDate>>;
+        connections: z.ZodOptional<z.ZodArray<z.ZodIntersection<z.ZodObject<{}, z.core.$strip>, z.ZodXor<readonly [z.ZodObject<{
+            idpConnection: z.ZodOptional<z.ZodNever>;
+            authenticatorConnection: z.ZodOptional<z.ZodNever>;
+        }, z.core.$strip>, z.ZodObject<{
+            authenticatorConnection: z.ZodOptional<z.ZodNever>;
+            idpConnection: z.ZodObject<{
+                idpConnectionId: z.ZodOptional<z.ZodString>;
+                idpUserId: z.ZodOptional<z.ZodString>;
+            }, z.core.$strip>;
+        }, z.core.$strip>, z.ZodObject<{
+            idpConnection: z.ZodOptional<z.ZodNever>;
+            authenticatorConnection: z.ZodObject<{
+                authenticatorConnectionId: z.ZodOptional<z.ZodString>;
+                reEnrollmentRequired: z.ZodOptional<z.ZodBoolean>;
+            }, z.core.$strip>;
+        }, z.core.$strip>]>>>>;
+        identityProfile: z.ZodOptional<z.ZodObject<{
+            firstName: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+            lastName: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+            nickname: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+            picture: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+            emails: z.ZodOptional<z.ZodArray<z.ZodString>>;
+            phones: z.ZodOptional<z.ZodArray<z.ZodString>>;
+            labels: z.ZodOptional<z.ZodArray<z.ZodString>>;
+            language: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+            privacyStatus: z.ZodOptional<z.ZodEnum<{
+                UNDEFINED: "UNDEFINED";
+                PUBLIC: "PUBLIC";
+                PRIVATE: "PRIVATE";
+            }>>;
+            customFields: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                name: z.ZodOptional<z.ZodString>;
+                value: z.ZodOptional<z.ZodType<any, unknown, z.core.$ZodTypeInternals<any, unknown>>>;
+            }, z.core.$strip>>>;
+            secondaryEmails: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                email: z.ZodOptional<z.ZodString>;
+                tag: z.ZodOptional<z.ZodEnum<{
+                    UNTAGGED: "UNTAGGED";
+                    MAIN: "MAIN";
+                    HOME: "HOME";
+                    WORK: "WORK";
+                }>>;
+            }, z.core.$strip>>>;
+            phonesV2: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                countryCode: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+                phone: z.ZodOptional<z.ZodString>;
+                tag: z.ZodOptional<z.ZodEnum<{
+                    UNTAGGED: "UNTAGGED";
+                    MAIN: "MAIN";
+                    HOME: "HOME";
+                    WORK: "WORK";
+                    MOBILE: "MOBILE";
+                    FAX: "FAX";
+                }>>;
+            }, z.core.$strip>>>;
+            addresses: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                address: z.ZodOptional<z.ZodObject<{
+                    city: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+                    subdivision: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+                    country: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+                    postalCode: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+                    addressLine2: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+                }, z.core.$strip>>;
+                tag: z.ZodOptional<z.ZodEnum<{
+                    UNTAGGED: "UNTAGGED";
+                    HOME: "HOME";
+                    WORK: "WORK";
+                    BILLING: "BILLING";
+                    SHIPPING: "SHIPPING";
+                }>>;
+            }, z.core.$strip>>>;
+            company: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+            position: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+            birthdate: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+            slug: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+            subscription: z.ZodNullable<z.ZodOptional<z.ZodBoolean>>;
+            vatId: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+        }, z.core.$strip>>;
+        email: z.ZodOptional<z.ZodObject<{
+            address: z.ZodOptional<z.ZodString>;
+            isVerified: z.ZodOptional<z.ZodBoolean>;
+        }, z.core.$strip>>;
+        status: z.ZodOptional<z.ZodObject<{
+            name: z.ZodOptional<z.ZodEnum<{
+                UNKNOWN_STATUS: "UNKNOWN_STATUS";
+                PENDING: "PENDING";
+                ACTIVE: "ACTIVE";
+                DELETED: "DELETED";
+                BLOCKED: "BLOCKED";
+                OFFLINE: "OFFLINE";
+            }>>;
+            reasons: z.ZodOptional<z.ZodArray<z.ZodEnum<{
+                UNKNOWN_REASON: "UNKNOWN_REASON";
+                PENDING_ADMIN_APPROVAL_REQUIRED: "PENDING_ADMIN_APPROVAL_REQUIRED";
+                PENDING_EMAIL_VERIFICATION_REQUIRED: "PENDING_EMAIL_VERIFICATION_REQUIRED";
+            }>>>;
+        }, z.core.$strip>>;
+        factors: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            factorId: z.ZodOptional<z.ZodString>;
+            type: z.ZodOptional<z.ZodEnum<{
+                PASSWORD: "PASSWORD";
+                SMS: "SMS";
+                CALL: "CALL";
+                EMAIL: "EMAIL";
+                TOTP: "TOTP";
+                PUSH: "PUSH";
+                WEBAUTHN: "WEBAUTHN";
+                RECOVERY_CODE: "RECOVERY_CODE";
+            }>>;
+            status: z.ZodOptional<z.ZodEnum<{
+                ACTIVE: "ACTIVE";
+                INACTIVE: "INACTIVE";
+                REQUIRE_REENROLL: "REQUIRE_REENROLL";
+            }>>;
+        }, z.core.$strip>>>;
+    }, z.core.$strip>>;
+    additionalData: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodType<any, unknown, z.core.$ZodTypeInternals<any, unknown>>>>;
+}, z.core.$strip>;
+declare const LoginV2Request: z.ZodObject<{
+    loginId: z.ZodIntersection<z.ZodObject<{}, z.core.$strip>, z.ZodXor<readonly [z.ZodObject<{
+        email: z.ZodOptional<z.ZodNever>;
+    }, z.core.$strip>, z.ZodObject<{
+        email: z.ZodString;
+    }, z.core.$strip>]>>;
+    options: z.ZodOptional<z.ZodObject<{
+        password: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+        captchaTokens: z.ZodOptional<z.ZodArray<z.ZodIntersection<z.ZodObject<{}, z.core.$strip>, z.ZodXor<readonly [z.ZodObject<{
+            Recaptcha: z.ZodOptional<z.ZodNever>;
+            InvisibleRecaptcha: z.ZodOptional<z.ZodNever>;
+            NoCaptcha: z.ZodOptional<z.ZodNever>;
+            recaptchaForClientSiteKey: z.ZodOptional<z.ZodNever>;
+        }, z.core.$strip>, z.ZodObject<{
+            InvisibleRecaptcha: z.ZodOptional<z.ZodNever>;
+            NoCaptcha: z.ZodOptional<z.ZodNever>;
+            recaptchaForClientSiteKey: z.ZodOptional<z.ZodNever>;
+            Recaptcha: z.ZodString;
+        }, z.core.$strip>, z.ZodObject<{
+            Recaptcha: z.ZodOptional<z.ZodNever>;
+            NoCaptcha: z.ZodOptional<z.ZodNever>;
+            recaptchaForClientSiteKey: z.ZodOptional<z.ZodNever>;
+            InvisibleRecaptcha: z.ZodString;
+        }, z.core.$strip>, z.ZodObject<{
+            Recaptcha: z.ZodOptional<z.ZodNever>;
+            InvisibleRecaptcha: z.ZodOptional<z.ZodNever>;
+            recaptchaForClientSiteKey: z.ZodOptional<z.ZodNever>;
+            NoCaptcha: z.ZodString;
+        }, z.core.$strip>, z.ZodObject<{
+            Recaptcha: z.ZodOptional<z.ZodNever>;
+            InvisibleRecaptcha: z.ZodOptional<z.ZodNever>;
+            NoCaptcha: z.ZodOptional<z.ZodNever>;
+            recaptchaForClientSiteKey: z.ZodObject<{
+                token: z.ZodOptional<z.ZodString>;
+                siteKeyId: z.ZodOptional<z.ZodString>;
+            }, z.core.$strip>;
+        }, z.core.$strip>]>>>>;
+        clientMetaData: z.ZodNullable<z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodAny>>>;
+        stateToken: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+    }, z.core.$strip>>;
+}, z.core.$strip>;
+declare const LoginV2Response: z.ZodObject<{
+    state: z.ZodOptional<z.ZodEnum<{
+        UNKNOWN_STATE: "UNKNOWN_STATE";
+        SUCCESS: "SUCCESS";
+        REQUIRE_OWNER_APPROVAL: "REQUIRE_OWNER_APPROVAL";
+        REQUIRE_EMAIL_VERIFICATION: "REQUIRE_EMAIL_VERIFICATION";
+        STATUS_CHECK: "STATUS_CHECK";
+    }>>;
+    sessionToken: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+    stateToken: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+    identity: z.ZodOptional<z.ZodObject<{
+        _id: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+        revision: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+        _createdDate: z.ZodNullable<z.ZodOptional<z.ZodDate>>;
+        _updatedDate: z.ZodNullable<z.ZodOptional<z.ZodDate>>;
+        connections: z.ZodOptional<z.ZodArray<z.ZodIntersection<z.ZodObject<{}, z.core.$strip>, z.ZodXor<readonly [z.ZodObject<{
+            idpConnection: z.ZodOptional<z.ZodNever>;
+            authenticatorConnection: z.ZodOptional<z.ZodNever>;
+        }, z.core.$strip>, z.ZodObject<{
+            authenticatorConnection: z.ZodOptional<z.ZodNever>;
+            idpConnection: z.ZodObject<{
+                idpConnectionId: z.ZodOptional<z.ZodString>;
+                idpUserId: z.ZodOptional<z.ZodString>;
+            }, z.core.$strip>;
+        }, z.core.$strip>, z.ZodObject<{
+            idpConnection: z.ZodOptional<z.ZodNever>;
+            authenticatorConnection: z.ZodObject<{
+                authenticatorConnectionId: z.ZodOptional<z.ZodString>;
+                reEnrollmentRequired: z.ZodOptional<z.ZodBoolean>;
+            }, z.core.$strip>;
+        }, z.core.$strip>]>>>>;
+        identityProfile: z.ZodOptional<z.ZodObject<{
+            firstName: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+            lastName: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+            nickname: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+            picture: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+            emails: z.ZodOptional<z.ZodArray<z.ZodString>>;
+            phones: z.ZodOptional<z.ZodArray<z.ZodString>>;
+            labels: z.ZodOptional<z.ZodArray<z.ZodString>>;
+            language: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+            privacyStatus: z.ZodOptional<z.ZodEnum<{
+                UNDEFINED: "UNDEFINED";
+                PUBLIC: "PUBLIC";
+                PRIVATE: "PRIVATE";
+            }>>;
+            customFields: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                name: z.ZodOptional<z.ZodString>;
+                value: z.ZodOptional<z.ZodType<any, unknown, z.core.$ZodTypeInternals<any, unknown>>>;
+            }, z.core.$strip>>>;
+            secondaryEmails: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                email: z.ZodOptional<z.ZodString>;
+                tag: z.ZodOptional<z.ZodEnum<{
+                    UNTAGGED: "UNTAGGED";
+                    MAIN: "MAIN";
+                    HOME: "HOME";
+                    WORK: "WORK";
+                }>>;
+            }, z.core.$strip>>>;
+            phonesV2: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                countryCode: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+                phone: z.ZodOptional<z.ZodString>;
+                tag: z.ZodOptional<z.ZodEnum<{
+                    UNTAGGED: "UNTAGGED";
+                    MAIN: "MAIN";
+                    HOME: "HOME";
+                    WORK: "WORK";
+                    MOBILE: "MOBILE";
+                    FAX: "FAX";
+                }>>;
+            }, z.core.$strip>>>;
+            addresses: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                address: z.ZodOptional<z.ZodObject<{
+                    city: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+                    subdivision: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+                    country: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+                    postalCode: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+                    addressLine2: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+                }, z.core.$strip>>;
+                tag: z.ZodOptional<z.ZodEnum<{
+                    UNTAGGED: "UNTAGGED";
+                    HOME: "HOME";
+                    WORK: "WORK";
+                    BILLING: "BILLING";
+                    SHIPPING: "SHIPPING";
+                }>>;
+            }, z.core.$strip>>>;
+            company: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+            position: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+            birthdate: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+            slug: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+            subscription: z.ZodNullable<z.ZodOptional<z.ZodBoolean>>;
+            vatId: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+        }, z.core.$strip>>;
+        email: z.ZodOptional<z.ZodObject<{
+            address: z.ZodOptional<z.ZodString>;
+            isVerified: z.ZodOptional<z.ZodBoolean>;
+        }, z.core.$strip>>;
+        status: z.ZodOptional<z.ZodObject<{
+            name: z.ZodOptional<z.ZodEnum<{
+                UNKNOWN_STATUS: "UNKNOWN_STATUS";
+                PENDING: "PENDING";
+                ACTIVE: "ACTIVE";
+                DELETED: "DELETED";
+                BLOCKED: "BLOCKED";
+                OFFLINE: "OFFLINE";
+            }>>;
+            reasons: z.ZodOptional<z.ZodArray<z.ZodEnum<{
+                UNKNOWN_REASON: "UNKNOWN_REASON";
+                PENDING_ADMIN_APPROVAL_REQUIRED: "PENDING_ADMIN_APPROVAL_REQUIRED";
+                PENDING_EMAIL_VERIFICATION_REQUIRED: "PENDING_EMAIL_VERIFICATION_REQUIRED";
+            }>>>;
+        }, z.core.$strip>>;
+        factors: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            factorId: z.ZodOptional<z.ZodString>;
+            type: z.ZodOptional<z.ZodEnum<{
+                PASSWORD: "PASSWORD";
+                SMS: "SMS";
+                CALL: "CALL";
+                EMAIL: "EMAIL";
+                TOTP: "TOTP";
+                PUSH: "PUSH";
+                WEBAUTHN: "WEBAUTHN";
+                RECOVERY_CODE: "RECOVERY_CODE";
+            }>>;
+            status: z.ZodOptional<z.ZodEnum<{
+                ACTIVE: "ACTIVE";
+                INACTIVE: "INACTIVE";
+                REQUIRE_REENROLL: "REQUIRE_REENROLL";
+            }>>;
+        }, z.core.$strip>>>;
+    }, z.core.$strip>>;
+    additionalData: z.ZodOptional<z.ZodRecord<z.ZodString, z.ZodType<any, unknown, z.core.$ZodTypeInternals<any, unknown>>>>;
+}, z.core.$strip>;
+declare const ChangePasswordRequest: z.ZodObject<{
+    newPassword: z.ZodString;
+}, z.core.$strip>;
+declare const ChangePasswordResponse: z.ZodObject<{}, z.core.$strip>;
+declare const SignOnRequest: z.ZodObject<{
+    loginId: z.ZodIntersection<z.ZodObject<{}, z.core.$strip>, z.ZodXor<readonly [z.ZodObject<{
+        email: z.ZodOptional<z.ZodNever>;
+    }, z.core.$strip>, z.ZodObject<{
+        email: z.ZodString;
+    }, z.core.$strip>]>>;
+    options: z.ZodOptional<z.ZodObject<{
+        profile: z.ZodOptional<z.ZodObject<{
+            firstName: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+            lastName: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+            nickname: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+            picture: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+            emails: z.ZodOptional<z.ZodArray<z.ZodString>>;
+            phones: z.ZodOptional<z.ZodArray<z.ZodString>>;
+            labels: z.ZodOptional<z.ZodArray<z.ZodString>>;
+            language: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+            privacyStatus: z.ZodOptional<z.ZodEnum<{
+                UNDEFINED: "UNDEFINED";
+                PUBLIC: "PUBLIC";
+                PRIVATE: "PRIVATE";
+            }>>;
+            customFields: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                name: z.ZodOptional<z.ZodString>;
+                value: z.ZodOptional<z.ZodType<any, unknown, z.core.$ZodTypeInternals<any, unknown>>>;
+            }, z.core.$strip>>>;
+            secondaryEmails: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                email: z.ZodOptional<z.ZodString>;
+                tag: z.ZodOptional<z.ZodEnum<{
+                    UNTAGGED: "UNTAGGED";
+                    MAIN: "MAIN";
+                    HOME: "HOME";
+                    WORK: "WORK";
+                }>>;
+            }, z.core.$strip>>>;
+            phonesV2: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                countryCode: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+                phone: z.ZodOptional<z.ZodString>;
+                tag: z.ZodOptional<z.ZodEnum<{
+                    UNTAGGED: "UNTAGGED";
+                    MAIN: "MAIN";
+                    HOME: "HOME";
+                    WORK: "WORK";
+                    MOBILE: "MOBILE";
+                    FAX: "FAX";
+                }>>;
+            }, z.core.$strip>>>;
+            addresses: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                address: z.ZodOptional<z.ZodObject<{
+                    city: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+                    subdivision: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+                    country: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+                    postalCode: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+                    addressLine2: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+                }, z.core.$strip>>;
+                tag: z.ZodOptional<z.ZodEnum<{
+                    UNTAGGED: "UNTAGGED";
+                    HOME: "HOME";
+                    WORK: "WORK";
+                    BILLING: "BILLING";
+                    SHIPPING: "SHIPPING";
+                }>>;
+            }, z.core.$strip>>>;
+            company: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+            position: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+            birthdate: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+            slug: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+            subscription: z.ZodNullable<z.ZodOptional<z.ZodBoolean>>;
+            vatId: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+        }, z.core.$strip>>;
+        verifyEmail: z.ZodOptional<z.ZodBoolean>;
+        mergeExistingContact: z.ZodOptional<z.ZodBoolean>;
+    }, z.core.$strip>>;
+}, z.core.$strip>;
+declare const SignOnResponse: z.ZodObject<{
+    sessionToken: z.ZodOptional<z.ZodString>;
+    identity: z.ZodOptional<z.ZodObject<{
+        _id: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+        revision: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+        _createdDate: z.ZodNullable<z.ZodOptional<z.ZodDate>>;
+        _updatedDate: z.ZodNullable<z.ZodOptional<z.ZodDate>>;
+        connections: z.ZodOptional<z.ZodArray<z.ZodIntersection<z.ZodObject<{}, z.core.$strip>, z.ZodXor<readonly [z.ZodObject<{
+            idpConnection: z.ZodOptional<z.ZodNever>;
+            authenticatorConnection: z.ZodOptional<z.ZodNever>;
+        }, z.core.$strip>, z.ZodObject<{
+            authenticatorConnection: z.ZodOptional<z.ZodNever>;
+            idpConnection: z.ZodObject<{
+                idpConnectionId: z.ZodOptional<z.ZodString>;
+                idpUserId: z.ZodOptional<z.ZodString>;
+            }, z.core.$strip>;
+        }, z.core.$strip>, z.ZodObject<{
+            idpConnection: z.ZodOptional<z.ZodNever>;
+            authenticatorConnection: z.ZodObject<{
+                authenticatorConnectionId: z.ZodOptional<z.ZodString>;
+                reEnrollmentRequired: z.ZodOptional<z.ZodBoolean>;
+            }, z.core.$strip>;
+        }, z.core.$strip>]>>>>;
+        identityProfile: z.ZodOptional<z.ZodObject<{
+            firstName: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+            lastName: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+            nickname: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+            picture: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+            emails: z.ZodOptional<z.ZodArray<z.ZodString>>;
+            phones: z.ZodOptional<z.ZodArray<z.ZodString>>;
+            labels: z.ZodOptional<z.ZodArray<z.ZodString>>;
+            language: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+            privacyStatus: z.ZodOptional<z.ZodEnum<{
+                UNDEFINED: "UNDEFINED";
+                PUBLIC: "PUBLIC";
+                PRIVATE: "PRIVATE";
+            }>>;
+            customFields: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                name: z.ZodOptional<z.ZodString>;
+                value: z.ZodOptional<z.ZodType<any, unknown, z.core.$ZodTypeInternals<any, unknown>>>;
+            }, z.core.$strip>>>;
+            secondaryEmails: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                email: z.ZodOptional<z.ZodString>;
+                tag: z.ZodOptional<z.ZodEnum<{
+                    UNTAGGED: "UNTAGGED";
+                    MAIN: "MAIN";
+                    HOME: "HOME";
+                    WORK: "WORK";
+                }>>;
+            }, z.core.$strip>>>;
+            phonesV2: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                countryCode: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+                phone: z.ZodOptional<z.ZodString>;
+                tag: z.ZodOptional<z.ZodEnum<{
+                    UNTAGGED: "UNTAGGED";
+                    MAIN: "MAIN";
+                    HOME: "HOME";
+                    WORK: "WORK";
+                    MOBILE: "MOBILE";
+                    FAX: "FAX";
+                }>>;
+            }, z.core.$strip>>>;
+            addresses: z.ZodOptional<z.ZodArray<z.ZodObject<{
+                address: z.ZodOptional<z.ZodObject<{
+                    city: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+                    subdivision: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+                    country: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+                    postalCode: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+                    addressLine2: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+                }, z.core.$strip>>;
+                tag: z.ZodOptional<z.ZodEnum<{
+                    UNTAGGED: "UNTAGGED";
+                    HOME: "HOME";
+                    WORK: "WORK";
+                    BILLING: "BILLING";
+                    SHIPPING: "SHIPPING";
+                }>>;
+            }, z.core.$strip>>>;
+            company: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+            position: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+            birthdate: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+            slug: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+            subscription: z.ZodNullable<z.ZodOptional<z.ZodBoolean>>;
+            vatId: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+        }, z.core.$strip>>;
+        email: z.ZodOptional<z.ZodObject<{
+            address: z.ZodOptional<z.ZodString>;
+            isVerified: z.ZodOptional<z.ZodBoolean>;
+        }, z.core.$strip>>;
+        status: z.ZodOptional<z.ZodObject<{
+            name: z.ZodOptional<z.ZodEnum<{
+                UNKNOWN_STATUS: "UNKNOWN_STATUS";
+                PENDING: "PENDING";
+                ACTIVE: "ACTIVE";
+                DELETED: "DELETED";
+                BLOCKED: "BLOCKED";
+                OFFLINE: "OFFLINE";
+            }>>;
+            reasons: z.ZodOptional<z.ZodArray<z.ZodEnum<{
+                UNKNOWN_REASON: "UNKNOWN_REASON";
+                PENDING_ADMIN_APPROVAL_REQUIRED: "PENDING_ADMIN_APPROVAL_REQUIRED";
+                PENDING_EMAIL_VERIFICATION_REQUIRED: "PENDING_EMAIL_VERIFICATION_REQUIRED";
+            }>>>;
+        }, z.core.$strip>>;
+        factors: z.ZodOptional<z.ZodArray<z.ZodObject<{
+            factorId: z.ZodOptional<z.ZodString>;
+            type: z.ZodOptional<z.ZodEnum<{
+                PASSWORD: "PASSWORD";
+                SMS: "SMS";
+                CALL: "CALL";
+                EMAIL: "EMAIL";
+                TOTP: "TOTP";
+                PUSH: "PUSH";
+                WEBAUTHN: "WEBAUTHN";
+                RECOVERY_CODE: "RECOVERY_CODE";
+            }>>;
+            status: z.ZodOptional<z.ZodEnum<{
+                ACTIVE: "ACTIVE";
+                INACTIVE: "INACTIVE";
+                REQUIRE_REENROLL: "REQUIRE_REENROLL";
+            }>>;
+        }, z.core.$strip>>>;
+    }, z.core.$strip>>;
+}, z.core.$strip>;
+declare const LogoutRequest: z.ZodObject<{
+    options: z.ZodOptional<z.ZodObject<{
+        postLogoutRedirectUri: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+        clientId: z.ZodNullable<z.ZodOptional<z.ZodString>>;
+    }, z.core.$strip>>;
+}, z.core.$strip>;
+declare const LogoutResponse: z.ZodObject<{
+    body: z.ZodOptional<z.ZodString>;
+    statusCode: z.ZodNullable<z.ZodOptional<z.ZodNumber>>;
+    headers: z.ZodOptional<z.ZodArray<z.ZodObject<{
+        key: z.ZodOptional<z.ZodString>;
+        value: z.ZodOptional<z.ZodString>;
+    }, z.core.$strip>>>;
+}, z.core.$strip>;
+
+export { ChangePasswordRequest, ChangePasswordResponse, LoginV2Request, LoginV2Response, LogoutRequest, LogoutResponse, RegisterV2Request, RegisterV2Response, SignOnRequest, SignOnResponse };

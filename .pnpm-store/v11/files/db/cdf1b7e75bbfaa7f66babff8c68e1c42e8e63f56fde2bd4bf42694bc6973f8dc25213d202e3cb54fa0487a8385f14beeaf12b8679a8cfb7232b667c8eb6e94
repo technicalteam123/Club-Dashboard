@@ -1,0 +1,513 @@
+/**
+ * The Current Member API contains functionality for viewing and managing site members from frontend code.
+ *
+ * To use the Current Member API, import `{currentMember}` from the `wix-members-frontend` module:
+ *
+ * ```javascript
+ * import { currentMember } from 'wix-members-frontend';
+ * ```
+ *
+ * > **Note:** The frontend `CurrentMember` APIs aren't fully functional when previewing a site. View a published version of a site to see their complete functionality.
+ */
+export interface CurrentMember {
+    /**
+     * Retrieves the currently logged-in member.
+     *
+     * `getMember()` returns a Promise that resolves
+     * to the currently logged-in member, or `undefined` if a member isn't logged in.
+     *
+     * > **Notes:**
+     * > - The member data in the resolved promise will only include custom fields from a site's contacts if those [fields are added to a site's members in a dashboard](https://support.wix.com/en/article/site-members-customizing-your-member-profile-fields).
+     * > - The frontend Members APIs aren't fully functional when previewing a site. View a published version of a site to see their complete functionality.
+     * @param options - Fieldset options.
+     * @servicePath wix-members-frontend.CurrentMember.FieldsetOptions
+     * @returns Fulfilled - If a member is logged in, the retrieved member.
+     * If a member isn't logged in, `undefined`.
+     * @servicePath wix-members-frontend.CurrentMember.Member
+     */
+    getMember(options?: FieldsetOptions): Promise<Member>;
+    /**
+     * Retrieves the member's roles.
+     *
+     * `getRoles()` returns a Promise that resolves to the
+     * [roles](https://support.wix.com/en/article/site-members-creating-member-roles)
+     * of the currently logged-in member.
+     * If no member is currently logged in, the Promise is rejected.
+     *
+     * > **Notes:**
+     * > - The member data in the resolved promise will only include custom fields from a site's contacts if those [fields are added to a site's members in a dashboard](https://support.wix.com/en/article/site-members-customizing-your-member-profile-fields).
+     * > - The frontend Members APIs aren't fully functional when previewing a site. View a published version of a site to see their complete functionality.
+     *
+     * The following results are returned depending on the session identity:
+     *
+     * | Session Identity                                 | Promise Resolves To                                                    |
+     * | ------------------------------------------------ | ---------------------------------------------------------------------- |
+     * | Logged-in member                                 | Array of member roles                                                  |
+     * | Site owner or contributor with admin permissions | Array of member roles, plus an additional role where `name` is `Admin` |
+     * | Anyone else                                      | Promise is rejected                                                    |
+     *
+     * @returns Fulfilled - List of roles.
+     * Rejected - If no member is currently logged in.
+     * @servicePath wix-members-frontend.CurrentMember.Role
+     */
+    getRoles(): Promise<Role[]>;
+    /**
+     * Removes the currently logged-in member from the site community and sets their profile to private.
+     *
+     * `makeProfilePrivate()` returns a Promise that resolves to a member object
+     * when the member's profile privacy is updated.
+     *
+     * When a member's profile is private,
+     * they don't have access to the site's
+     * [Members Area](https://support.wix.com/en/article/site-members-about-the-members-area)
+     * features, and their profile is hidden from other members and site visitors.
+     *
+     * > **Notes:**
+     * > - The member data in the resolved promise will only include custom fields from a site's contacts if those [fields are added to a site's members in a dashboard](https://support.wix.com/en/article/site-members-customizing-your-member-profile-fields).
+     * > - The frontend Members APIs aren't fully functional when previewing a site. View a published version of a site to see their complete functionality.
+     * > - If a public member profile changes to private, their public content (such as forum posts and blog comments) remain publicly visible.
+     *
+     * @returns Fulfilled - Updated member.
+     * @servicePath wix-members-frontend.CurrentMember.Member
+     */
+    makeProfilePrivate(): Promise<Member>;
+    /**
+     * Joins the currently logged-in member to the site community and sets their profile to public.
+     *
+     * `makeProfilePublic()` returns a Promise that resolves to a member object
+     * when the member's profile privacy is updated.
+     *
+     * When a member's profile is public,
+     * they have access to the site's
+     * [Members Area](https://support.wix.com/en/article/site-members-about-the-members-area)
+     * features, such as chat, forum, and followers.
+     * Also, their profile is visible to other members and site visitors.
+     * > **Notes:**
+     * > - The member data in the resolved promise will only include custom fields from a site's contacts if those [fields are added to a site's members in a dashboard](https://support.wix.com/en/article/site-members-customizing-your-member-profile-fields).
+     * > - The frontend Members APIs aren't fully functional when previewing a site. View a published version of a site to see their complete functionality.
+     */
+    makeProfilePublic(): Promise<void>;
+}
+export interface Address extends addressStreetOneOf {
+    /**
+     * Street address ID.
+     */
+    _id?: string;
+    /**
+     * Street address object, with number and name in separate fields.
+     * @servicePath wix-members-frontend.CurrentMember.StreetAddress
+     */
+    streetAddress?: StreetAddress;
+    /**
+     * Main address line, usually street and number, as free text.
+     */
+    addressLine?: string;
+    /**
+     * Free text providing more detailed address information,
+     *  such as apartment, suite, or floor.
+     */
+    addressLine2?: string;
+    /**
+     * City name.
+     */
+    city?: string;
+    /**
+     * Code for a subdivision (such as state, prefecture, or province) in an
+     * [ISO 3166-2](https://en.wikipedia.org/wiki/ISO_3166-2) format.
+     */
+    subdivision?: string;
+    /**
+     * 2-letter country code in an
+     * [ISO-3166 alpha-2](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) format.
+     */
+    country?: string;
+    /**
+     * Postal code.
+     */
+    postalCode?: string;
+}
+/**
+ * @oneof
+ */
+export interface addressStreetOneOf {
+    /**
+     * Main address line, usually street and number, as free text.
+     */
+    addressLine?: string;
+    /**
+     * Street address object, with number and name in separate fields.
+     * @servicePath wix-members-frontend.CurrentMember.StreetAddress
+     */
+    streetAddress?: StreetAddress;
+}
+/**
+ * Member's contact information. Contact information is stored in the
+ *
+ * [Contact List](https://www.wix.com/my-account/site-selector/?buttonText=Select%20Site&title=Select%20a%20Site&autoSelectOnSingleSite=true&actionUrl=https:%2F%2Fwww.wix.com%2Fdashboard%2F%7B%7BmetaSiteId%7D%7D%2Fcontacts).
+ *
+ *
+ */
+export interface ContactDetails {
+    /**
+     * Contact's first name.
+     */
+    firstName?: string;
+    /**
+     * Contact's last name.
+     */
+    lastName?: string;
+    /**
+     * List of phone numbers.
+     * @requiredField phones
+     */
+    phones: string[];
+    /**
+     * List of email addresses.
+     * @requiredField emails
+     */
+    emails: string[];
+    /**
+     * List of street addresses.
+     * @requiredField addresses
+     * @servicePath wix-members-frontend.CurrentMember.Address
+     */
+    addresses: Address[];
+    /**
+     * Contact's birthdate, formatted as `"YYYY-MM-DD"`.
+     *
+     *  For example, `"2025-03-15"` for March 15, 2025.
+     */
+    birthdate?: string;
+    /**
+     * Contact's company name.
+     */
+    company?: string;
+    /**
+     * Contact's job title.
+     */
+    jobTitle?: string;
+    /**
+     * Custom fields, structured as `key:object` pairs.
+     *
+     * Custom field IDs are defined in the
+     * Extended Fields API ([SDK](https://dev.wix.com/docs/sdk/backend-modules/crm/extended-fields/introduction) | [Velo](https://dev.wix.com/docs/velo/apis/wix-crm-v2/extended-fields/introduction)).
+     * The paired object contains the `name` and `value` properties,
+     * where `name` is the display name and `value` is the value stored for the member.
+     *
+     * Only custom fields
+     * [added to the member profile in a dashboard](https://www.wix.com/my-account/site-selector/?buttonText=Select%20Site&title=Select%20a%20Site&autoSelectOnSingleSite=true&actionUrl=https:%2F%2Fwww.wix.com%2Fdashboard%2F%7B%7BmetaSiteId%7D%7D%2Fmembers-account)
+     * are available through the Members API.
+     * Empty fields aren't returned.
+     *
+     * When updating a member, `name` is ignored.
+     * @requiredField customFields
+     */
+    customFields: object;
+}
+export interface FieldsetOptions {
+    /**
+     * Predefined sets of fields to return.
+     * When multiple fieldsets are provided, the union of all the included fields is returned.
+     *
+     * Predefined fieldsets are one of:
+     *
+     * - `"FULL"`: Returns all fields.
+     * - `"PUBLIC"`: Returns `_id` and all fields under `profile`. With this fieldset, `profile.status`, `profile.privacyStatus`, and `profile.activityStatus` are returned as `"UNKNOWN"`.
+     *
+     * Defaults to `[ "FULL" ]`.
+     * @requiredField fieldsets
+     */
+    fieldsets: string[];
+}
+/**
+ * Member's profile photo.
+ */
+export interface Image {
+    /**
+     * Image URL.
+     * @requiredField url
+     */
+    url: string;
+    /**
+     * Original image width.
+     * @requiredField height
+     */
+    height: number;
+    /**
+     * Original image height.
+     * @requiredField width
+     */
+    width: number;
+    /**
+     * X-axis offset.
+     *
+     *  Defaults to `0`.
+     * @requiredField offsetX
+     */
+    offsetX: number;
+    /**
+     * Y-axis offset.
+     *
+     *  Defaults to `0`.
+     * @requiredField offsetY
+     */
+    offsetY: number;
+}
+/**
+ * Updated member.
+ */
+export interface Member {
+    /**
+     * Member ID.
+     * @requiredField _id
+     */
+    _id: string;
+    /**
+     * Email used by the member to log in to the site.
+     */
+    loginEmail?: string;
+    /**
+     * Member site access status.
+     *
+     *
+     *
+     * One of:
+     *
+     * - `"PENDING"`: Member created and is waiting for approval by a Wix user.
+     * - `"APPROVED"`: Member can log in to the site.
+     * - `"OFFLINE"`: Member is a [guest author](https://support.wix.com/en/article/wix-blog-adding-managed-writers-to-your-blog) for the site blog and can't log in to the site.
+     * - `"BLOCKED"`: Member is blocked and can't log in to the site.
+     * - `"UNKNOWN"`: Insufficient permissions to get the status.
+     *
+     * @requiredField status
+     */
+    status: string;
+    /**
+     * Contact ID.
+     * @requiredField contactId
+     */
+    contactId: string;
+    /**
+     * Member privacy status.
+     *
+     *
+     *
+     *
+     * One of:
+     *
+     * - `"PUBLIC"`: Member is visible to everyone.
+     * - `"PRIVATE"`: Member is hidden from site visitors and other site members. Member is returned only to Wix users and apps with the appropriate permissions.
+     * - `"UNKNOWN"`: Insufficient permissions to get the status.
+     *
+     * @requiredField privacyStatus
+     */
+    privacyStatus: string;
+    /**
+     * Member activity status.
+     *
+     *
+     *
+     *
+     * One of:
+     *
+     * - `"ACTIVE"`: Member can write forum posts and blog comments.
+     * - `"MUTED"`: Member can't write forum posts or blog comments.
+     * - `"UNKNOWN"`: Insufficient permissions to get the status.
+     *
+     * @requiredField activityStatus
+     */
+    activityStatus: string;
+    /**
+     * Date and time when the member was created.
+     * @requiredField _createdDate
+     */
+    _createdDate: Date;
+    /**
+     * Date and time when the member was updated.
+     * @requiredField _updatedDate
+     */
+    _updatedDate: Date;
+    /**
+     * Date and time when the member last logged in to the site.
+     */
+    lastLoginDate?: Date;
+    /**
+     * Member's contact information. Contact information is stored in the
+     * [Contact List](https://www.wix.com/my-account/site-selector/?buttonText=Select%20Site&title=Select%20a%20Site&autoSelectOnSingleSite=true&actionUrl=https:%2F%2Fwww.wix.com%2Fdashboard%2F%7B%7BmetaSiteId%7D%7D%2Fcontacts).
+     *
+     *
+     * @servicePath wix-members-frontend.CurrentMember.ContactDetails
+     */
+    contactDetails?: ContactDetails;
+    /**
+     * Profile display info.
+     * @requiredField profile
+     * @servicePath wix-members-frontend.CurrentMember.Profile
+     */
+    profile: Profile;
+}
+/**
+ * Profile display info.
+ */
+export interface Profile {
+    /**
+     * Name that identifies the member to other members.
+     * Displayed on the member's profile page and interactions in the forum or blog.
+     * @requiredField nickname
+     */
+    nickname: string;
+    /**
+     * Slug that determines the member's profile page URL.
+     * @requiredField slug
+     */
+    slug: string;
+    /**
+     * Member's profile photo.
+     * @servicePath wix-members-frontend.CurrentMember.Image
+     */
+    profilePhoto?: Image;
+    /**
+     * Member's profile photo.
+     * @servicePath wix-members-frontend.CurrentMember.Image
+     */
+    coverPhoto?: Image;
+    /**
+     * Member title.
+     *
+     *
+     */
+    title?: string;
+}
+export interface Role {
+    /**
+     * Role ID.
+     * @requiredField _id
+     */
+    _id: string;
+    /**
+     * Role name as defined in the site's
+     *  [Member Permissions](https://www.wix.com/my-account/site-selector/?buttonText=Select%20Site&title=Select%20a%20Site&autoSelectOnSingleSite=true&actionUrl=https:%2F%2Fwww.wix.com%2Fdashboard%2F%7B%7BmetaSiteId%7D%7D%2Fmember-permissions/roles)
+     *  page or one of `"Admin"` or `"Member"`.
+     * @requiredField title
+     */
+    title: string;
+    /**
+     * Role description, if defined in the site's dashboard.
+     */
+    description?: string;
+    /**
+     * Role color, as defined in the site's
+     * [Member Permissions](https://www.wix.com/my-account/site-selector/?buttonText=Select%20Site&title=Select%20a%20Site&autoSelectOnSingleSite=true&actionUrl=https:%2F%2Fwww.wix.com%2Fdashboard%2F%7B%7BmetaSiteId%7D%7D%2Fmember-permissions/roles)
+     * page.
+     *
+     * One of:
+     *
+     * - `"DARK_BLUE"`
+     * - `"LIGHT_BLUE"`
+     * - `"TEAL"`
+     * - `"LIGHT_GREEN"`
+     * - `"YELLOW"`
+     * - `"ORANGE"`
+     * - `"RED"`
+     * - `"VIOLET"`
+     * - `"PURPLE"`
+     * @requiredField color
+     */
+    color: string;
+    /**
+     * Date and time the role was created.
+     */
+    _createdDate?: Date;
+}
+/**
+ * Street address object, with number and name in separate fields.
+ */
+export interface StreetAddress {
+    /**
+     * Street number.
+     * @requiredField number
+     */
+    number: string;
+    /**
+     * Street name.
+     * @requiredField name
+     */
+    name: string;
+}
+/**
+ * Retrieves the currently logged-in member.
+ *
+ * `getMember()` returns a Promise that resolves
+ * to the currently logged-in member, or `undefined` if a member isn't logged in.
+ *
+ * > **Notes:**
+ * > - The member data in the resolved promise will only include custom fields from a site's contacts if those [fields are added to a site's members in a dashboard](https://support.wix.com/en/article/site-members-customizing-your-member-profile-fields).
+ * > - The frontend Members APIs aren't fully functional when previewing a site. View a published version of a site to see their complete functionality.
+ * @param options - Fieldset options.
+ * @servicePath wix-members-frontend.CurrentMember.FieldsetOptions
+ * @returns Fulfilled - If a member is logged in, the retrieved member.
+ * If a member isn't logged in, `undefined`.
+ * @servicePath wix-members-frontend.CurrentMember.Member
+ */
+export function getMember(options?: FieldsetOptions): Promise<Member>;
+/**
+ * Retrieves the member's roles.
+ *
+ * `getRoles()` returns a Promise that resolves to the
+ * [roles](https://support.wix.com/en/article/site-members-creating-member-roles)
+ * of the currently logged-in member.
+ * If no member is currently logged in, the Promise is rejected.
+ *
+ * > **Notes:**
+ * > - The member data in the resolved promise will only include custom fields from a site's contacts if those [fields are added to a site's members in a dashboard](https://support.wix.com/en/article/site-members-customizing-your-member-profile-fields).
+ * > - The frontend Members APIs aren't fully functional when previewing a site. View a published version of a site to see their complete functionality.
+ *
+ * The following results are returned depending on the session identity:
+ *
+ * | Session Identity                                 | Promise Resolves To                                                    |
+ * | ------------------------------------------------ | ---------------------------------------------------------------------- |
+ * | Logged-in member                                 | Array of member roles                                                  |
+ * | Site owner or contributor with admin permissions | Array of member roles, plus an additional role where `name` is `Admin` |
+ * | Anyone else                                      | Promise is rejected                                                    |
+ *
+ * @returns Fulfilled - List of roles.
+ * Rejected - If no member is currently logged in.
+ * @servicePath wix-members-frontend.CurrentMember.Role
+ */
+export function getRoles(): Promise<Role[]>;
+/**
+ * Removes the currently logged-in member from the site community and sets their profile to private.
+ *
+ * `makeProfilePrivate()` returns a Promise that resolves to a member object
+ * when the member's profile privacy is updated.
+ *
+ * When a member's profile is private,
+ * they don't have access to the site's
+ * [Members Area](https://support.wix.com/en/article/site-members-about-the-members-area)
+ * features, and their profile is hidden from other members and site visitors.
+ *
+ * > **Notes:**
+ * > - The member data in the resolved promise will only include custom fields from a site's contacts if those [fields are added to a site's members in a dashboard](https://support.wix.com/en/article/site-members-customizing-your-member-profile-fields).
+ * > - The frontend Members APIs aren't fully functional when previewing a site. View a published version of a site to see their complete functionality.
+ * > - If a public member profile changes to private, their public content (such as forum posts and blog comments) remain publicly visible.
+ *
+ * @returns Fulfilled - Updated member.
+ * @servicePath wix-members-frontend.CurrentMember.Member
+ */
+export function makeProfilePrivate(): Promise<Member>;
+/**
+ * Joins the currently logged-in member to the site community and sets their profile to public.
+ *
+ * `makeProfilePublic()` returns a Promise that resolves to a member object
+ * when the member's profile privacy is updated.
+ *
+ * When a member's profile is public,
+ * they have access to the site's
+ * [Members Area](https://support.wix.com/en/article/site-members-about-the-members-area)
+ * features, such as chat, forum, and followers.
+ * Also, their profile is visible to other members and site visitors.
+ * > **Notes:**
+ * > - The member data in the resolved promise will only include custom fields from a site's contacts if those [fields are added to a site's members in a dashboard](https://support.wix.com/en/article/site-members-customizing-your-member-profile-fields).
+ * > - The frontend Members APIs aren't fully functional when previewing a site. View a published version of a site to see their complete functionality.
+ */
+export function makeProfilePublic(): Promise<void>;

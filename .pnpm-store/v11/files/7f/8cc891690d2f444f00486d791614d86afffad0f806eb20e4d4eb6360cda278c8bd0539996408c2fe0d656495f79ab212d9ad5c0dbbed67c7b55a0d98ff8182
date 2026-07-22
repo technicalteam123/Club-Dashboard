@@ -1,0 +1,12 @@
+// schemas.ts
+import * as authentication from "@wix/auto_sdk_identity_authentication/schemas";
+import * as recovery from "@wix/auto_sdk_identity_recovery/schemas";
+import * as verification from "@wix/auto_sdk_identity_verification/schemas";
+import * as oauth from "@wix/auto_sdk_identity_oauth/schemas";
+export {
+  authentication,
+  oauth,
+  recovery,
+  verification
+};
+//# sourceMappingURL=schemas.mjs.map

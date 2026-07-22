@@ -1,0 +1,6 @@
+// schemas.ts
+import * as redirects from "@wix/auto_sdk_redirects_redirects/schemas";
+export {
+  redirects
+};
+//# sourceMappingURL=schemas.mjs.map

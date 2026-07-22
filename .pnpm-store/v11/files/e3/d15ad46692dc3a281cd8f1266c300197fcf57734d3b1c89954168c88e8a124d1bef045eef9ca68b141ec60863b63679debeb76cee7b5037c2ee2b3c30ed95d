@@ -1,0 +1,20 @@
+import { contextualizeHostModule } from "@wix/sdk-runtime/context";
+import { authenticationRuntime as authenticationModule } from './authentication.runtime';
+export const authenticationContext = {
+    applySessionToken: contextualizeHostModule(authenticationModule, 'applySessionToken'),
+    changePassword: contextualizeHostModule(authenticationModule, 'changePassword'),
+    loggedIn: contextualizeHostModule(authenticationModule, 'loggedIn'),
+    login: contextualizeHostModule(authenticationModule, 'login'),
+    logout: contextualizeHostModule(authenticationModule, 'logout'),
+    onLogin: contextualizeHostModule(authenticationModule, 'onLogin'),
+    onLogout: contextualizeHostModule(authenticationModule, 'onLogout'),
+    promptForgotPassword: contextualizeHostModule(authenticationModule, 'promptForgotPassword'),
+    promptLogin: contextualizeHostModule(authenticationModule, 'promptLogin'),
+    register: contextualizeHostModule(authenticationModule, 'register'),
+    resendVerificationCodeEmail: contextualizeHostModule(authenticationModule, 'resendVerificationCodeEmail'),
+    sendForgotPasswordEmail: contextualizeHostModule(authenticationModule, 'sendForgotPasswordEmail'),
+    sendResetPasswordEmail: contextualizeHostModule(authenticationModule, 'sendResetPasswordEmail'),
+    sendSetPasswordEmail: contextualizeHostModule(authenticationModule, 'sendSetPasswordEmail'),
+    verifyEmail: contextualizeHostModule(authenticationModule, 'verifyEmail'),
+};
+//# sourceMappingURL=authentication.context.js.map

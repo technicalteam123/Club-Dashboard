@@ -1,0 +1,89 @@
+// src/identity-oauth-v1-refresh-token-oauth.schemas.ts
+import * as z from "zod";
+var TokenRequest = z.object({
+  options: z.object({
+    body: z.string().optional(),
+    pathParams: z.array(
+      z.object({ key: z.string().optional(), value: z.string().optional() })
+    ).optional(),
+    queryParams: z.array(
+      z.object({ key: z.string().optional(), value: z.string().optional() })
+    ).optional(),
+    headers: z.array(
+      z.object({ key: z.string().optional(), value: z.string().optional() })
+    ).optional(),
+    method: z.string().optional(),
+    rawPath: z.string().optional(),
+    rawQuery: z.string().optional()
+  }).optional()
+});
+var TokenResponse = z.object({
+  body: z.string().optional(),
+  statusCode: z.number().int().optional().nullable(),
+  headers: z.array(
+    z.object({ key: z.string().optional(), value: z.string().optional() })
+  ).optional()
+});
+var JwksRequest = z.object({});
+var JwksResponse = z.object({
+  body: z.string().optional(),
+  statusCode: z.number().int().optional().nullable(),
+  headers: z.array(
+    z.object({ key: z.string().optional(), value: z.string().optional() })
+  ).optional()
+});
+var TokenInfoRequest = z.object({
+  options: z.object({
+    body: z.string().optional(),
+    pathParams: z.array(
+      z.object({ key: z.string().optional(), value: z.string().optional() })
+    ).optional(),
+    queryParams: z.array(
+      z.object({ key: z.string().optional(), value: z.string().optional() })
+    ).optional(),
+    headers: z.array(
+      z.object({ key: z.string().optional(), value: z.string().optional() })
+    ).optional(),
+    method: z.string().optional(),
+    rawPath: z.string().optional(),
+    rawQuery: z.string().optional()
+  }).optional()
+});
+var TokenInfoResponse = z.object({
+  active: z.boolean().optional(),
+  subjectType: z.enum(["UNKNOWN", "USER", "VISITOR", "MEMBER", "APP"]).describe("subject type.").optional(),
+  subjectId: z.string().describe("subject id").optional(),
+  exp: z.string().regex(/^-?\d+$/, "Must be a valid Int64 string").describe("Expiration time of the token").optional().nullable(),
+  iat: z.string().regex(/^-?\d+$/, "Must be a valid Int64 string").describe("Issued time of the token").optional().nullable(),
+  clientId: z.string().describe("Client id").optional(),
+  accountId: z.string().describe("Account id").optional().nullable(),
+  siteId: z.string().describe("Site id").optional().nullable(),
+  instanceId: z.string().describe("Instance Id").optional().nullable(),
+  vendorProductId: z.string().describe("Vendor Product Id").max(100).optional().nullable()
+});
+var UserInfoRequest = z.object({});
+var UserInfoResponse = z.object({
+  sub: z.string().describe(
+    "Subject identifier \u2014 unique identifier for the user (OIDC standard claim)."
+  ).regex(
+    /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/,
+    "Must be a valid GUID"
+  ).optional(),
+  givenName: z.string().describe("The user's given name.").max(20).optional().nullable(),
+  familyName: z.string().describe("The user's family name.").max(20).optional().nullable(),
+  email: z.string().describe("The user's email address.").email().optional().nullable(),
+  emailVerified: z.boolean().describe("Indicates whether the user's email address has been verified.").optional().nullable(),
+  picture: z.string().describe("The URL of the user's profile picture.").url().optional().nullable(),
+  language: z.string().describe("The user's preferred language, if available.").optional().nullable()
+});
+export {
+  JwksRequest,
+  JwksResponse,
+  TokenInfoRequest,
+  TokenInfoResponse,
+  TokenRequest,
+  TokenResponse,
+  UserInfoRequest,
+  UserInfoResponse
+};
+//# sourceMappingURL=schemas.mjs.map

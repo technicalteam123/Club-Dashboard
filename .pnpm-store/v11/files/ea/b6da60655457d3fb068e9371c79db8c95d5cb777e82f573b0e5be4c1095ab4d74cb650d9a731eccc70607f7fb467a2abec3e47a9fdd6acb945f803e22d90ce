@@ -1,0 +1,764 @@
+import { CurrentMember, Member } from './currentmember.types';
+/**
+ * The Authentication API contains functionality for authenticating members from frontend code.
+ *
+ * To use the Authentication API, import `{authentication}` from the `wix-members-frontend` module:
+ *
+ * ```javascript
+ * import { authentication } from 'wix-members-frontend';
+ * ```
+ */
+export interface Authentication {
+    /**
+     * **Deprecated.**
+     * This method will be deprecated on September 30, 2026. Replace with [applySessionToken()](https://dev.wix.com/docs/sdk/host-modules/site/authentication/apply-session-token).
+     * Logs the current member into the site using the specified session token
+     *
+     * You receive a session token from the following methods:
+     *
+     *  - `approveByEmail()` ([Velo](https://dev.wix.com/docs/velo/apis/wix-members-backend/authentication/approve-by-email))
+     *  - `approveByToken()` ([Velo](https://dev.wix.com/docs/velo/apis/wix-members-backend/authentication/approve-by-token))
+     *  - `register()` ([SDK](https://dev.wix.com/docs/sdk/backend-modules/identity/authentication/register-v2) | [Velo](https://dev.wix.com/docs/velo/apis/wix-members-backend/authentication/register))
+     *  - [`generateSessionToken()`](https://dev.wix.com/docs/velo/api-reference/wix-members-backend/authentication/generate-session-token)
+     *  - `login()` ([SDK](https://dev.wix.com/docs/sdk/backend-modules/identity/authentication/login-v2) | [Velo](https://dev.wix.com/docs/velo/apis/wix-members-backend/authentication/login))
+     *
+     *  Pass the returned session token to a site's page code and apply it by
+     *  calling `applySessionToken()` to complete the process started by one of the
+     *  above methods.
+     * @param sessionToken - Session token to apply.
+     * @requiredField sessionToken
+     * @returns Fulfilled - When the token is applied.
+     */
+    applySessionToken(sessionToken: string): Promise<void>;
+    /**
+     * Changes the member's password to a new one, using a reset token.
+     *
+     *
+     *
+     * __Important:__
+     * This method is in Developer Preview and is subject to change.
+     *
+     *
+     * @param newPassword - New password the member wants to set. Minimum 6 characters.
+     * @requiredField newPassword
+     * @param token - Reset token received in the email triggered by `sendResetPasswordEmail()`.
+     * @requiredField token
+     * @returns Fulfilled - When the password is reset.
+     * Rejected - Error message.
+     */
+    changePassword(newPassword: string, token: string): Promise<void>;
+    /**
+     * **Deprecated.**
+     * This method will be deprecated on September 30, 2026. Replace with [loggedIn()](https://dev.wix.com/docs/sdk/host-modules/site/authentication/logged-in).
+     * Indicates whether the current site visitor is a logged-in member.
+     *
+     * If a member is logged in, `loggedIn()` returns `true`.
+     * Otherwise, `loggedIn()` returns `false`.
+     *
+     * @returns `true` if a member is logged in. Otherwise, `false`.
+     */
+    loggedIn(): Promise<boolean>;
+    /**
+     * **Deprecated.**
+     * This method will be deprecated on September 30, 2026. Replace with [login()](https://dev.wix.com/docs/sdk/host-modules/site/authentication/login).
+     * Logs a registered member in with an email and password.
+     *
+     * `login()` only works with existing members. To register a new member use
+     *  `register()` ([SDK](https://dev.wix.com/docs/sdk/backend-modules/identity/authentication/register-v2) | [Velo](https://dev.wix.com/docs/velo/apis/wix-members-backend/authentication/register)).
+     *
+     * > **Note:**
+     * > The frontend Members APIs aren't fully functional when previewing a site. View a published version of a site to see their complete functionality.
+     * @param email - Login email address.
+     * @requiredField email
+     * @param password - Member password.
+     * @requiredField password
+     * @returns Fulfilled - When the member is logged in.
+     * Rejected - Error message.
+     */
+    login(email: string, password: string): Promise<void>;
+    /**
+     * **Deprecated.**
+     * This method will be deprecated on September 30, 2026. Replace with [logout()](https://dev.wix.com/docs/sdk/host-modules/site/authentication/logout).
+     * Logs the current member out of the site.
+     *
+     * The `logout()` function logs the current member out of the site.
+     *
+     * > **Notes:**
+     * >
+     * > - The frontend Members APIs aren't fully functional when previewing a site. View a published version of a site to see their complete functionality.
+     * >
+     * > - The frontend Member APIs can only be used once the page has loaded. Therefore,
+     * >   you must use them in code that's contained in or is called from the
+     * >   `onReady()` or any element event.
+     */
+    logout(): Promise<void>;
+    /**
+     * **Deprecated.**
+     * This method will be deprecated on September 30, 2026. Replace with [onLogin()](https://dev.wix.com/docs/sdk/host-modules/site/authentication/on-login).
+     * Sets the method that runs when a member logs in.
+     *
+     * `onLogin()` runs when a member logs into a site.
+     *
+     * `onLogin` receives a `currentMember` object for the logged-in member,
+     * which contains the `CurrentMember` API methods
+     * you can use to retrieve the member's information.
+     *
+     * Usually, you want to call `onLogin()` in the **masterPage.js** file in the
+     * code editor so that `onLogin()` runs no matter which
+     * page a member uses to log in.
+     *
+     * > **Notes:**
+     * >
+     * > - The frontend Members APIs aren't fully functional when previewing a site. View a published version of a site to see their complete functionality.
+     * >
+     * > - The frontend Member APIs can only be used once the page has loaded. Therefore,
+     * >   you must use them in code that's contained in or is called from the
+     * >   `onReady()` or any element event.
+     * @param handler - Method name or expression to run when a member logs in.
+     * @requiredField handler
+     * @servicePath wix-members-frontend.Authentication.LoginHandler
+     */
+    onLogin(handler: LoginHandler): Promise<void>;
+    /**
+     * **Deprecated.**
+     * This method will be deprecated on September 30, 2026. Replace with [onLogout()](https://dev.wix.com/docs/sdk/host-modules/site/authentication/on-logout).
+     * Sets the method that runs when a member logs out.
+     *
+     * Use `onLogout()` for code you want to run after a member logs out
+     * from a site.
+     *
+     *  Usually, you want to call `onLogout()` in the **masterPage.js** file in the
+     *  code editor so that `onLogout()` runs no matter which
+     *  page on a site a member uses to log out.
+     *
+     * > **Notes:**
+     * >
+     * > - The frontend Members APIs aren't fully functional when previewing a site. View a published version of a site to see their complete functionality.
+     * >
+     * > - The frontend Member APIs can only be used once the page has loaded. Therefore,
+     * >   you must use them in code that's contained in or is called from the
+     * >   `onReady()` or any element event.
+     * @param handler - Method name or expression to run when a member logs out.
+     * @requiredField handler
+     * @servicePath wix-members-frontend.Authentication.LogoutHandler
+     */
+    onLogout(handler: LogoutHandler): Promise<void>;
+    /**
+     * Prompts the current site visitor with a password reset modal.
+     *
+     * `promptForgotPassword()` returns a Promise that resolves when
+     * the visitor submits the **Create New Password** form.
+     *
+     * If the visitor cancels the form without submitting it,
+     * the Promise is rejected.
+     *
+     * `promptForgotPassword()` can't be called before the page is ready.
+     *
+     * > **Notes:**
+     * >
+     * > - The frontend Members APIs aren't fully functional when previewing a site. View a published version of a site to see their complete functionality.
+     * >
+     * > - The frontend Member APIs can only be used once the page has loaded. Therefore,
+     * >   you must use them in code that's contained in or is called from the
+     * >   `onReady()` or any element event.
+     * >
+     * > - If you `return` or `await` `promptForgotPassword()`
+     * >   when calling from `onReady()`, the page is prevented from loading.
+     * >   To handle the resolved promise, use `.then()` and `.catch()`.
+     *
+     * @returns Fulfilled - When the form is submitted.
+     * Rejected - Message that the dialog was canceled, user is already logged in, or another reason the password reset failed.
+     */
+    promptForgotPassword(): Promise<void>;
+    /**
+     * Prompts the current visitor to log in as a site member.
+     *
+     * `promptLogin()` returns a Promise that resolves
+     * when the login has completed.
+     *
+     * If the visitor cancels the form without logging in,
+     * the Promise is rejected.
+     *
+     * `promptLogin()` can't be called before the page is ready.
+     *
+     * > **Notes:**
+     * >
+     * > - The frontend Members APIs aren't fully functional when previewing a site. View a published version of a site to see their complete functionality.
+     * >
+     * > - The frontend Member APIs can only be used once the page has loaded. Therefore,
+     * >   you must use them in code that's contained in or is called from the
+     * >   `onReady()` or any element event.
+     * >
+     * > - If you `return` or `await` `promptLogin()`
+     * >   when calling from `onReady()`, the page is prevented from loading.
+     * >   To handle the resolved promise, use `.then()` and `.catch()`.
+     * @param options - The options that determine how the login dialog box appears.
+     * @servicePath wix-members-frontend.Authentication.LoginOptions
+     * @returns Fulfilled - When the member is logged in.
+     * Rejected - Message that the dialog was canceled, or any other reason the member failed to log in.
+     */
+    promptLogin(options?: LoginOptions): Promise<void>;
+    /**
+     * **Deprecated.**
+     * This method will be deprecated on September 30, 2026. Replace with [register()](https://dev.wix.com/docs/sdk/backend-modules/identity/authentication/register-v2).
+     * Registers a new site member.
+     *
+     * `register()` returns a Promise that resolves to a `RegistrationResult`
+     *  object when the member is registered or pending registration.
+     *
+     *  The specified `password` must be between 4 and 100 ASCII characters.
+     *
+     *  See [New Members](https://dev.wix.com/docs/sdk/frontend-modules/members/authentication/new-members) to learn about verifying emails and approving members.
+     *
+     *  > **Notes:**
+     *  >
+     *  > - The frontend Members APIs aren't fully functional when previewing a site. View a published version of a site to see their complete functionality.
+     *  >
+     *  > - The member data in the resolved Promise only includes custom fields from a site's contacts
+     *  >   if those [fields are added to a site's members in a dashboard](https://support.wix.com/en/article/site-members-customizing-your-member-profile-fields).
+     *  >
+     *  > - When a new member signs up using an email address
+     *  >   that's already in a site's Contact List,
+     *  >   a notification is displayed
+     *  >   and a confirmation email is sent to the new member.
+     *  >   To register a member without displaying the notification, use
+     *  >   [`register()`](https://dev.wix.com/docs/sdk/backend-modules/identity/authentication/register-v2)
+     *  >   (this doesn't suppress the confirmation email).
+     *  >
+     *  > - When a site's member signup settings are set to automatic approval (see [New Members](https://dev.wix.com/docs/sdk/frontend-modules/members/authentication/new-members)),
+     *  >   calling the frontend `register()` in page code is as secure as calling `register()` in backend code,
+     *  >   unless you are implementing [custom site registration using code](https://dev.wix.com/docs/develop-websites/articles/code-tutorials/wix-members/creating-a-custom-registration-form-with-code).
+     *  >   However, when registration is set to manual approval (see [New Members](https://dev.wix.com/docs/sdk/frontend-modules/members/authentication/new-members)),
+     *  >   calling `register()` from the backend code allows you to build more secure approval flows
+     *  >   by keeping tokens hidden from the frontend.
+     * @param email - Email address the new member will use to log in.
+     * @requiredField email
+     * @param password - Password to assign to the new member.
+     * Must be 4 to 100 ASCII characters.
+     * @requiredField password
+     * @param options - Registration options.
+     * @servicePath wix-members-frontend.Authentication.RegistrationOptions
+     * @returns Fulfilled - When the member is registered.
+     * Rejected - Error message.
+     * @servicePath wix-members-frontend.Authentication.RegistrationResult
+     */
+    register(email: string, password: string, options?: RegistrationOptions): Promise<RegistrationResult>;
+    /**
+     * Resends a one-time password (OTP) for email verification.
+     *
+     *
+     *
+     * __Important:__
+     * This method is in Developer Preview and is subject to change.
+     *
+     *
+     *
+     * `resendVerificationCodeEmail()` returns a Promise that resolves when the email is successfully sent, or rejects with an error if the operation fails.
+     *
+     * @returns Fulfilled - When the email is sent.
+     * Rejected - Error message.
+     */
+    resendVerificationCodeEmail(): Promise<void>;
+    /**
+     * Sends a site member an email with a link to set their password.
+     * alizas1 marked this conversation as resolved.
+     *
+     * The `sendForgotPasswordEmail()` function returns a Promise that resolves
+     * when the set password link is emailed to the member.
+     *
+     * The set password link is valid for 3 hours,
+     * and it can be used only once.
+     * If the link expires, no changes are made to the password.
+     * @param email - Login email of the member whose password will be set.
+     * @requiredField email
+     * @returns Fulfilled - When the email is sent.
+     * Rejected - Error message.
+     */
+    sendForgotPasswordEmail(email: string): Promise<void>;
+    /**
+     * Sends a site member an email with a link to set their password.
+     *
+     * > **Note:**
+     * > This method is in Developer Preview and is subject to change.
+     *
+     * The reset password link is valid for 3 hours,
+     * and it can be used only once.
+     * If the link expires, no changes are made to the password.
+     * A site can send a maximum of 200 reset password emails per day.
+     * @param email - Login email of the member whose password will be set.
+     * @requiredField email
+     * @returns Fulfilled - When the email is sent.
+     * Rejected - Error message.
+     */
+    sendResetPasswordEmail(email: string): Promise<void>;
+    /**
+     * Sends a site member an email with a link to set their password.
+     *
+     * > **Deprecated.** Send Set Password Email has been replaced with Send Reset Password Email ([SDK](https://dev.wix.com/docs/sdk/frontend-modules/members/authentication/send-reset-password-email) | [Velo](https://dev.wix.com/docs/velo/apis/wix-members-frontend/authentication/send-reset-password-email)) and will be removed on September 30, 2025.
+     *
+     * The set password link is valid for 3 hours,
+     * and it can be used only once.
+     * If the link expires, no changes are made to the password.
+     * @param email - Login email of the member whose password will be set.
+     * @requiredField email
+     * @param options - Email display options.
+     * @servicePath wix-members-frontend.Authentication.SetPasswordEmailOptions
+     * @returns Fulfilled - If the email is sent.
+     * Rejected - Error message.
+     */
+    sendSetPasswordEmail(email: string, options?: SetPasswordEmailOptions): Promise<boolean>;
+    /**
+     * Validates the email address using OTP (One-Time Password) that was sent during the registration.
+     *
+     *
+     *
+     * __Important:__
+     * This method is in Developer Preview and is subject to change.
+     *
+     *
+     * @param code - OTP code the member received in an email.
+     * @requiredField code
+     * @returns Fulfilled - If the OTP is valid.
+     * Rejected - Error message.
+     */
+    verifyEmail(code: string): Promise<void>;
+}
+/**
+ * An object that contains information about a site contact.
+ */
+export interface ContactInfo {
+    /**
+     * Contact's first name.
+     */
+    firstName?: string;
+    /**
+     * Contact's last name.
+     */
+    lastName?: string;
+    /**
+     * Contact's image source URL.
+     */
+    picture?: string;
+    /**
+     * List of contact's email addresses.
+     *  When creating a contact, if no phone number is
+     *  provided, at least 1 email address must be provided.
+     */
+    emails?: string[];
+    /**
+     * List of contact's phone numbers.
+     *  When creating a contact, if no email is
+     *  provided, at least 1 phone number must be provided.
+     */
+    phones?: string[];
+    /**
+     * Contact's language.
+     */
+    language?: string;
+    /**
+     * Any number of custom fields.
+     *
+     *  Custom fields ([SDK](https://dev.wix.com/docs/sdk/frontend-modules/members/custom-fields) | [Velo](https://dev.wix.com/docs/velo/apis/wix-members-frontend/custom-fields))
+     *  are used to store additional information about a site's contacts.
+     *
+     *  >**Note:** `customFields` is not the name of a field in the `contactInfo` object. Here, it represents any custom fields that you've chosen to implement.
+     */
+    customFields?: string | number | Date;
+}
+export interface LoginOptions {
+    /**
+     * Whether to display the `"login"` or `"signup"` prompt.
+     *
+     * Defaults to `"signup"`.
+     */
+    mode?: string;
+    /**
+     * Whether the login form should be modal (`true`)
+     * or full screen (`false`).
+     *
+     * Defaults to `false` (full screen).
+     */
+    modal?: boolean;
+}
+/**
+ * An object that contains information about a site registration.
+ */
+export interface RegistrationOptions {
+    /**
+     * Contact information.
+     * @servicePath wix-members-frontend.Authentication.ContactInfo
+     */
+    contactInfo?: ContactInfo;
+    /**
+     * Sets the [privacy status](https://support.wix.com/en/article/wix-groups-member-privacy-settings-for-groups) of a new member upon registration.
+     * One of:
+     *
+     *  - `"PUBLIC"`: Sets the new member status to public. A member whose status is public is a member of the site's community.
+     *  - `"PRIVATE"`: Sets the new member status to private. A member whose status is private is not a member of the site's community.
+     *
+     * Defaults to `"PRIVATE"`.
+     */
+    privacyStatus?: string;
+}
+export interface RegistrationResult {
+    /**
+     * Registration status.
+     *
+     * One of:
+     *
+     * - `"PENDING"`: The member must be approved before they can log in to the site.
+     * - `"ACTIVE"`: The member is approved and can log in to the site.
+     * @requiredField status
+     */
+    status: string;
+    /**
+     * Token for approving the member
+     * with [`approveByToken()`](https://dev.wix.com/docs/velo/apis/wix-members-backend/authentication/approve-by-token).
+     * `approvalToken` is safe to pass via email or from page code to backend code.
+     *
+     * Returned when `status` is `"PENDING"`.
+     */
+    approvalToken?: string;
+    /**
+     * The registered member.
+     *
+     * Returned when `status` is `"ACTIVE"`.
+     * @servicePath wix-members-frontend.CurrentMember.Member
+     */
+    member?: Member;
+}
+export interface SetPasswordEmailOptions {
+    /**
+     * Whether to hide the "ignore this email" message.
+     *
+     * If `false`, the email tells the member
+     * they can safely ignore if they didn't request the password change.
+     *
+     * Default: `false`
+     */
+    hideIgnoreMessage?: boolean;
+}
+/**
+ * undefined
+ * @param currentMember - Logged-in member.
+ * @requiredField currentMember
+ * @servicePath wix-members-frontend.CurrentMember
+ */
+export type LoginHandler = (currentMember: CurrentMember) => void;
+/**
+ * undefined
+ */
+export type LogoutHandler = () => void;
+/**
+ * **Deprecated.**
+ * This method will be deprecated on September 30, 2026. Replace with [applySessionToken()](https://dev.wix.com/docs/sdk/host-modules/site/authentication/apply-session-token).
+ * Logs the current member into the site using the specified session token
+ *
+ * You receive a session token from the following methods:
+ *
+ *  - `approveByEmail()` ([Velo](https://dev.wix.com/docs/velo/apis/wix-members-backend/authentication/approve-by-email))
+ *  - `approveByToken()` ([Velo](https://dev.wix.com/docs/velo/apis/wix-members-backend/authentication/approve-by-token))
+ *  - `register()` ([SDK](https://dev.wix.com/docs/sdk/backend-modules/identity/authentication/register-v2) | [Velo](https://dev.wix.com/docs/velo/apis/wix-members-backend/authentication/register))
+ *  - [`generateSessionToken()`](https://dev.wix.com/docs/velo/api-reference/wix-members-backend/authentication/generate-session-token)
+ *  - `login()` ([SDK](https://dev.wix.com/docs/sdk/backend-modules/identity/authentication/login-v2) | [Velo](https://dev.wix.com/docs/velo/apis/wix-members-backend/authentication/login))
+ *
+ *  Pass the returned session token to a site's page code and apply it by
+ *  calling `applySessionToken()` to complete the process started by one of the
+ *  above methods.
+ * @param sessionToken - Session token to apply.
+ * @requiredField sessionToken
+ * @returns Fulfilled - When the token is applied.
+ */
+export function applySessionToken(sessionToken: string): Promise<void>;
+/**
+ * Changes the member's password to a new one, using a reset token.
+ *
+ *
+ *
+ * __Important:__
+ * This method is in Developer Preview and is subject to change.
+ *
+ *
+ * @param newPassword - New password the member wants to set. Minimum 6 characters.
+ * @requiredField newPassword
+ * @param token - Reset token received in the email triggered by `sendResetPasswordEmail()`.
+ * @requiredField token
+ * @returns Fulfilled - When the password is reset.
+ * Rejected - Error message.
+ */
+export function changePassword(newPassword: string, token: string): Promise<void>;
+/**
+ * **Deprecated.**
+ * This method will be deprecated on September 30, 2026. Replace with [loggedIn()](https://dev.wix.com/docs/sdk/host-modules/site/authentication/logged-in).
+ * Indicates whether the current site visitor is a logged-in member.
+ *
+ * If a member is logged in, `loggedIn()` returns `true`.
+ * Otherwise, `loggedIn()` returns `false`.
+ *
+ * @returns `true` if a member is logged in. Otherwise, `false`.
+ */
+export function loggedIn(): Promise<boolean>;
+/**
+ * **Deprecated.**
+ * This method will be deprecated on September 30, 2026. Replace with [login()](https://dev.wix.com/docs/sdk/host-modules/site/authentication/login).
+ * Logs a registered member in with an email and password.
+ *
+ * `login()` only works with existing members. To register a new member use
+ *  `register()` ([SDK](https://dev.wix.com/docs/sdk/backend-modules/identity/authentication/register-v2) | [Velo](https://dev.wix.com/docs/velo/apis/wix-members-backend/authentication/register)).
+ *
+ * > **Note:**
+ * > The frontend Members APIs aren't fully functional when previewing a site. View a published version of a site to see their complete functionality.
+ * @param email - Login email address.
+ * @requiredField email
+ * @param password - Member password.
+ * @requiredField password
+ * @returns Fulfilled - When the member is logged in.
+ * Rejected - Error message.
+ */
+export function login(email: string, password: string): Promise<void>;
+/**
+ * **Deprecated.**
+ * This method will be deprecated on September 30, 2026. Replace with [logout()](https://dev.wix.com/docs/sdk/host-modules/site/authentication/logout).
+ * Logs the current member out of the site.
+ *
+ * The `logout()` function logs the current member out of the site.
+ *
+ * > **Notes:**
+ * >
+ * > - The frontend Members APIs aren't fully functional when previewing a site. View a published version of a site to see their complete functionality.
+ * >
+ * > - The frontend Member APIs can only be used once the page has loaded. Therefore,
+ * >   you must use them in code that's contained in or is called from the
+ * >   `onReady()` or any element event.
+ */
+export function logout(): Promise<void>;
+/**
+ * **Deprecated.**
+ * This method will be deprecated on September 30, 2026. Replace with [onLogin()](https://dev.wix.com/docs/sdk/host-modules/site/authentication/on-login).
+ * Sets the method that runs when a member logs in.
+ *
+ * `onLogin()` runs when a member logs into a site.
+ *
+ * `onLogin` receives a `currentMember` object for the logged-in member,
+ * which contains the `CurrentMember` API methods
+ * you can use to retrieve the member's information.
+ *
+ * Usually, you want to call `onLogin()` in the **masterPage.js** file in the
+ * code editor so that `onLogin()` runs no matter which
+ * page a member uses to log in.
+ *
+ * > **Notes:**
+ * >
+ * > - The frontend Members APIs aren't fully functional when previewing a site. View a published version of a site to see their complete functionality.
+ * >
+ * > - The frontend Member APIs can only be used once the page has loaded. Therefore,
+ * >   you must use them in code that's contained in or is called from the
+ * >   `onReady()` or any element event.
+ * @param handler - Method name or expression to run when a member logs in.
+ * @requiredField handler
+ * @servicePath wix-members-frontend.Authentication.LoginHandler
+ */
+export function onLogin(handler: LoginHandler): Promise<void>;
+/**
+ * **Deprecated.**
+ * This method will be deprecated on September 30, 2026. Replace with [onLogout()](https://dev.wix.com/docs/sdk/host-modules/site/authentication/on-logout).
+ * Sets the method that runs when a member logs out.
+ *
+ * Use `onLogout()` for code you want to run after a member logs out
+ * from a site.
+ *
+ *  Usually, you want to call `onLogout()` in the **masterPage.js** file in the
+ *  code editor so that `onLogout()` runs no matter which
+ *  page on a site a member uses to log out.
+ *
+ * > **Notes:**
+ * >
+ * > - The frontend Members APIs aren't fully functional when previewing a site. View a published version of a site to see their complete functionality.
+ * >
+ * > - The frontend Member APIs can only be used once the page has loaded. Therefore,
+ * >   you must use them in code that's contained in or is called from the
+ * >   `onReady()` or any element event.
+ * @param handler - Method name or expression to run when a member logs out.
+ * @requiredField handler
+ * @servicePath wix-members-frontend.Authentication.LogoutHandler
+ */
+export function onLogout(handler: LogoutHandler): Promise<void>;
+/**
+ * Prompts the current site visitor with a password reset modal.
+ *
+ * `promptForgotPassword()` returns a Promise that resolves when
+ * the visitor submits the **Create New Password** form.
+ *
+ * If the visitor cancels the form without submitting it,
+ * the Promise is rejected.
+ *
+ * `promptForgotPassword()` can't be called before the page is ready.
+ *
+ * > **Notes:**
+ * >
+ * > - The frontend Members APIs aren't fully functional when previewing a site. View a published version of a site to see their complete functionality.
+ * >
+ * > - The frontend Member APIs can only be used once the page has loaded. Therefore,
+ * >   you must use them in code that's contained in or is called from the
+ * >   `onReady()` or any element event.
+ * >
+ * > - If you `return` or `await` `promptForgotPassword()`
+ * >   when calling from `onReady()`, the page is prevented from loading.
+ * >   To handle the resolved promise, use `.then()` and `.catch()`.
+ *
+ * @returns Fulfilled - When the form is submitted.
+ * Rejected - Message that the dialog was canceled, user is already logged in, or another reason the password reset failed.
+ */
+export function promptForgotPassword(): Promise<void>;
+/**
+ * Prompts the current visitor to log in as a site member.
+ *
+ * `promptLogin()` returns a Promise that resolves
+ * when the login has completed.
+ *
+ * If the visitor cancels the form without logging in,
+ * the Promise is rejected.
+ *
+ * `promptLogin()` can't be called before the page is ready.
+ *
+ * > **Notes:**
+ * >
+ * > - The frontend Members APIs aren't fully functional when previewing a site. View a published version of a site to see their complete functionality.
+ * >
+ * > - The frontend Member APIs can only be used once the page has loaded. Therefore,
+ * >   you must use them in code that's contained in or is called from the
+ * >   `onReady()` or any element event.
+ * >
+ * > - If you `return` or `await` `promptLogin()`
+ * >   when calling from `onReady()`, the page is prevented from loading.
+ * >   To handle the resolved promise, use `.then()` and `.catch()`.
+ * @param options - The options that determine how the login dialog box appears.
+ * @servicePath wix-members-frontend.Authentication.LoginOptions
+ * @returns Fulfilled - When the member is logged in.
+ * Rejected - Message that the dialog was canceled, or any other reason the member failed to log in.
+ */
+export function promptLogin(options?: LoginOptions): Promise<void>;
+/**
+ * **Deprecated.**
+ * This method will be deprecated on September 30, 2026. Replace with [register()](https://dev.wix.com/docs/sdk/backend-modules/identity/authentication/register-v2).
+ * Registers a new site member.
+ *
+ * `register()` returns a Promise that resolves to a `RegistrationResult`
+ *  object when the member is registered or pending registration.
+ *
+ *  The specified `password` must be between 4 and 100 ASCII characters.
+ *
+ *  See [New Members](https://dev.wix.com/docs/sdk/frontend-modules/members/authentication/new-members) to learn about verifying emails and approving members.
+ *
+ *  > **Notes:**
+ *  >
+ *  > - The frontend Members APIs aren't fully functional when previewing a site. View a published version of a site to see their complete functionality.
+ *  >
+ *  > - The member data in the resolved Promise only includes custom fields from a site's contacts
+ *  >   if those [fields are added to a site's members in a dashboard](https://support.wix.com/en/article/site-members-customizing-your-member-profile-fields).
+ *  >
+ *  > - When a new member signs up using an email address
+ *  >   that's already in a site's Contact List,
+ *  >   a notification is displayed
+ *  >   and a confirmation email is sent to the new member.
+ *  >   To register a member without displaying the notification, use
+ *  >   [`register()`](https://dev.wix.com/docs/sdk/backend-modules/identity/authentication/register-v2)
+ *  >   (this doesn't suppress the confirmation email).
+ *  >
+ *  > - When a site's member signup settings are set to automatic approval (see [New Members](https://dev.wix.com/docs/sdk/frontend-modules/members/authentication/new-members)),
+ *  >   calling the frontend `register()` in page code is as secure as calling `register()` in backend code,
+ *  >   unless you are implementing [custom site registration using code](https://dev.wix.com/docs/develop-websites/articles/code-tutorials/wix-members/creating-a-custom-registration-form-with-code).
+ *  >   However, when registration is set to manual approval (see [New Members](https://dev.wix.com/docs/sdk/frontend-modules/members/authentication/new-members)),
+ *  >   calling `register()` from the backend code allows you to build more secure approval flows
+ *  >   by keeping tokens hidden from the frontend.
+ * @param email - Email address the new member will use to log in.
+ * @requiredField email
+ * @param password - Password to assign to the new member.
+ * Must be 4 to 100 ASCII characters.
+ * @requiredField password
+ * @param options - Registration options.
+ * @servicePath wix-members-frontend.Authentication.RegistrationOptions
+ * @returns Fulfilled - When the member is registered.
+ * Rejected - Error message.
+ * @servicePath wix-members-frontend.Authentication.RegistrationResult
+ */
+export function register(email: string, password: string, options?: RegistrationOptions): Promise<RegistrationResult>;
+/**
+ * Resends a one-time password (OTP) for email verification.
+ *
+ *
+ *
+ * __Important:__
+ * This method is in Developer Preview and is subject to change.
+ *
+ *
+ *
+ * `resendVerificationCodeEmail()` returns a Promise that resolves when the email is successfully sent, or rejects with an error if the operation fails.
+ *
+ * @returns Fulfilled - When the email is sent.
+ * Rejected - Error message.
+ */
+export function resendVerificationCodeEmail(): Promise<void>;
+/**
+ * Sends a site member an email with a link to set their password.
+ * alizas1 marked this conversation as resolved.
+ *
+ * The `sendForgotPasswordEmail()` function returns a Promise that resolves
+ * when the set password link is emailed to the member.
+ *
+ * The set password link is valid for 3 hours,
+ * and it can be used only once.
+ * If the link expires, no changes are made to the password.
+ * @param email - Login email of the member whose password will be set.
+ * @requiredField email
+ * @returns Fulfilled - When the email is sent.
+ * Rejected - Error message.
+ */
+export function sendForgotPasswordEmail(email: string): Promise<void>;
+/**
+ * Sends a site member an email with a link to set their password.
+ *
+ * > **Note:**
+ * > This method is in Developer Preview and is subject to change.
+ *
+ * The reset password link is valid for 3 hours,
+ * and it can be used only once.
+ * If the link expires, no changes are made to the password.
+ * A site can send a maximum of 200 reset password emails per day.
+ * @param email - Login email of the member whose password will be set.
+ * @requiredField email
+ * @returns Fulfilled - When the email is sent.
+ * Rejected - Error message.
+ */
+export function sendResetPasswordEmail(email: string): Promise<void>;
+/**
+ * Sends a site member an email with a link to set their password.
+ *
+ * > **Deprecated.** Send Set Password Email has been replaced with Send Reset Password Email ([SDK](https://dev.wix.com/docs/sdk/frontend-modules/members/authentication/send-reset-password-email) | [Velo](https://dev.wix.com/docs/velo/apis/wix-members-frontend/authentication/send-reset-password-email)) and will be removed on September 30, 2025.
+ *
+ * The set password link is valid for 3 hours,
+ * and it can be used only once.
+ * If the link expires, no changes are made to the password.
+ * @param email - Login email of the member whose password will be set.
+ * @requiredField email
+ * @param options - Email display options.
+ * @servicePath wix-members-frontend.Authentication.SetPasswordEmailOptions
+ * @returns Fulfilled - If the email is sent.
+ * Rejected - Error message.
+ */
+export function sendSetPasswordEmail(email: string, options?: SetPasswordEmailOptions): Promise<boolean>;
+/**
+ * Validates the email address using OTP (One-Time Password) that was sent during the registration.
+ *
+ *
+ *
+ * __Important:__
+ * This method is in Developer Preview and is subject to change.
+ *
+ *
+ * @param code - OTP code the member received in an email.
+ * @requiredField code
+ * @returns Fulfilled - If the OTP is valid.
+ * Rejected - Error message.
+ */
+export function verifyEmail(code: string): Promise<void>;

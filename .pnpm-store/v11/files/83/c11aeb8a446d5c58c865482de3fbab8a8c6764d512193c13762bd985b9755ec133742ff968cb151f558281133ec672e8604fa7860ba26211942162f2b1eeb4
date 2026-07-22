@@ -1,0 +1,6 @@
+import type * as currentMemberSdkModuleContext from './currentmember.types.d.ts';
+type Methods<T> = {
+    [P in keyof T as T[P] extends Function ? P : never]: T[P];
+};
+export declare const currentMemberContext: Methods<typeof currentMemberSdkModuleContext>;
+export {};

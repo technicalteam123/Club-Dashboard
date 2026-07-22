@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.currentMemberContext = void 0;
+const context_1 = require("@wix/sdk-runtime/context");
+const currentMember_runtime_1 = require("./currentMember.runtime");
+exports.currentMemberContext = {
+    getMember: (0, context_1.contextualizeHostModule)(currentMember_runtime_1.currentMemberRuntime, 'getMember'),
+    getRoles: (0, context_1.contextualizeHostModule)(currentMember_runtime_1.currentMemberRuntime, 'getRoles'),
+    makeProfilePrivate: (0, context_1.contextualizeHostModule)(currentMember_runtime_1.currentMemberRuntime, 'makeProfilePrivate'),
+    makeProfilePublic: (0, context_1.contextualizeHostModule)(currentMember_runtime_1.currentMemberRuntime, 'makeProfilePublic'),
+};
+//# sourceMappingURL=currentMember.context.js.map

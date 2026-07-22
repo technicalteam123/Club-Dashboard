@@ -1,0 +1,342 @@
+// src/iam-recovery-v1-recovery-recovery.schemas.ts
+import * as z from "zod";
+var SendRecoveryEmailRequest = z.object({
+  email: z.string().describe("Email address associated with the account to recover.").email(),
+  options: z.object({
+    language: z.string().describe(
+      "2-letter language code in [ISO 639-1 alpha-2](https://en.wikipedia.org/wiki/List_of_ISO_639-1_codes) format of the email to be sent.\n\nIf no language is specified, the language specified in the member's profile is used."
+    ).optional().nullable(),
+    redirect: z.object({
+      url: z.string().describe(
+        "URL to redirect to after successfully resetting the password."
+      ).max(1e3).optional(),
+      clientId: z.string().describe(
+        "Client ID of the [OAuth app](https://dev.wix.com/docs/go-headless/getting-started/setup/authentication/create-an-oauth-app-for-visitors-and-members) your Headless project is using."
+      ).regex(
+        /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/,
+        "Must be a valid GUID"
+      ).optional().nullable()
+    }).describe(
+      "Where to redirect to after successfully resetting the password."
+    ).optional()
+  }).optional()
+});
+var SendRecoveryEmailResponse = z.object({});
+var SendActivationEmailRequest = z.object({
+  identityId: z.string().describe("Id of the activating user").regex(
+    /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/,
+    "Must be a valid GUID"
+  ),
+  options: z.object({
+    emailOptions: z.object({
+      language: z.string().describe(
+        "language of the email - if not received will fallback to the identity language"
+      ).optional().nullable(),
+      redirect: z.object({
+        url: z.string().describe(
+          "URL to redirect to after successfully resetting the password."
+        ).max(1e3).optional(),
+        clientId: z.string().describe(
+          "Client ID of the [OAuth app](https://dev.wix.com/docs/go-headless/getting-started/setup/authentication/create-an-oauth-app-for-visitors-and-members) your Headless project is using."
+        ).regex(
+          /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/,
+          "Must be a valid GUID"
+        ).optional().nullable()
+      }).describe("Where to redirect after a successful activation process").optional()
+    }).describe("Options for the activation email").optional()
+  }).optional()
+});
+var SendActivationEmailResponse = z.object({});
+var RecoverRequest = z.object({
+  recoveryToken: z.string().describe("recovery token"),
+  options: z.object({
+    password: z.string().describe("new password to set for the identity").optional().nullable()
+  }).optional()
+});
+var RecoverResponse = (() => {
+  let wixIamIdentityV1CustomValueSchema = z.intersection(
+    z.object({}),
+    z.xor([
+      z.object({
+        strValue: z.never().optional(),
+        numValue: z.never().optional(),
+        dateValue: z.never().optional(),
+        listValue: z.never().optional(),
+        mapValue: z.never().optional(),
+        boolValue: z.never().optional()
+      }),
+      z.object({
+        numValue: z.never().optional(),
+        dateValue: z.never().optional(),
+        listValue: z.never().optional(),
+        mapValue: z.never().optional(),
+        boolValue: z.never().optional(),
+        strValue: z.string().describe("Text value.")
+      }),
+      z.object({
+        strValue: z.never().optional(),
+        dateValue: z.never().optional(),
+        listValue: z.never().optional(),
+        mapValue: z.never().optional(),
+        boolValue: z.never().optional(),
+        numValue: z.number().describe("Numeric value.")
+      }),
+      z.object({
+        strValue: z.never().optional(),
+        numValue: z.never().optional(),
+        listValue: z.never().optional(),
+        mapValue: z.never().optional(),
+        boolValue: z.never().optional(),
+        dateValue: z.date().describe("Date/time value.")
+      }),
+      z.object({
+        strValue: z.never().optional(),
+        numValue: z.never().optional(),
+        dateValue: z.never().optional(),
+        mapValue: z.never().optional(),
+        boolValue: z.never().optional(),
+        listValue: z.object({
+          value: z.array(z.lazy(() => wixIamIdentityV1CustomValueSchema)).optional()
+        }).describe("List of values.")
+      }),
+      z.object({
+        strValue: z.never().optional(),
+        numValue: z.never().optional(),
+        dateValue: z.never().optional(),
+        listValue: z.never().optional(),
+        boolValue: z.never().optional(),
+        mapValue: z.object({
+          value: z.record(
+            z.string(),
+            z.lazy(() => wixIamIdentityV1CustomValueSchema)
+          ).describe("Map of custom field values.").optional()
+        }).describe("Key-value pairs.")
+      }),
+      z.object({
+        strValue: z.never().optional(),
+        numValue: z.never().optional(),
+        dateValue: z.never().optional(),
+        listValue: z.never().optional(),
+        mapValue: z.never().optional(),
+        boolValue: z.boolean().describe("Bool value")
+      })
+    ])
+  );
+  let comWixCommonUpstreamWixCommonCustomValueSchema = z.intersection(
+    z.object({}),
+    z.xor([
+      z.object({
+        strValue: z.never().optional(),
+        numValue: z.never().optional(),
+        dateValue: z.never().optional(),
+        listValue: z.never().optional(),
+        mapValue: z.never().optional()
+      }),
+      z.object({
+        numValue: z.never().optional(),
+        dateValue: z.never().optional(),
+        listValue: z.never().optional(),
+        mapValue: z.never().optional(),
+        strValue: z.string().describe("String value.")
+      }),
+      z.object({
+        strValue: z.never().optional(),
+        dateValue: z.never().optional(),
+        listValue: z.never().optional(),
+        mapValue: z.never().optional(),
+        numValue: z.number().describe("Number value.")
+      }),
+      z.object({
+        strValue: z.never().optional(),
+        numValue: z.never().optional(),
+        listValue: z.never().optional(),
+        mapValue: z.never().optional(),
+        dateValue: z.date().describe("Date value.")
+      }),
+      z.object({
+        strValue: z.never().optional(),
+        numValue: z.never().optional(),
+        dateValue: z.never().optional(),
+        mapValue: z.never().optional(),
+        listValue: z.object({
+          value: z.array(
+            z.lazy(() => comWixCommonUpstreamWixCommonCustomValueSchema)
+          ).optional()
+        }).describe("List value.")
+      }),
+      z.object({
+        strValue: z.never().optional(),
+        numValue: z.never().optional(),
+        dateValue: z.never().optional(),
+        listValue: z.never().optional(),
+        mapValue: z.object({
+          value: z.record(
+            z.string(),
+            z.lazy(() => comWixCommonUpstreamWixCommonCustomValueSchema)
+          ).describe("Mapped custom value.").optional()
+        }).describe("Map value.")
+      })
+    ])
+  );
+  return z.object({
+    state: z.enum([
+      "UNKNOWN_STATE",
+      "SUCCESS",
+      "REQUIRE_OWNER_APPROVAL",
+      "REQUIRE_EMAIL_VERIFICATION",
+      "STATUS_CHECK"
+    ]).describe("Current state of the login or registration process.").optional(),
+    sessionToken: z.string().describe(
+      "Session token. If `state` is not `SUCCESS`, this field is undefined."
+    ).optional().nullable(),
+    stateToken: z.string().describe(
+      "Token that represents the current state of the login or registration process."
+    ).optional().nullable(),
+    identity: z.object({
+      _id: z.string().describe("Identity ID.").regex(
+        /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/,
+        "Must be a valid GUID"
+      ).optional().nullable(),
+      revision: z.string().regex(/^\d+$/, "Must be a valid UInt64 string").describe(
+        "Revision number, which increments by 1 each time the identity is updated.\nTo prevent conflicting changes,\nthe current revision must be passed when updating the identity.\n\nIgnored when creating an identity."
+      ).optional().nullable(),
+      _createdDate: z.date().describe("Date and time the identity was created.").optional().nullable(),
+      _updatedDate: z.date().describe("Date and time the identity was updated.").optional().nullable(),
+      connections: z.array(
+        z.intersection(
+          z.object({}),
+          z.xor([
+            z.object({
+              idpConnection: z.never().optional(),
+              authenticatorConnection: z.never().optional()
+            }),
+            z.object({
+              authenticatorConnection: z.never().optional(),
+              idpConnection: z.object({
+                idpConnectionId: z.string().describe("IDP connection ID.").regex(
+                  /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/,
+                  "Must be a valid GUID"
+                ).optional(),
+                idpUserId: z.string().describe("IDP user ID.").optional()
+              }).describe("IDP connection.")
+            }),
+            z.object({
+              idpConnection: z.never().optional(),
+              authenticatorConnection: z.object({
+                authenticatorConnectionId: z.string().describe("Authenticator connection ID.").regex(
+                  /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/,
+                  "Must be a valid GUID"
+                ).optional(),
+                reEnrollmentRequired: z.boolean().describe("Whether re-enrollment is required.").optional()
+              }).describe("Authenticator connection.")
+            })
+          ])
+        )
+      ).optional(),
+      identityProfile: z.object({
+        firstName: z.string().describe("Member's first name.").optional().nullable(),
+        lastName: z.string().describe("Member's last name.").optional().nullable(),
+        nickname: z.string().describe("Member's display nickname.").optional().nullable(),
+        picture: z.string().describe("URL to member's profile picture.").optional().nullable(),
+        emails: z.array(z.string()).optional(),
+        phones: z.array(z.string()).optional(),
+        labels: z.array(z.string()).max(2e3).optional(),
+        language: z.string().describe("Member's preferred language code.").optional().nullable(),
+        privacyStatus: z.enum(["UNDEFINED", "PUBLIC", "PRIVATE"]).describe("Member's profile visibility setting.").optional(),
+        customFields: z.array(
+          z.object({
+            name: z.string().describe(
+              "Custom field name matching an extended field key (without `custom.` prefix).\n\nMust match a key from [`List Extended Fields`](https://dev.wix.com/docs/rest/api-reference/contacts/extended-fields/list-extended-fields)."
+            ).optional(),
+            value: wixIamIdentityV1CustomValueSchema.describe("Value for the custom field.").optional()
+          })
+        ).optional(),
+        secondaryEmails: z.array(
+          z.object({
+            email: z.string().describe("Secondary email address.").email().optional(),
+            tag: z.enum(["UNTAGGED", "MAIN", "HOME", "WORK"]).describe("Email tag.").optional()
+          })
+        ).optional(),
+        phonesV2: z.array(
+          z.object({
+            countryCode: z.string().describe("Country code for the phone number.").optional().nullable(),
+            phone: z.string().describe("Phone number without country code.").optional(),
+            tag: z.enum(["UNTAGGED", "MAIN", "HOME", "MOBILE", "WORK", "FAX"]).describe("Phone tag.").optional()
+          })
+        ).optional(),
+        addresses: z.array(
+          z.object({
+            address: z.object({
+              city: z.string().optional().nullable(),
+              subdivision: z.string().optional().nullable(),
+              country: z.string().optional().nullable(),
+              postalCode: z.string().optional().nullable(),
+              addressLine2: z.string().optional().nullable()
+            }).describe("Physical address details.").optional(),
+            tag: z.enum(["UNTAGGED", "HOME", "WORK", "BILLING", "SHIPPING"]).describe("Address tag.").optional()
+          })
+        ).optional(),
+        company: z.string().describe("Company name.").max(1e3).optional().nullable(),
+        position: z.string().describe("Position within company.").max(1e3).optional().nullable(),
+        birthdate: z.string().describe("Member's birth date in `YYYY-MM-DD` format.").optional().nullable(),
+        slug: z.string().describe("URL-friendly slug for the member's profile.").max(255).optional().nullable(),
+        subscription: z.boolean().describe(
+          "Whether the member consents to receive marketing communications."
+        ).optional().nullable(),
+        vatId: z.string().describe("Tax ID or VAT number for personal or corporate use.").max(1e3).optional().nullable()
+      }).describe("Identity profile.").optional(),
+      email: z.object({
+        address: z.string().describe("Email address.").email().optional(),
+        isVerified: z.boolean().describe("Whether the email address is verified.").optional()
+      }).describe("Identity email address.").optional(),
+      status: z.object({
+        name: z.enum([
+          "UNKNOWN_STATUS",
+          "PENDING",
+          "ACTIVE",
+          "DELETED",
+          "BLOCKED",
+          "OFFLINE"
+        ]).describe("Descriptive name of the identity status.").optional(),
+        reasons: z.array(
+          z.enum([
+            "UNKNOWN_REASON",
+            "PENDING_ADMIN_APPROVAL_REQUIRED",
+            "PENDING_EMAIL_VERIFICATION_REQUIRED"
+          ])
+        ).optional()
+      }).describe("Identity's current status.").optional(),
+      factors: z.array(
+        z.object({
+          factorId: z.string().describe("Factor ID.").regex(
+            /^[0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{4}-[0-9a-fA-F]{12}$/,
+            "Must be a valid GUID"
+          ).optional(),
+          type: z.enum([
+            "PASSWORD",
+            "SMS",
+            "CALL",
+            "EMAIL",
+            "TOTP",
+            "PUSH",
+            "WEBAUTHN",
+            "RECOVERY_CODE"
+          ]).describe("Factor type.").optional(),
+          status: z.enum(["INACTIVE", "ACTIVE", "REQUIRE_REENROLL"]).describe("Factor status.").optional()
+        })
+      ).max(10).optional()
+    }).describe("Identity of the current member.").optional(),
+    additionalData: z.record(z.string(), comWixCommonUpstreamWixCommonCustomValueSchema).describe(
+      "Additional data relevant to the login or registration process."
+    ).optional()
+  });
+})();
+export {
+  RecoverRequest,
+  RecoverResponse,
+  SendActivationEmailRequest,
+  SendActivationEmailResponse,
+  SendRecoveryEmailRequest,
+  SendRecoveryEmailResponse
+};
+//# sourceMappingURL=schemas.mjs.map

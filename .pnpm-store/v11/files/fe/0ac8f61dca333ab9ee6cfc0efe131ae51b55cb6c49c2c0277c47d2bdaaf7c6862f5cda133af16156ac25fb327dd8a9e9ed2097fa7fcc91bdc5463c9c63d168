@@ -1,0 +1,4 @@
+import * as auto_sdk_redirects_redirects from '@wix/auto_sdk_redirects_redirects';
+export { auto_sdk_redirects_redirects as redirects };
+import '@wix/auto_sdk_redirects_redirects/meta';
+import '@wix/auto_sdk_redirects_redirects/schemas';
