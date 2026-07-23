@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { counters, messageThreads, messages, sessions, users } from "../store/index";
-import type { Message, MessageThread } from "../types";
+import { counters, messageThreads, messages, sessions, users } from "../store/index.js";
+import type { Message, MessageThread } from "../types.js";
 
 const router = Router();
 

@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { counters, reports, sessions, users } from "../store/index";
-import type { Report } from "../types";
+import { counters, reports, sessions, users } from "../store/index.js";
+import type { Report } from "../types.js";
 
 const router = Router();
 

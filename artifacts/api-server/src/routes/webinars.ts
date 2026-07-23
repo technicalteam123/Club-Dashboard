@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { counters, sessions, users, webinars } from "../store/index";
-import type { Webinar } from "../types";
+import { counters, sessions, users, webinars } from "../store/index.js";
+import type { Webinar } from "../types.js";
 
 const router = Router();
 

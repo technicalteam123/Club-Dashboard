@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { users, sessions } from "../store/index";
+import { users, sessions } from "../store/index.js";
 import crypto from "crypto";
 
 const router = Router();

@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { appointments, counters, doctors, sessions, users } from "../store/index";
-import type { Appointment } from "../types";
+import { appointments, counters, doctors, sessions, users } from "../store/index.js";
+import type { Appointment } from "../types.js";
 
 const router = Router();
 

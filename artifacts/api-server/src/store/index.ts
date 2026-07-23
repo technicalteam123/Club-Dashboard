@@ -14,7 +14,7 @@ import type {
   SupportTicket,
   Notification,
   PatientSummary,
-} from "../types";
+} from "../types.js";
 
 // ── USERS ──────────────────────────────────────────────────────────────────
 export const users: User[] = [

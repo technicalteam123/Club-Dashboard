@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { appointments, counters, doctors, sessions, supportTickets, users, webinars } from "../store/index";
-import type { SupportTicket } from "../types";
+import { appointments, counters, doctors, sessions, supportTickets, users, webinars } from "../store/index.js";
+import type { SupportTicket } from "../types.js";
 
 const router = Router();
 

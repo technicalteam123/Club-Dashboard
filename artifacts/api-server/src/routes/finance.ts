@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { loanOffers, sessions, sipPlans, users } from "../store/index";
-import type { SipPlan } from "../types";
+import { loanOffers, sessions, sipPlans, users } from "../store/index.js";
+import type { SipPlan } from "../types.js";
 
 const router = Router();
 

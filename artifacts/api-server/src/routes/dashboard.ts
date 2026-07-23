@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { appointments, notifications, reports, sessions, users, webinars } from "../store/index";
+import { appointments, notifications, reports, sessions, users, webinars } from "../store/index.js";
 
 const router = Router();
 

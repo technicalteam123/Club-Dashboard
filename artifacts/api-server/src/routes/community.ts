@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { comments, communityPosts, counters, sessions, users } from "../store/index";
-import type { Comment, CommunityPost } from "../types";
+import { comments, communityPosts, counters, sessions, users } from "../store/index.js";
+import type { Comment, CommunityPost } from "../types.js";
 
 const router = Router();
 
