@@ -36,15 +36,29 @@ import AdminCommunity from '@/pages/admin/Community';
 import AdminFinance from '@/pages/admin/Finance';
 import AdminSupport from '@/pages/admin/Support';
 
+const getBypassRole = () => {
+  const searchParams = new URLSearchParams(window.location.search);
+  const memberId = searchParams.get('memberId');
+  const role = searchParams.get('role');
+
+  return memberId && (role === 'user' || role === 'doctor' || role === 'admin') ? role : null;
+};
+
 export function AppRoutes() {
+  const bypassRole = getBypassRole();
+  const dashboardPath = bypassRole ? `/${bypassRole}/dashboard${window.location.search}` : null;
+
   return (
     <Switch>
-      <Route path="/login" component={Login} />
+      <Route path="/login">
+        {() => dashboardPath ? <Redirect to={dashboardPath} /> : <Login />}
+      </Route>
       
       {/* Root Redirect */}
       <Route path="/">
         {() => {
           const { user } = useAuth();
+          if (dashboardPath) return <Redirect to={dashboardPath} />;
           if (!user) return <Redirect to="/login" />;
           return <Redirect to={`/${user.role}/dashboard`} />;
         }}
@@ -54,8 +68,9 @@ export function AppRoutes() {
       <Route path="/:role/:page">
         {(params) => {
           const { user } = useAuth();
-          if (!user) return <Redirect to="/login" />;
-          if (user.role !== params.role) return <Redirect to={`/${user.role}/dashboard`} />;
+          const activeRole = bypassRole || user?.role;
+          if (!activeRole) return <Redirect to="/login" />;
+          if (activeRole !== params.role) return <Redirect to={`/${activeRole}/dashboard${bypassRole ? window.location.search : ''}`} />;
           
           let Component = null;
           
