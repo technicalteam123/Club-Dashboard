@@ -41,11 +41,11 @@ export default function AdminFinance() {
                 {MEMBERSHIP_FEES.map(row => (
                   <tr key={row.plan} className="hover:bg-muted/20 transition-colors">
                     <td className="px-6 py-4 font-semibold">{row.plan}</td>
-                    <td className="px-6 py-4 text-primary font-medium">{row.price}</td>
+                    <td className="px-6 py-4 text-[var(--efff-navy)] font-medium">{row.price}</td>
                     <td className="px-6 py-4">{row.platform}</td>
                     <td className="px-6 py-4">{row.seminar}</td>
                     <td className="px-6 py-4">
-                      <Badge className="bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300 border-none text-xs">Active</Badge>
+                      <Badge variant="success" className="text-xs">Active</Badge>
                     </td>
                   </tr>
                 ))}
@@ -66,9 +66,9 @@ export default function AdminFinance() {
               <CardHeader className="pb-2">
                 <div className="flex justify-between items-start">
                   <CardTitle className="text-base">{loan.bankName}</CardTitle>
-                  <ShieldCheck className="w-5 h-5 text-emerald-500 shrink-0" />
+                  <ShieldCheck className="w-5 h-5 text-success shrink-0" />
                 </div>
-                <p className="text-2xl font-bold text-primary">{loan.interestRate}%
+                <p className="text-2xl font-bold text-[var(--efff-navy)]">{loan.interestRate}%
                   <span className="text-xs font-normal text-muted-foreground ml-1">p.a.</span>
                 </p>
               </CardHeader>
@@ -77,7 +77,7 @@ export default function AdminFinance() {
                 <div className="flex justify-between"><span>Tenure up to</span><span className="font-medium text-foreground">{loan.maxTenureMonths} months</span></div>
                 <div className="flex justify-between"><span>Min EMI</span><span className="font-medium text-foreground">₹{loan.minEmi}</span></div>
                 <div className="pt-1">
-                  <Badge className="bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300 border-none text-xs w-full justify-center">Active Partner</Badge>
+                  <Badge variant="success" className="text-xs w-full justify-center">Active Partner</Badge>
                 </div>
               </CardContent>
             </Card>

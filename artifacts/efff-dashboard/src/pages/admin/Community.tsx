@@ -73,7 +73,7 @@ export default function AdminCommunity() {
                 </div>
                 <Button
                   size="sm" variant="ghost"
-                  className="shrink-0 text-rose-500 hover:text-rose-600 hover:bg-rose-50 dark:hover:bg-rose-900/20"
+                  className="shrink-0 text-error hover:bg-[var(--efff-error-bg)] hover:text-error"
                   onClick={() => handleDelete(post.id)}
                   disabled={moderateMutation.isPending}
                 >

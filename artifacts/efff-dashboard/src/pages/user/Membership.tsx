@@ -55,7 +55,7 @@ export default function UserMembership() {
         <Card className="bg-gradient-to-r from-primary/10 to-transparent border-primary/20">
           <CardContent className="p-6 flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
-              <p className="text-sm font-medium text-primary mb-1">CURRENT PLAN</p>
+              <p className="text-sm font-semibold text-[var(--efff-navy)] mb-1">CURRENT PLAN</p>
               <h2 className="text-3xl font-display font-bold">{user.membershipPlan.toUpperCase()}</h2>
               <p className="text-sm text-muted-foreground mt-2">
                 You are currently on the {user.membershipPlan} plan. Upgrade to save more on platform fees and seminars.
@@ -73,7 +73,7 @@ export default function UserMembership() {
             <Card key={plan.id} className={`relative flex flex-col ${isCurrent ? 'border-primary shadow-lg shadow-primary/10' : 'border-border'}`}>
               {isCurrent && (
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                  <Badge className="bg-primary text-white">Current Plan</Badge>
+                  <Badge className="border-transparent bg-primary text-[var(--efff-navy)]">Current Plan</Badge>
                 </div>
               )}
               <CardHeader>

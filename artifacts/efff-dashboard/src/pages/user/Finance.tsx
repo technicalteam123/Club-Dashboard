@@ -86,7 +86,7 @@ export default function UserFinance() {
             {guidance && (
               <div className="space-y-6">
                 <div className="bg-primary/5 p-4 rounded-xl border border-primary/10">
-                  <p className="text-sm font-medium text-primary">ESTIMATED TOTAL</p>
+                  <p className="text-sm font-semibold text-[var(--efff-navy)]">ESTIMATED TOTAL</p>
                   <p className="text-3xl font-display font-bold">₹{guidance.estimatedTotalCost.toLocaleString()}</p>
                 </div>
                 
@@ -119,9 +119,9 @@ export default function UserFinance() {
               <CardHeader className="pb-4">
                 <div className="flex justify-between items-start mb-2">
                   <CardTitle>{loan.bankName}</CardTitle>
-                  <ShieldCheck className="w-5 h-5 text-green-500" />
+                  <ShieldCheck className="w-5 h-5 text-success" />
                 </div>
-                <div className="text-2xl font-bold text-primary">{loan.interestRate}% <span className="text-sm text-muted-foreground font-normal">p.a.</span></div>
+                <div className="text-2xl font-bold text-[var(--efff-navy)]">{loan.interestRate}% <span className="text-sm text-muted-foreground font-normal">p.a.</span></div>
               </CardHeader>
               <CardContent className="space-y-4">
                 <div className="space-y-2 text-sm">

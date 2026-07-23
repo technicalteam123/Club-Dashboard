@@ -9,11 +9,11 @@ import { Search, Video, MapPin, CheckCircle, XCircle, Clock } from 'lucide-react
 import { toast } from 'sonner';
 
 const STATUS_COLORS: Record<string, string> = {
-  pending: 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300',
-  approved: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300',
-  completed: 'bg-blue-100 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300',
-  rejected: 'bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-300',
-  rescheduled: 'bg-purple-100 text-purple-700 dark:bg-purple-900/30 dark:text-purple-300',
+  pending: 'status-warning',
+  approved: 'status-success',
+  completed: 'status-success',
+  rejected: 'status-error',
+  rescheduled: 'status-info',
 };
 
 export default function AdminAppointments() {
@@ -83,7 +83,7 @@ export default function AdminAppointments() {
                   <td className="px-6 py-4 text-muted-foreground">{appt.doctorName}</td>
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-1.5 text-xs">
-                      {appt.mode === 'video' ? <Video className="w-3.5 h-3.5 text-blue-500" /> : <MapPin className="w-3.5 h-3.5 text-rose-500" />}
+                      {appt.mode === 'video' ? <Video className="w-3.5 h-3.5 text-[var(--efff-navy)]" /> : <MapPin className="w-3.5 h-3.5 text-error" />}
                       <span className="capitalize">{appt.mode}</span>
                     </div>
                     <p className="text-xs text-muted-foreground mt-0.5">
@@ -97,18 +97,18 @@ export default function AdminAppointments() {
                   <td className="px-6 py-4 text-right">
                     {appt.status === 'pending' && (
                       <div className="flex gap-1 justify-end">
-                        <Button size="sm" variant="ghost" className="h-7 px-2 text-emerald-600 hover:text-emerald-700 hover:bg-emerald-50"
+                        <Button size="sm" variant="ghost" className="h-7 px-2 text-success hover:bg-[var(--efff-success-bg)] hover:text-success"
                           onClick={() => handleStatus(appt.id, 'approved')} disabled={updateStatus.isPending}>
                           <CheckCircle className="w-4 h-4" />
                         </Button>
-                        <Button size="sm" variant="ghost" className="h-7 px-2 text-rose-600 hover:text-rose-700 hover:bg-rose-50"
+                        <Button size="sm" variant="ghost" className="h-7 px-2 text-error hover:bg-[var(--efff-error-bg)] hover:text-error"
                           onClick={() => handleStatus(appt.id, 'rejected')} disabled={updateStatus.isPending}>
                           <XCircle className="w-4 h-4" />
                         </Button>
                       </div>
                     )}
                     {appt.status === 'approved' && (
-                      <Button size="sm" variant="ghost" className="h-7 px-2 text-blue-600 hover:text-blue-700 hover:bg-blue-50"
+                      <Button size="sm" variant="ghost" className="h-7 px-2 text-[var(--efff-navy)] hover:bg-primary/10 hover:text-[var(--efff-navy)]"
                         onClick={() => handleStatus(appt.id, 'completed')} disabled={updateStatus.isPending}>
                         <Clock className="w-4 h-4 mr-1" /> Mark Done
                       </Button>

@@ -104,13 +104,13 @@ export default function AdminDoctors() {
                   <p className="font-semibold text-sm truncate">{doctor.name}</p>
                   <p className="text-xs text-muted-foreground">{doctor.specialty}</p>
                 </div>
-                <Badge className={`border-none text-xs shrink-0 ${doctor.availableSlots > 0 ? 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300' : 'bg-muted text-muted-foreground'}`}>
+                <Badge className={`text-xs shrink-0 ${doctor.availableSlots > 0 ? 'status-success' : 'bg-muted text-muted-foreground'}`}>
                   {doctor.availableSlots > 0 ? 'Active' : 'Unavailable'}
                 </Badge>
               </div>
               <div className="space-y-1.5 text-xs text-muted-foreground">
                 <div className="flex items-center gap-1.5"><MapPin className="w-3.5 h-3.5" />{doctor.city}{doctor.area ? `, ${doctor.area}` : ''}</div>
-                <div className="flex items-center gap-1.5"><Star className="w-3.5 h-3.5 fill-amber-400 text-amber-400" />{doctor.rating.toFixed(1)} · {doctor.experienceYears} yrs exp</div>
+                <div className="flex items-center gap-1.5"><Star className="w-3.5 h-3.5 fill-warning text-warning" />{doctor.rating.toFixed(1)} · {doctor.experienceYears} yrs exp</div>
               </div>
               <div className="mt-3 pt-3 border-t border-border/50 flex gap-1 flex-wrap">
                 {doctor.languages.slice(0, 3).map(l => (

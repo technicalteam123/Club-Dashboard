@@ -92,7 +92,7 @@ export default function AdminWebinars() {
               <CardHeader className="pb-3">
                 <div className="flex justify-between items-start gap-2">
                   <CardTitle className="text-base leading-snug">{w.title}</CardTitle>
-                  <Badge className={`shrink-0 border-none text-xs capitalize ${isPast ? 'bg-muted text-muted-foreground' : 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300'}`}>
+                  <Badge className={`shrink-0 text-xs capitalize ${isPast ? 'bg-muted text-muted-foreground' : 'status-success'}`}>
                     {isPast ? 'Past' : 'Upcoming'}
                   </Badge>
                 </div>

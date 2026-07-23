@@ -53,7 +53,7 @@ export default function DoctorReports() {
                     
                     {report.doctorNotes && activeReportId !== report.id && (
                       <div className="mt-3 p-3 rounded bg-muted/50 border text-sm">
-                        <p className="font-medium text-primary mb-1">Your Notes:</p>
+                        <p className="font-medium text-[var(--efff-navy)] mb-1">Your Notes:</p>
                         <p className="text-muted-foreground">{report.doctorNotes}</p>
                       </div>
                     )}

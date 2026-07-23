@@ -61,7 +61,7 @@ export default function UserLearning() {
                 )}
               </div>
               <CardContent className="p-5">
-                <p className="text-xs font-medium text-primary mb-2 uppercase tracking-wider">{article.category}</p>
+                <p className="text-xs font-semibold text-[var(--efff-navy)] mb-2 uppercase tracking-wider">{article.category}</p>
                 <h3 className="font-semibold text-lg mb-2 group-hover:text-primary transition-colors">{article.title}</h3>
                 <p className="text-xs text-muted-foreground flex items-center gap-1">
                   <ClockIcon className="w-3 h-3" /> {article.readTime} read

@@ -1,0 +1,322 @@
+import { createHotContext as __vite__createHotContext } from "/@vite/client";import.meta.hot = __vite__createHotContext("/src/pages/admin/Finance.tsx");"use strict";
+import __vite__cjsImport0_react_jsxDevRuntime from "/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=f0d9da5d"; const jsxDEV = __vite__cjsImport0_react_jsxDevRuntime["jsxDEV"];
+var _s = $RefreshSig$();
+import { useListLoanOffers } from "/@fs/C:/Users/PC-4/Club-Dashboard/lib/api-client-react/src/index.ts";
+import { Card, CardContent, CardHeader, CardTitle } from "/src/components/ui/card.tsx";
+import { Badge } from "/src/components/ui/badge.tsx?t=1784790598708";
+import { ShieldCheck, Landmark, Percent } from "/node_modules/.vite/deps/lucide-react.js?v=f2c02688";
+const MEMBERSHIP_FEES = [
+  { plan: "Basic", platform: "7%", seminar: "20%", price: "Free" },
+  { plan: "Gold", platform: "3.5%", seminar: "40%", price: "₹999/mo" },
+  { plan: "Platinum", platform: "2.5%", seminar: "50%", price: "₹4,999/mo" },
+  { plan: "FemmeElite", platform: "1.5%", seminar: "60%", price: "₹9,999/mo" }
+];
+export default function AdminFinance() {
+  _s();
+  const { data: loans } = useListLoanOffers();
+  return /* @__PURE__ */ jsxDEV("div", { className: "space-y-8 max-w-7xl mx-auto", children: [
+    /* @__PURE__ */ jsxDEV("div", { children: [
+      /* @__PURE__ */ jsxDEV("h1", { className: "text-3xl font-display font-semibold mb-2", children: "Finance & Loan Partners" }, void 0, false, {
+        fileName: "C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/pages/admin/Finance.tsx",
+        lineNumber: 19,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV("p", { className: "text-muted-foreground", children: "Manage partner loan offers and platform fee structure." }, void 0, false, {
+        fileName: "C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/pages/admin/Finance.tsx",
+        lineNumber: 20,
+        columnNumber: 9
+      }, this)
+    ] }, void 0, true, {
+      fileName: "C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/pages/admin/Finance.tsx",
+      lineNumber: 18,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV("div", { children: [
+      /* @__PURE__ */ jsxDEV("h2", { className: "text-xl font-display font-semibold mb-4 flex items-center gap-2", children: [
+        /* @__PURE__ */ jsxDEV(Percent, { className: "w-5 h-5 text-primary" }, void 0, false, {
+          fileName: "C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/pages/admin/Finance.tsx",
+          lineNumber: 26,
+          columnNumber: 11
+        }, this),
+        " Membership Fee Structure"
+      ] }, void 0, true, {
+        fileName: "C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/pages/admin/Finance.tsx",
+        lineNumber: 25,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV(Card, { className: "overflow-hidden", children: /* @__PURE__ */ jsxDEV("div", { className: "overflow-x-auto", children: /* @__PURE__ */ jsxDEV("table", { className: "w-full text-sm text-left", children: [
+        /* @__PURE__ */ jsxDEV("thead", { className: "text-xs text-muted-foreground uppercase bg-muted/50", children: /* @__PURE__ */ jsxDEV("tr", { children: [
+          /* @__PURE__ */ jsxDEV("th", { className: "px-6 py-4 font-medium", children: "Plan" }, void 0, false, {
+            fileName: "C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/pages/admin/Finance.tsx",
+            lineNumber: 33,
+            columnNumber: 19
+          }, this),
+          /* @__PURE__ */ jsxDEV("th", { className: "px-6 py-4 font-medium", children: "Price" }, void 0, false, {
+            fileName: "C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/pages/admin/Finance.tsx",
+            lineNumber: 34,
+            columnNumber: 19
+          }, this),
+          /* @__PURE__ */ jsxDEV("th", { className: "px-6 py-4 font-medium", children: "Platform Fee" }, void 0, false, {
+            fileName: "C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/pages/admin/Finance.tsx",
+            lineNumber: 35,
+            columnNumber: 19
+          }, this),
+          /* @__PURE__ */ jsxDEV("th", { className: "px-6 py-4 font-medium", children: "Seminar Discount" }, void 0, false, {
+            fileName: "C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/pages/admin/Finance.tsx",
+            lineNumber: 36,
+            columnNumber: 19
+          }, this),
+          /* @__PURE__ */ jsxDEV("th", { className: "px-6 py-4 font-medium", children: "Status" }, void 0, false, {
+            fileName: "C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/pages/admin/Finance.tsx",
+            lineNumber: 37,
+            columnNumber: 19
+          }, this)
+        ] }, void 0, true, {
+          fileName: "C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/pages/admin/Finance.tsx",
+          lineNumber: 32,
+          columnNumber: 17
+        }, this) }, void 0, false, {
+          fileName: "C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/pages/admin/Finance.tsx",
+          lineNumber: 31,
+          columnNumber: 15
+        }, this),
+        /* @__PURE__ */ jsxDEV("tbody", { className: "divide-y divide-border/50 bg-card", children: MEMBERSHIP_FEES.map(
+          (row) => /* @__PURE__ */ jsxDEV("tr", { className: "hover:bg-muted/20 transition-colors", children: [
+            /* @__PURE__ */ jsxDEV("td", { className: "px-6 py-4 font-semibold", children: row.plan }, void 0, false, {
+              fileName: "C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/pages/admin/Finance.tsx",
+              lineNumber: 43,
+              columnNumber: 21
+            }, this),
+            /* @__PURE__ */ jsxDEV("td", { className: "px-6 py-4 text-[var(--efff-navy)] font-medium", children: row.price }, void 0, false, {
+              fileName: "C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/pages/admin/Finance.tsx",
+              lineNumber: 44,
+              columnNumber: 21
+            }, this),
+            /* @__PURE__ */ jsxDEV("td", { className: "px-6 py-4", children: row.platform }, void 0, false, {
+              fileName: "C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/pages/admin/Finance.tsx",
+              lineNumber: 45,
+              columnNumber: 21
+            }, this),
+            /* @__PURE__ */ jsxDEV("td", { className: "px-6 py-4", children: row.seminar }, void 0, false, {
+              fileName: "C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/pages/admin/Finance.tsx",
+              lineNumber: 46,
+              columnNumber: 21
+            }, this),
+            /* @__PURE__ */ jsxDEV("td", { className: "px-6 py-4", children: /* @__PURE__ */ jsxDEV(Badge, { variant: "success", className: "text-xs", children: "Active" }, void 0, false, {
+              fileName: "C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/pages/admin/Finance.tsx",
+              lineNumber: 48,
+              columnNumber: 23
+            }, this) }, void 0, false, {
+              fileName: "C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/pages/admin/Finance.tsx",
+              lineNumber: 47,
+              columnNumber: 21
+            }, this)
+          ] }, row.plan, true, {
+            fileName: "C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/pages/admin/Finance.tsx",
+            lineNumber: 42,
+            columnNumber: 17
+          }, this)
+        ) }, void 0, false, {
+          fileName: "C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/pages/admin/Finance.tsx",
+          lineNumber: 40,
+          columnNumber: 15
+        }, this)
+      ] }, void 0, true, {
+        fileName: "C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/pages/admin/Finance.tsx",
+        lineNumber: 30,
+        columnNumber: 13
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/pages/admin/Finance.tsx",
+        lineNumber: 29,
+        columnNumber: 11
+      }, this) }, void 0, false, {
+        fileName: "C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/pages/admin/Finance.tsx",
+        lineNumber: 28,
+        columnNumber: 9
+      }, this)
+    ] }, void 0, true, {
+      fileName: "C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/pages/admin/Finance.tsx",
+      lineNumber: 24,
+      columnNumber: 7
+    }, this),
+    /* @__PURE__ */ jsxDEV("div", { children: [
+      /* @__PURE__ */ jsxDEV("h2", { className: "text-xl font-display font-semibold mb-4 flex items-center gap-2", children: [
+        /* @__PURE__ */ jsxDEV(Landmark, { className: "w-5 h-5 text-primary" }, void 0, false, {
+          fileName: "C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/pages/admin/Finance.tsx",
+          lineNumber: 61,
+          columnNumber: 11
+        }, this),
+        " Partner Loan Offers"
+      ] }, void 0, true, {
+        fileName: "C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/pages/admin/Finance.tsx",
+        lineNumber: 60,
+        columnNumber: 9
+      }, this),
+      /* @__PURE__ */ jsxDEV("div", { className: "grid sm:grid-cols-2 lg:grid-cols-4 gap-4", children: [
+        loans?.map(
+          (loan) => /* @__PURE__ */ jsxDEV(Card, { className: "hover:border-primary/40 transition-colors", children: [
+            /* @__PURE__ */ jsxDEV(CardHeader, { className: "pb-2", children: [
+              /* @__PURE__ */ jsxDEV("div", { className: "flex justify-between items-start", children: [
+                /* @__PURE__ */ jsxDEV(CardTitle, { className: "text-base", children: loan.bankName }, void 0, false, {
+                  fileName: "C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/pages/admin/Finance.tsx",
+                  lineNumber: 68,
+                  columnNumber: 19
+                }, this),
+                /* @__PURE__ */ jsxDEV(ShieldCheck, { className: "w-5 h-5 text-success shrink-0" }, void 0, false, {
+                  fileName: "C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/pages/admin/Finance.tsx",
+                  lineNumber: 69,
+                  columnNumber: 19
+                }, this)
+              ] }, void 0, true, {
+                fileName: "C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/pages/admin/Finance.tsx",
+                lineNumber: 67,
+                columnNumber: 17
+              }, this),
+              /* @__PURE__ */ jsxDEV("p", { className: "text-2xl font-bold text-[var(--efff-navy)]", children: [
+                loan.interestRate,
+                "%",
+                /* @__PURE__ */ jsxDEV("span", { className: "text-xs font-normal text-muted-foreground ml-1", children: "p.a." }, void 0, false, {
+                  fileName: "C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/pages/admin/Finance.tsx",
+                  lineNumber: 72,
+                  columnNumber: 19
+                }, this)
+              ] }, void 0, true, {
+                fileName: "C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/pages/admin/Finance.tsx",
+                lineNumber: 71,
+                columnNumber: 17
+              }, this)
+            ] }, void 0, true, {
+              fileName: "C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/pages/admin/Finance.tsx",
+              lineNumber: 66,
+              columnNumber: 15
+            }, this),
+            /* @__PURE__ */ jsxDEV(CardContent, { className: "space-y-2 text-xs text-muted-foreground", children: [
+              /* @__PURE__ */ jsxDEV("div", { className: "flex justify-between", children: [
+                /* @__PURE__ */ jsxDEV("span", { children: "Max Amount" }, void 0, false, {
+                  fileName: "C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/pages/admin/Finance.tsx",
+                  lineNumber: 76,
+                  columnNumber: 55
+                }, this),
+                /* @__PURE__ */ jsxDEV("span", { className: "font-medium text-foreground", children: [
+                  "₹",
+                  loan.maxAmount.toLocaleString()
+                ] }, void 0, true, {
+                  fileName: "C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/pages/admin/Finance.tsx",
+                  lineNumber: 76,
+                  columnNumber: 78
+                }, this)
+              ] }, void 0, true, {
+                fileName: "C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/pages/admin/Finance.tsx",
+                lineNumber: 76,
+                columnNumber: 17
+              }, this),
+              /* @__PURE__ */ jsxDEV("div", { className: "flex justify-between", children: [
+                /* @__PURE__ */ jsxDEV("span", { children: "Tenure up to" }, void 0, false, {
+                  fileName: "C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/pages/admin/Finance.tsx",
+                  lineNumber: 77,
+                  columnNumber: 55
+                }, this),
+                /* @__PURE__ */ jsxDEV("span", { className: "font-medium text-foreground", children: [
+                  loan.maxTenureMonths,
+                  " months"
+                ] }, void 0, true, {
+                  fileName: "C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/pages/admin/Finance.tsx",
+                  lineNumber: 77,
+                  columnNumber: 80
+                }, this)
+              ] }, void 0, true, {
+                fileName: "C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/pages/admin/Finance.tsx",
+                lineNumber: 77,
+                columnNumber: 17
+              }, this),
+              /* @__PURE__ */ jsxDEV("div", { className: "flex justify-between", children: [
+                /* @__PURE__ */ jsxDEV("span", { children: "Min EMI" }, void 0, false, {
+                  fileName: "C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/pages/admin/Finance.tsx",
+                  lineNumber: 78,
+                  columnNumber: 55
+                }, this),
+                /* @__PURE__ */ jsxDEV("span", { className: "font-medium text-foreground", children: [
+                  "₹",
+                  loan.minEmi
+                ] }, void 0, true, {
+                  fileName: "C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/pages/admin/Finance.tsx",
+                  lineNumber: 78,
+                  columnNumber: 75
+                }, this)
+              ] }, void 0, true, {
+                fileName: "C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/pages/admin/Finance.tsx",
+                lineNumber: 78,
+                columnNumber: 17
+              }, this),
+              /* @__PURE__ */ jsxDEV("div", { className: "pt-1", children: /* @__PURE__ */ jsxDEV(Badge, { variant: "success", className: "text-xs w-full justify-center", children: "Active Partner" }, void 0, false, {
+                fileName: "C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/pages/admin/Finance.tsx",
+                lineNumber: 80,
+                columnNumber: 19
+              }, this) }, void 0, false, {
+                fileName: "C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/pages/admin/Finance.tsx",
+                lineNumber: 79,
+                columnNumber: 17
+              }, this)
+            ] }, void 0, true, {
+              fileName: "C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/pages/admin/Finance.tsx",
+              lineNumber: 75,
+              columnNumber: 15
+            }, this)
+          ] }, loan.id, true, {
+            fileName: "C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/pages/admin/Finance.tsx",
+            lineNumber: 65,
+            columnNumber: 11
+          }, this)
+        ),
+        !loans?.length && /* @__PURE__ */ jsxDEV("div", { className: "col-span-full text-center py-12 text-muted-foreground", children: "No loan partners configured." }, void 0, false, {
+          fileName: "C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/pages/admin/Finance.tsx",
+          lineNumber: 86,
+          columnNumber: 11
+        }, this)
+      ] }, void 0, true, {
+        fileName: "C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/pages/admin/Finance.tsx",
+        lineNumber: 63,
+        columnNumber: 9
+      }, this)
+    ] }, void 0, true, {
+      fileName: "C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/pages/admin/Finance.tsx",
+      lineNumber: 59,
+      columnNumber: 7
+    }, this)
+  ] }, void 0, true, {
+    fileName: "C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/pages/admin/Finance.tsx",
+    lineNumber: 17,
+    columnNumber: 5
+  }, this);
+}
+_s(AdminFinance, "1/G01Or7CO5crfJL92qHUstXr0k=", false, function() {
+  return [useListLoanOffers];
+});
+_c = AdminFinance;
+var _c;
+$RefreshReg$(_c, "AdminFinance");
+import * as RefreshRuntime from "/@react-refresh";
+const inWebWorker = typeof WorkerGlobalScope !== "undefined" && self instanceof WorkerGlobalScope;
+if (import.meta.hot && !inWebWorker) {
+  if (!window.$RefreshReg$) {
+    throw new Error(
+      "@vitejs/plugin-react can't detect preamble. Something is wrong."
+    );
+  }
+  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {
+    RefreshRuntime.registerExportsForReactRefresh("C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/pages/admin/Finance.tsx", currentExports);
+    import.meta.hot.accept((nextExports) => {
+      if (!nextExports) return;
+      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate("C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/pages/admin/Finance.tsx", currentExports, nextExports);
+      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);
+    });
+  });
+}
+function $RefreshReg$(type, id) {
+  return RefreshRuntime.register(type, "C:/Users/PC-4/Club-Dashboard/artifacts/efff-dashboard/src/pages/admin/Finance.tsx " + id);
+}
+function $RefreshSig$() {
+  return RefreshRuntime.createSignatureFunctionForTransform();
+}
+
+//# sourceMappingURL=data:application/json;base64,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QTtBQUFBLGVBakJTTixLQUFLTyxJQUFoQjtBQUFBO0FBQUE7QUFBQTtBQUFBLGlCQWtCQTtBQUFBLFFBQ0Q7QUFBQSxRQUNBLENBQUNWLE9BQU9XLFVBQ1AsdUJBQUMsU0FBSSxXQUFVLHlEQUF3RCw0Q0FBdkU7QUFBQTtBQUFBO0FBQUE7QUFBQSxlQUFtRztBQUFBLFdBdkJ2RztBQUFBO0FBQUE7QUFBQTtBQUFBLGFBeUJBO0FBQUEsU0E3QkY7QUFBQTtBQUFBO0FBQUE7QUFBQSxXQThCQTtBQUFBLE9BeEVGO0FBQUE7QUFBQTtBQUFBO0FBQUEsU0F5RUE7QUFFSjtBQUFDYixHQS9FdUJELGNBQVk7QUFBQSxVQUNWZCxpQkFBaUI7QUFBQTtBQUFBLEtBRG5CYztBQUFZLElBQUFlO0FBQUEsYUFBQUEsSUFBQSIsIm5hbWVzIjpbInVzZUxpc3RMb2FuT2ZmZXJzIiwiQ2FyZCIsIkNhcmRDb250ZW50IiwiQ2FyZEhlYWRlciIsIkNhcmRUaXRsZSIsIkJhZGdlIiwiU2hpZWxkQ2hlY2siLCJMYW5kbWFyayIsIlBlcmNlbnQiLCJNRU1CRVJTSElQX0ZFRVMiLCJwbGFuIiwicGxhdGZvcm0iLCJzZW1pbmFyIiwicHJpY2UiLCJBZG1pbkZpbmFuY2UiLCJfcyIsImRhdGEiLCJsb2FucyIsIm1hcCIsInJvdyIsImxvYW4iLCJiYW5rTmFtZSIsImludGVyZXN0UmF0ZSIsIm1heEFtb3VudCIsInRvTG9jYWxlU3RyaW5nIiwibWF4VGVudXJlTW9udGhzIiwibWluRW1pIiwiaWQiLCJsZW5ndGgiLCJfYyJdLCJpZ25vcmVMaXN0IjpbXSwic291cmNlcyI6WyJGaW5hbmNlLnRzeCJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyB1c2VMaXN0TG9hbk9mZmVycyB9IGZyb20gJ0B3b3Jrc3BhY2UvYXBpLWNsaWVudC1yZWFjdCc7XHJcbmltcG9ydCB7IENhcmQsIENhcmRDb250ZW50LCBDYXJkSGVhZGVyLCBDYXJkVGl0bGUgfSBmcm9tICdAL2NvbXBvbmVudHMvdWkvY2FyZCc7XHJcbmltcG9ydCB7IEJhZGdlIH0gZnJvbSAnQC9jb21wb25lbnRzL3VpL2JhZGdlJztcclxuaW1wb3J0IHsgU2hpZWxkQ2hlY2ssIEluZGlhblJ1cGVlLCBUcmVuZGluZ1VwLCBMYW5kbWFyaywgUGVyY2VudCB9IGZyb20gJ2x1Y2lkZS1yZWFjdCc7XHJcblxyXG5jb25zdCBNRU1CRVJTSElQX0ZFRVM6IHsgcGxhbjogc3RyaW5nOyBwbGF0Zm9ybTogc3RyaW5nOyBzZW1pbmFyOiBzdHJpbmc7IHByaWNlOiBzdHJpbmcgfVtdID0gW1xyXG4gIHsgcGxhbjogJ0Jhc2ljJywgICAgICAgcGxhdGZvcm06ICc3JScsICAgc2VtaW5hcjogJzIwJScsIHByaWNlOiAnRnJlZScgfSxcclxuICB7IHBsYW46ICdHb2xkJywgICAgICAgIHBsYXRmb3JtOiAnMy41JScsIHNlbWluYXI6ICc0MCUnLCBwcmljZTogJ+KCuTk5OS9tbycgfSxcclxuICB7IHBsYW46ICdQbGF0aW51bScsICAgIHBsYXRmb3JtOiAnMi41JScsIHNlbWluYXI6ICc1MCUnLCBwcmljZTogJ+KCuTQsOTk5L21vJyB9LFxyXG4gIHsgcGxhbjogJ0ZlbW1lRWxpdGUnLCAgcGxhdGZvcm06ICcxLjUlJywgc2VtaW5hcjogJzYwJScsIHByaWNlOiAn4oK5OSw5OTkvbW8nIH0sXHJcbl07XHJcblxyXG5leHBvcnQgZGVmYXVsdCBmdW5jdGlvbiBBZG1pbkZpbmFuY2UoKSB7XHJcbiAgY29uc3QgeyBkYXRhOiBsb2FucyB9ID0gdXNlTGlzdExvYW5PZmZlcnMoKTtcclxuXHJcbiAgcmV0dXJuIChcclxuICAgIDxkaXYgY2xhc3NOYW1lPVwic3BhY2UteS04IG1heC13LTd4bCBteC1hdXRvXCI+XHJcbiAgICAgIDxkaXY+XHJcbiAgICAgICAgPGgxIGNsYXNzTmFtZT1cInRleHQtM3hsIGZvbnQtZGlzcGxheSBmb250LXNlbWlib2xkIG1iLTJcIj5GaW5hbmNlICYgTG9hbiBQYXJ0bmVyczwvaDE+XHJcbiAgICAgICAgPHAgY2xhc3NOYW1lPVwidGV4dC1tdXRlZC1mb3JlZ3JvdW5kXCI+TWFuYWdlIHBhcnRuZXIgbG9hbiBvZmZlcnMgYW5kIHBsYXRmb3JtIGZlZSBzdHJ1Y3R1cmUuPC9wPlxyXG4gICAgICA8L2Rpdj5cclxuXHJcbiAgICAgIHsvKiBNZW1iZXJzaGlwIEZlZSBTdHJ1Y3R1cmUgKi99XHJcbiAgICAgIDxkaXY+XHJcbiAgICAgICAgPGgyIGNsYXNzTmFtZT1cInRleHQteGwgZm9udC1kaXNwbGF5IGZvbnQtc2VtaWJvbGQgbWItNCBmbGV4IGl0ZW1zLWNlbnRlciBnYXAtMlwiPlxyXG4gICAgICAgICAgPFBlcmNlbnQgY2xhc3NOYW1lPVwidy01IGgtNSB0ZXh0LXByaW1hcnlcIiAvPiBNZW1iZXJzaGlwIEZlZSBTdHJ1Y3R1cmVcclxuICAgICAgICA8L2gyPlxyXG4gICAgICAgIDxDYXJkIGNsYXNzTmFtZT1cIm92ZXJmbG93LWhpZGRlblwiPlxyXG4gICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJvdmVyZmxvdy14LWF1dG9cIj5cclxuICAgICAgICAgICAgPHRhYmxlIGNsYXNzTmFtZT1cInctZnVsbCB0ZXh0LXNtIHRleHQtbGVmdFwiPlxyXG4gICAgICAgICAgICAgIDx0aGVhZCBjbGFzc05hbWU9XCJ0ZXh0LXhzIHRleHQtbXV0ZWQtZm9yZWdyb3VuZCB1cHBlcmNhc2UgYmctbXV0ZWQvNTBcIj5cclxuICAgICAgICAgICAgICAgIDx0cj5cclxuICAgICAgICAgICAgICAgICAgPHRoIGNsYXNzTmFtZT1cInB4LTYgcHktNCBmb250LW1lZGl1bVwiPlBsYW48L3RoPlxyXG4gICAgICAgICAgICAgICAgICA8dGggY2xhc3NOYW1lPVwicHgtNiBweS00IGZvbnQtbWVkaXVtXCI+UHJpY2U8L3RoPlxyXG4gICAgICAgICAgICAgICAgICA8dGggY2xhc3NOYW1lPVwicHgtNiBweS00IGZvbnQtbWVkaXVtXCI+UGxhdGZvcm0gRmVlPC90aD5cclxuICAgICAgICAgICAgICAgICAgPHRoIGNsYXNzTmFtZT1cInB4LTYgcHktNCBmb250LW1lZGl1bVwiPlNlbWluYXIgRGlzY291bnQ8L3RoPlxyXG4gICAgICAgICAgICAgICAgICA8dGggY2xhc3NOYW1lPVwicHgtNiBweS00IGZvbnQtbWVkaXVtXCI+U3RhdHVzPC90aD5cclxuICAgICAgICAgICAgICAgIDwvdHI+XHJcbiAgICAgICAgICAgICAgPC90aGVhZD5cclxuICAgICAgICAgICAgICA8dGJvZHkgY2xhc3NOYW1lPVwiZGl2aWRlLXkgZGl2aWRlLWJvcmRlci81MCBiZy1jYXJkXCI+XHJcbiAgICAgICAgICAgICAgICB7TUVNQkVSU0hJUF9GRUVTLm1hcChyb3cgPT4gKFxyXG4gICAgICAgICAgICAgICAgICA8dHIga2V5PXtyb3cucGxhbn0gY2xhc3NOYW1lPVwiaG92ZXI6YmctbXV0ZWQvMjAgdHJhbnNpdGlvbi1jb2xvcnNcIj5cclxuICAgICAgICAgICAgICAgICAgICA8dGQgY2xhc3NOYW1lPVwicHgtNiBweS00IGZvbnQtc2VtaWJvbGRcIj57cm93LnBsYW59PC90ZD5cclxuICAgICAgICAgICAgICAgICAgICA8dGQgY2xhc3NOYW1lPVwicHgtNiBweS00IHRleHQtW3ZhcigtLWVmZmYtbmF2eSldIGZvbnQtbWVkaXVtXCI+e3Jvdy5wcmljZX08L3RkPlxuICAgICAgICAgICAgICAgICAgICA8dGQgY2xhc3NOYW1lPVwicHgtNiBweS00XCI+e3Jvdy5wbGF0Zm9ybX08L3RkPlxyXG4gICAgICAgICAgICAgICAgICAgIDx0ZCBjbGFzc05hbWU9XCJweC02IHB5LTRcIj57cm93LnNlbWluYXJ9PC90ZD5cclxuICAgICAgICAgICAgICAgICAgICA8dGQgY2xhc3NOYW1lPVwicHgtNiBweS00XCI+XHJcbiAgICAgICAgICAgICAgICAgICAgICA8QmFkZ2UgdmFyaWFudD1cInN1Y2Nlc3NcIiBjbGFzc05hbWU9XCJ0ZXh0LXhzXCI+QWN0aXZlPC9CYWRnZT5cbiAgICAgICAgICAgICAgICAgICAgPC90ZD5cclxuICAgICAgICAgICAgICAgICAgPC90cj5cclxuICAgICAgICAgICAgICAgICkpfVxyXG4gICAgICAgICAgICAgIDwvdGJvZHk+XHJcbiAgICAgICAgICAgIDwvdGFibGU+XHJcbiAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICA8L0NhcmQ+XHJcbiAgICAgIDwvZGl2PlxyXG5cclxuICAgICAgey8qIExvYW4gUGFydG5lciBDYXJkcyAqL31cclxuICAgICAgPGRpdj5cclxuICAgICAgICA8aDIgY2xhc3NOYW1lPVwidGV4dC14bCBmb250LWRpc3BsYXkgZm9udC1zZW1pYm9sZCBtYi00IGZsZXggaXRlbXMtY2VudGVyIGdhcC0yXCI+XHJcbiAgICAgICAgICA8TGFuZG1hcmsgY2xhc3NOYW1lPVwidy01IGgtNSB0ZXh0LXByaW1hcnlcIiAvPiBQYXJ0bmVyIExvYW4gT2ZmZXJzXHJcbiAgICAgICAgPC9oMj5cclxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImdyaWQgc206Z3JpZC1jb2xzLTIgbGc6Z3JpZC1jb2xzLTQgZ2FwLTRcIj5cclxuICAgICAgICAgIHtsb2Fucz8ubWFwKGxvYW4gPT4gKFxyXG4gICAgICAgICAgICA8Q2FyZCBrZXk9e2xvYW4uaWR9IGNsYXNzTmFtZT1cImhvdmVyOmJvcmRlci1wcmltYXJ5LzQwIHRyYW5zaXRpb24tY29sb3JzXCI+XHJcbiAgICAgICAgICAgICAgPENhcmRIZWFkZXIgY2xhc3NOYW1lPVwicGItMlwiPlxyXG4gICAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJmbGV4IGp1c3RpZnktYmV0d2VlbiBpdGVtcy1zdGFydFwiPlxyXG4gICAgICAgICAgICAgICAgICA8Q2FyZFRpdGxlIGNsYXNzTmFtZT1cInRleHQtYmFzZVwiPntsb2FuLmJhbmtOYW1lfTwvQ2FyZFRpdGxlPlxyXG4gICAgICAgICAgICAgICAgICA8U2hpZWxkQ2hlY2sgY2xhc3NOYW1lPVwidy01IGgtNSB0ZXh0LXN1Y2Nlc3Mgc2hyaW5rLTBcIiAvPlxuICAgICAgICAgICAgICAgIDwvZGl2PlxyXG4gICAgICAgICAgICAgICAgPHAgY2xhc3NOYW1lPVwidGV4dC0yeGwgZm9udC1ib2xkIHRleHQtW3ZhcigtLWVmZmYtbmF2eSldXCI+e2xvYW4uaW50ZXJlc3RSYXRlfSVcbiAgICAgICAgICAgICAgICAgIDxzcGFuIGNsYXNzTmFtZT1cInRleHQteHMgZm9udC1ub3JtYWwgdGV4dC1tdXRlZC1mb3JlZ3JvdW5kIG1sLTFcIj5wLmEuPC9zcGFuPlxyXG4gICAgICAgICAgICAgICAgPC9wPlxyXG4gICAgICAgICAgICAgIDwvQ2FyZEhlYWRlcj5cclxuICAgICAgICAgICAgICA8Q2FyZENvbnRlbnQgY2xhc3NOYW1lPVwic3BhY2UteS0yIHRleHQteHMgdGV4dC1tdXRlZC1mb3JlZ3JvdW5kXCI+XHJcbiAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImZsZXgganVzdGlmeS1iZXR3ZWVuXCI+PHNwYW4+TWF4IEFtb3VudDwvc3Bhbj48c3BhbiBjbGFzc05hbWU9XCJmb250LW1lZGl1bSB0ZXh0LWZvcmVncm91bmRcIj7igrl7bG9hbi5tYXhBbW91bnQudG9Mb2NhbGVTdHJpbmcoKX08L3NwYW4+PC9kaXY+XHJcbiAgICAgICAgICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImZsZXgganVzdGlmeS1iZXR3ZWVuXCI+PHNwYW4+VGVudXJlIHVwIHRvPC9zcGFuPjxzcGFuIGNsYXNzTmFtZT1cImZvbnQtbWVkaXVtIHRleHQtZm9yZWdyb3VuZFwiPntsb2FuLm1heFRlbnVyZU1vbnRoc30gbW9udGhzPC9zcGFuPjwvZGl2PlxyXG4gICAgICAgICAgICAgICAgPGRpdiBjbGFzc05hbWU9XCJmbGV4IGp1c3RpZnktYmV0d2VlblwiPjxzcGFuPk1pbiBFTUk8L3NwYW4+PHNwYW4gY2xhc3NOYW1lPVwiZm9udC1tZWRpdW0gdGV4dC1mb3JlZ3JvdW5kXCI+4oK5e2xvYW4ubWluRW1pfTwvc3Bhbj48L2Rpdj5cclxuICAgICAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwicHQtMVwiPlxyXG4gICAgICAgICAgICAgICAgICA8QmFkZ2UgdmFyaWFudD1cInN1Y2Nlc3NcIiBjbGFzc05hbWU9XCJ0ZXh0LXhzIHctZnVsbCBqdXN0aWZ5LWNlbnRlclwiPkFjdGl2ZSBQYXJ0bmVyPC9CYWRnZT5cbiAgICAgICAgICAgICAgICA8L2Rpdj5cclxuICAgICAgICAgICAgICA8L0NhcmRDb250ZW50PlxyXG4gICAgICAgICAgICA8L0NhcmQ+XHJcbiAgICAgICAgICApKX1cclxuICAgICAgICAgIHshbG9hbnM/Lmxlbmd0aCAmJiAoXHJcbiAgICAgICAgICAgIDxkaXYgY2xhc3NOYW1lPVwiY29sLXNwYW4tZnVsbCB0ZXh0LWNlbnRlciBweS0xMiB0ZXh0LW11dGVkLWZvcmVncm91bmRcIj5ObyBsb2FuIHBhcnRuZXJzIGNvbmZpZ3VyZWQuPC9kaXY+XHJcbiAgICAgICAgICApfVxyXG4gICAgICAgIDwvZGl2PlxyXG4gICAgICA8L2Rpdj5cclxuICAgIDwvZGl2PlxyXG4gICk7XHJcbn1cclxuIl0sImZpbGUiOiJDOi9Vc2Vycy9QQy00L0NsdWItRGFzaGJvYXJkL2FydGlmYWN0cy9lZmZmLWRhc2hib2FyZC9zcmMvcGFnZXMvYWRtaW4vRmluYW5jZS50c3gifQ==

@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { PieChart, Pie, Cell, BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts';
 import { Users, UserPlus, Calendar as CalendarIcon, IndianRupee, Activity, Ticket } from 'lucide-react';
 
-const COLORS = ['#8b5cf6', '#f59e0b', '#f43f5e', '#64748b'];
+const COLORS = ['#20CBE5', '#00051F', '#A6C0E5', '#6C87A8', '#4F9070', '#D99845'];
 
 export default function AdminDashboard() {
   const { data: analytics, isLoading } = useGetAdminAnalytics();
@@ -33,7 +33,7 @@ export default function AdminDashboard() {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center justify-between mb-4">
-              <div className="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-600"><IndianRupee className="w-5 h-5" /></div>
+              <div className="icon-success w-10 h-10 rounded-lg flex items-center justify-center"><IndianRupee className="w-5 h-5" /></div>
             </div>
             <p className="text-sm font-medium text-muted-foreground">Monthly MRR</p>
             <h2 className="text-3xl font-display font-bold">₹{(analytics.totalRevenue / 1000).toFixed(1)}k</h2>
@@ -43,7 +43,7 @@ export default function AdminDashboard() {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center justify-between mb-4">
-              <div className="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-600"><CalendarIcon className="w-5 h-5" /></div>
+              <div className="icon-info w-10 h-10 rounded-lg flex items-center justify-center"><CalendarIcon className="w-5 h-5" /></div>
             </div>
             <p className="text-sm font-medium text-muted-foreground">Pending Appointments</p>
             <h2 className="text-3xl font-display font-bold">{analytics.pendingAppointments}</h2>
@@ -53,7 +53,7 @@ export default function AdminDashboard() {
         <Card>
           <CardContent className="p-6">
             <div className="flex items-center justify-between mb-4">
-              <div className="w-10 h-10 rounded-lg bg-rose-500/10 flex items-center justify-center text-rose-600"><Ticket className="w-5 h-5" /></div>
+              <div className="icon-error w-10 h-10 rounded-lg flex items-center justify-center"><Ticket className="w-5 h-5" /></div>
             </div>
             <p className="text-sm font-medium text-muted-foreground">Open Support Tickets</p>
             <h2 className="text-3xl font-display font-bold">{analytics.openTickets}</h2>
@@ -101,10 +101,10 @@ export default function AdminDashboard() {
           <CardContent className="h-[300px]">
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={analytics.appointmentsByMonth}>
-                <XAxis dataKey="month" axisLine={false} tickLine={false} tick={{ fontSize: 12 }} dy={10} />
-                <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12 }} />
+                <XAxis dataKey="month" axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#666666' }} dy={10} />
+                <YAxis axisLine={false} tickLine={false} tick={{ fontSize: 12, fill: '#666666' }} />
                 <Tooltip cursor={{ fill: 'rgba(0,0,0,0.05)' }} contentStyle={{ borderRadius: '12px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}/>
-                <Bar dataKey="count" fill="#c04874" radius={[4, 4, 0, 0]} maxBarSize={40} />
+                <Bar dataKey="count" fill="#20CBE5" radius={[4, 4, 0, 0]} maxBarSize={40} />
               </BarChart>
             </ResponsiveContainer>
           </CardContent>

@@ -66,7 +66,7 @@ export default function DoctorAppointments() {
 
                 {app.status === 'pending' && (
                   <div className="flex flex-col gap-2 min-w-[140px]">
-                    <Button onClick={() => handleStatusUpdate(app.id, 'approved')} disabled={updateStatus.isPending} className="bg-green-600 hover:bg-green-700 text-white w-full">
+                    <Button onClick={() => handleStatusUpdate(app.id, 'approved')} disabled={updateStatus.isPending} className="w-full border-success bg-success text-white hover:bg-success/90">
                       <Check className="w-4 h-4 mr-2" /> Accept
                     </Button>
                     <Button onClick={() => handleStatusUpdate(app.id, 'rejected')} disabled={updateStatus.isPending} variant="outline" className="w-full text-destructive hover:text-destructive hover:bg-destructive/10">

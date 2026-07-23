@@ -65,15 +65,15 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
   return (
     <div className="flex min-h-[100dvh] bg-background">
       {/* Sidebar */}
-      <aside className={`fixed inset-y-0 left-0 z-50 w-64 glass-panel border-r transition-transform duration-300 md:translate-x-0 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} md:static md:flex md:flex-col`}>
+      <aside className={`efff-dark-panel fixed inset-y-0 left-0 z-50 w-64 border-r border-white/10 shadow-[4px_0_18px_rgb(0_5_31_/_0.16)] transition-transform duration-300 md:translate-x-0 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'} md:static md:flex md:flex-col`}>
         <div className="flex h-16 shrink-0 items-center px-6">
-          <div className="flex items-center gap-2 text-primary">
-            <div className="h-8 w-8 rounded-full bg-primary flex items-center justify-center">
-              <span className="text-primary-foreground font-display font-bold text-lg">E</span>
+          <div className="flex items-center gap-2 text-white">
+            <div className="h-8 w-8 rounded-full bg-primary flex items-center justify-center shadow-sm">
+              <span className="text-[var(--efff-navy)] font-display font-bold text-lg">E</span>
             </div>
             <span className="font-display font-semibold text-xl tracking-tight">EFFF Club</span>
           </div>
-          <Button variant="ghost" size="icon" className="ml-auto md:hidden" onClick={() => setIsMobileMenuOpen(false)}>
+          <Button variant="ghost" size="icon" className="ml-auto text-white hover:bg-white/10 hover:text-white md:hidden" onClick={() => setIsMobileMenuOpen(false)}>
             <X className="h-5 w-5" />
           </Button>
         </div>
@@ -84,8 +84,8 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
             const isActive = location.startsWith(link.path);
             return (
               <Link key={link.path} href={link.path} onClick={() => setIsMobileMenuOpen(false)}>
-                <div className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors ${isActive ? 'bg-primary/10 text-primary' : 'text-muted-foreground hover:bg-muted hover:text-foreground'}`}>
-                  <Icon className="h-5 w-5" />
+                <div className={`flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors ${isActive ? 'bg-primary text-[var(--efff-navy)] shadow-sm' : 'text-white/70 hover:bg-white/8 hover:text-white'}`}>
+                  <Icon className={`h-5 w-5 ${isActive ? 'text-[var(--efff-navy)]' : 'text-[var(--efff-blue-soft)]'}`} />
                   {link.label}
                 </div>
               </Link>
@@ -94,11 +94,11 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
         </nav>
 
         <div className="p-4 mt-auto">
-          <div className="mb-4 px-3 py-3 rounded-xl bg-muted/50">
+          <div className="mb-4 px-3 py-3 rounded-xl bg-white/8">
             <p className="text-sm font-medium truncate">{user?.name}</p>
-            <p className="text-xs text-muted-foreground truncate">{user?.email}</p>
+            <p className="text-xs text-white/60 truncate">{user?.email}</p>
           </div>
-          <Button variant="outline" className="w-full justify-start text-muted-foreground border-border/50" onClick={handleLogout}>
+          <Button variant="outline" className="w-full justify-start border-white/25 bg-transparent text-white hover:border-primary hover:bg-white/8 hover:text-white" onClick={handleLogout}>
             <LogOut className="mr-2 h-4 w-4" />
             Sign out
           </Button>
@@ -107,7 +107,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
 
       {/* Main Content */}
       <main className="flex-1 flex flex-col min-w-0">
-        <header className="flex h-16 shrink-0 items-center border-b glass-panel px-4 md:px-8">
+        <header className="flex h-16 shrink-0 items-center border-b border-[var(--efff-navy)]/15 bg-white px-4 text-[var(--efff-navy)] shadow-[0_2px_12px_rgb(0_5_31_/_0.04)] md:px-8">
           <Button variant="ghost" size="icon" className="md:hidden mr-4" onClick={() => setIsMobileMenuOpen(true)}>
             <Menu className="h-5 w-5" />
           </Button>
@@ -115,7 +115,7 @@ export default function DashboardLayout({ children }: { children: ReactNode }) {
           <div className="flex items-center gap-4">
             {/* Header actions */}
             {user?.role === 'user' && (
-              <Badge variant="secondary" className="hidden sm:inline-flex bg-amber-100 text-amber-800 dark:bg-amber-900/30 dark:text-amber-300 border-none px-3 py-1">
+              <Badge variant="outline" className="hidden border-[var(--efff-navy)]/35 bg-white px-3 py-1 text-[var(--efff-navy)] before:mr-1.5 before:h-1.5 before:w-1.5 before:rounded-full before:bg-primary sm:inline-flex">
                 {user.membershipPlan?.toUpperCase()} PLAN
               </Badge>
             )}

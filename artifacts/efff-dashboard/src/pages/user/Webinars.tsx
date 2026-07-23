@@ -46,7 +46,7 @@ export default function UserWebinars() {
                       {webinar.type}
                     </Badge>
                     {webinar.isRegistered && (
-                      <Badge variant="outline" className="bg-green-50 text-green-700 border-green-200">
+                      <Badge variant="success">
                         <CheckCircle2 className="w-3 h-3 mr-1" /> Registered
                       </Badge>
                     )}
@@ -85,7 +85,7 @@ export default function UserWebinars() {
                         {webinar.discountedPrice < webinar.price ? (
                           <div className="flex flex-col">
                             <span className="text-xs text-muted-foreground line-through">₹{webinar.price}</span>
-                            <span className="font-semibold text-primary">₹{webinar.discountedPrice} <span className="text-xs font-normal bg-primary/10 text-primary px-1 rounded ml-1">-{webinar.discountPercent}% off</span></span>
+                            <span className="font-semibold text-[var(--efff-navy)]">₹{webinar.discountedPrice} <span className="text-xs font-normal bg-primary/10 text-[var(--efff-navy)] px-1 rounded ml-1">-{webinar.discountPercent}% off</span></span>
                           </div>
                         ) : (
                           <span className="font-semibold">₹{webinar.price}</span>

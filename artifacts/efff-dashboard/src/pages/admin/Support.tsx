@@ -4,9 +4,9 @@ import { Badge } from '@/components/ui/badge';
 import { MessageSquare, Clock, CheckCircle2, AlertCircle } from 'lucide-react';
 
 const STATUS_CONFIG = {
-  open: { color: 'bg-rose-100 text-rose-700 dark:bg-rose-900/30 dark:text-rose-300', icon: AlertCircle },
-  in_progress: { color: 'bg-amber-100 text-amber-700 dark:bg-amber-900/30 dark:text-amber-300', icon: Clock },
-  resolved: { color: 'bg-emerald-100 text-emerald-700 dark:bg-emerald-900/30 dark:text-emerald-300', icon: CheckCircle2 },
+  open: { color: 'status-error', icon: AlertCircle },
+  in_progress: { color: 'status-warning', icon: Clock },
+  resolved: { color: 'status-success', icon: CheckCircle2 },
 };
 
 export default function AdminSupport() {
@@ -26,9 +26,9 @@ export default function AdminSupport() {
       {/* Summary cards */}
       <div className="grid grid-cols-3 gap-4">
         {[
-          { label: 'Open', count: open, color: 'text-rose-600', bg: 'bg-rose-50 dark:bg-rose-900/10 border-rose-100 dark:border-rose-900/30' },
-          { label: 'In Progress', count: inProgress, color: 'text-amber-600', bg: 'bg-amber-50 dark:bg-amber-900/10 border-amber-100 dark:border-amber-900/30' },
-          { label: 'Resolved', count: resolved, color: 'text-emerald-600', bg: 'bg-emerald-50 dark:bg-emerald-900/10 border-emerald-100 dark:border-emerald-900/30' },
+          { label: 'Open', count: open, color: 'text-error', bg: 'status-error' },
+          { label: 'In Progress', count: inProgress, color: 'text-warning', bg: 'status-warning' },
+          { label: 'Resolved', count: resolved, color: 'text-success', bg: 'status-success' },
         ].map(({ label, count, color, bg }) => (
           <Card key={label} className={`border ${bg}`}>
             <CardContent className="p-5 text-center">

@@ -61,7 +61,7 @@ export default function AdminUsers() {
                     <div className="text-muted-foreground">{user.email}</div>
                   </td>
                   <td className="px-6 py-4">
-                    <Badge variant="outline" className={`uppercase ${user.membershipPlan === 'platinum' ? 'border-primary text-primary' : ''}`}>
+                    <Badge variant="outline" className={`uppercase ${user.membershipPlan === 'platinum' ? 'border-primary text-[var(--efff-navy)]' : ''}`}>
                       {user.membershipPlan}
                     </Badge>
                   </td>

@@ -25,7 +25,7 @@ export default function DoctorDashboard() {
               <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
                 <Calendar className="w-5 h-5" />
               </div>
-              <Badge variant="secondary" className="bg-primary/20 text-primary hover:bg-primary/20">Today</Badge>
+              <Badge variant="secondary" className="border-primary/40 bg-primary/15 text-[var(--efff-navy)] hover:bg-primary/20">Today</Badge>
             </div>
             <p className="text-sm font-medium text-muted-foreground mb-1">Today's Appointments</p>
             <h2 className="text-3xl font-display font-bold">{dashboard.todayAppointments}</h2>
@@ -35,7 +35,7 @@ export default function DoctorDashboard() {
         <Card>
           <CardContent className="p-6 flex flex-col justify-center">
             <div className="flex justify-between items-start mb-4">
-              <div className="w-10 h-10 rounded-lg bg-amber-500/10 flex items-center justify-center text-amber-600">
+              <div className="icon-warning w-10 h-10 rounded-lg flex items-center justify-center">
                 <Clock className="w-5 h-5" />
               </div>
             </div>
@@ -47,7 +47,7 @@ export default function DoctorDashboard() {
         <Card>
           <CardContent className="p-6 flex flex-col justify-center">
             <div className="flex justify-between items-start mb-4">
-              <div className="w-10 h-10 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-600">
+              <div className="icon-info w-10 h-10 rounded-lg flex items-center justify-center">
                 <FileText className="w-5 h-5" />
               </div>
             </div>
@@ -59,7 +59,7 @@ export default function DoctorDashboard() {
         <Card>
           <CardContent className="p-6 flex flex-col justify-center">
             <div className="flex justify-between items-start mb-4">
-              <div className="w-10 h-10 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-600">
+              <div className="icon-success w-10 h-10 rounded-lg flex items-center justify-center">
                 <Users className="w-5 h-5" />
               </div>
             </div>

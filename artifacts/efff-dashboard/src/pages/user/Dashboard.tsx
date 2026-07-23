@@ -27,11 +27,11 @@ export default function UserDashboard() {
       </div>
 
       {/* Journey Tracker */}
-      <Card className="overflow-hidden border-none shadow-md bg-white/60 dark:bg-black/40">
+      <Card className="overflow-hidden shadow-[0_6px_22px_rgb(0_5_31_/_0.07)]">
         <CardContent className="p-8">
           <div className="flex justify-between items-end mb-8">
             <div>
-              <p className="text-sm font-medium text-primary mb-1">CURRENT STAGE</p>
+              <p className="text-sm font-semibold text-[var(--efff-navy)] mb-1">CURRENT STAGE</p>
               <h3 className="text-2xl font-display font-semibold">{summary.journeyStage}</h3>
             </div>
             <div className="text-right">
@@ -41,9 +41,9 @@ export default function UserDashboard() {
           </div>
           
           <div className="relative mt-12 mb-6">
-            <div className="absolute top-4 left-0 w-full h-1.5 bg-muted -translate-y-1/2 rounded-full overflow-hidden">
+            <div className="absolute top-4 left-0 w-full h-1.5 bg-[#dce4ec] -translate-y-1/2 rounded-full overflow-hidden">
               <motion.div 
-                className="h-full bg-primary" 
+                className="h-full bg-[var(--efff-navy)]" 
                 initial={{ width: 0 }}
                 animate={{ width: `${summary.journeyProgress}%` }}
                 transition={{ duration: 1, ease: "easeOut" }}
@@ -56,9 +56,9 @@ export default function UserDashboard() {
                 return (
                   <div key={stage} className="flex flex-col items-center">
                     <div className={`w-8 h-8 rounded-full flex items-center justify-center border-4 border-background z-10 transition-colors ${
-                      isCompleted ? 'bg-primary text-primary-foreground' : 
-                      isCurrent ? 'bg-background border-primary shadow-[0_0_0_2px_hsl(var(--primary))]' : 
-                      'bg-muted'
+                      isCompleted ? 'bg-[var(--efff-navy)] text-white' :
+                      isCurrent ? 'bg-primary text-[var(--efff-navy)] border-white shadow-[0_0_0_2px_var(--efff-cyan)]' :
+                      'bg-[#e8edf2]'
                     }`}>
                       {isCompleted && <CheckCircle2 className="w-4 h-4" />}
                     </div>
@@ -75,18 +75,18 @@ export default function UserDashboard() {
 
       <div className="grid md:grid-cols-3 gap-6">
         {/* Next Action Card */}
-        <Card className="md:col-span-2 bg-gradient-to-br from-primary to-rose-600 text-primary-foreground border-none shadow-xl shadow-primary/20 relative overflow-hidden">
+        <Card className="efff-dark-panel md:col-span-2 border-none shadow-[0_12px_30px_rgb(0_5_31_/_0.18)] relative overflow-hidden">
           <div className="absolute top-0 right-0 p-8 opacity-10">
             <ArrowRight className="w-32 h-32" />
           </div>
           <CardHeader>
-            <CardTitle className="text-primary-foreground/80 font-medium text-sm">NEXT ACTION</CardTitle>
+            <CardTitle className="text-primary font-semibold text-sm">NEXT ACTION</CardTitle>
             <CardDescription className="text-3xl font-display font-semibold text-white mt-2 leading-tight">
               {summary.nextAction || 'Book your initial consultation'}
             </CardDescription>
           </CardHeader>
           <CardContent className="mt-4">
-            <Button className="bg-white text-primary hover:bg-white/90 rounded-xl px-6 font-semibold">
+            <Button className="rounded-xl px-6 font-semibold">
               Complete Task
             </Button>
           </CardContent>
@@ -120,7 +120,7 @@ export default function UserDashboard() {
               <div className="p-6 text-center text-muted-foreground text-sm flex flex-col items-center justify-center h-full">
                 <Calendar className="w-8 h-8 opacity-20 mb-3" />
                 <p>No upcoming appointments</p>
-                <Link href="/user/appointments" className="mt-3 text-primary hover:underline">Book one</Link>
+                <Link href="/user/appointments" className="mt-3 text-[var(--efff-navy)] hover:text-[var(--efff-cyan-hover)] hover:underline">Book one</Link>
               </div>
             )}
           </CardContent>

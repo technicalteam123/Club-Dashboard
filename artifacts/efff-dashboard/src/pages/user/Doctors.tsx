@@ -48,13 +48,13 @@ export default function UserDoctors() {
                   )}
                 </div>
                 <Badge variant="secondary" className="flex items-center gap-1">
-                  <Star className="w-3 h-3 fill-amber-500 text-amber-500" />
+                  <Star className="w-3 h-3 fill-warning text-warning" />
                   {doc.rating.toFixed(1)}
                 </Badge>
               </div>
               
               <h3 className="font-semibold text-xl mb-1">{doc.name}</h3>
-              <p className="text-primary text-sm font-medium mb-4">{doc.specialty}</p>
+              <p className="text-[var(--efff-navy)] text-sm font-medium mb-4">{doc.specialty}</p>
               
               <div className="space-y-2 text-sm text-muted-foreground">
                 <div className="flex items-center gap-2">

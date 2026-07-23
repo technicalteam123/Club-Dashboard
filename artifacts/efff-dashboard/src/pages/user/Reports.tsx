@@ -63,7 +63,7 @@ export default function UserReports() {
                       </div>
                       
                       {report.isLabBooked && (
-                        <div className="mt-3 text-sm bg-amber-50 dark:bg-amber-900/20 text-amber-800 dark:text-amber-200 p-2 rounded flex items-center gap-2">
+                        <div className="status-warning mt-3 flex items-center gap-2 rounded border p-2 text-sm">
                           <Stethoscope className="w-4 h-4" />
                           Lab appointment booked at {report.labName}
                         </div>
@@ -71,7 +71,7 @@ export default function UserReports() {
 
                       {report.doctorNotes && (
                         <div className="mt-4 p-4 rounded-xl bg-muted/50 border border-border">
-                          <p className="text-xs font-semibold text-primary mb-1">DOCTOR'S NOTES</p>
+                          <p className="text-xs font-semibold text-[var(--efff-navy)] mb-1">DOCTOR'S NOTES</p>
                           <p className="text-sm">{report.doctorNotes}</p>
                           {report.recommendations && (
                             <p className="text-sm mt-2 font-medium">Recommendation: {report.recommendations}</p>

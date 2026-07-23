@@ -40,3 +40,38 @@
 [2m5:57:00 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32m✨ new dependencies optimized: [33m@radix-ui/react-select, @radix-ui/react-dialog[32m[39m
 [2m5:57:00 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32m✨ optimized dependencies changed. reloading[39m
 [2m6:00:07 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mpage reload [39m[2msrc/lib/wix-auth.ts[22m
+[2m6:30:36 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css[22m
+[2m6:30:36 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css[22m
+[2m6:31:17 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/ui/button.tsx[22m
+[2m6:31:17 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [33mhmr invalidate [39m[2m/src/components/ui/button.tsx[22m Could not Fast Refresh ("buttonVariants" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m6:31:17 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/components/layout/DashboardLayout.tsx, /src/pages/user/Finance.tsx, /src/pages/doctor/Patients.tsx, /src/pages/user/Membership.tsx, /src/pages/user/Doctors.tsx, /src/pages/user/Reports.tsx, /src/pages/user/Dashboard.tsx, /src/pages/user/Support.tsx, /src/pages/user/Appointments.tsx, /src/pages/doctor/Profile.tsx, /src/pages/doctor/Dashboard.tsx, /src/pages/doctor/Appointments.tsx, /src/pages/user/Messages.tsx, /src/pages/doctor/Reports.tsx, /src/pages/user/Community.tsx, /src/pages/admin/Users.tsx, /src/pages/user/Webinars.tsx, /src/pages/user/Learning.tsx, /src/pages/login.tsx, /src/pages/admin/Webinars.tsx, /src/pages/admin/Community.tsx, /src/pages/admin/Doctors.tsx, /src/pages/admin/Appointments.tsx[22m
+[2m6:31:18 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/ui/badge.tsx[22m
+[2m6:31:18 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [33mhmr invalidate [39m[2m/src/components/ui/badge.tsx[22m Could not Fast Refresh ("badgeVariants" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+[2m6:31:18 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/pages/doctor/Patients.tsx, /src/pages/user/Membership.tsx, /src/pages/user/Doctors.tsx, /src/pages/user/Reports.tsx, /src/pages/user/Dashboard.tsx, /src/pages/user/Support.tsx, /src/pages/user/Appointments.tsx, /src/pages/doctor/Dashboard.tsx, /src/pages/doctor/Appointments.tsx, /src/pages/user/Messages.tsx, /src/pages/doctor/Reports.tsx, /src/pages/user/Community.tsx, /src/pages/admin/Users.tsx, /src/pages/user/Webinars.tsx, /src/components/layout/DashboardLayout.tsx, /src/pages/admin/Webinars.tsx, /src/pages/admin/Reports.tsx, /src/pages/admin/Finance.tsx, /src/pages/admin/Community.tsx, /src/pages/admin/Doctors.tsx, /src/pages/admin/Appointments.tsx, /src/pages/admin/Support.tsx[22m
+[2m6:31:19 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/ui/tabs.tsx[22m
+[2m6:31:19 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/ui/input.tsx[22m
+[2m6:31:20 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/ui/textarea.tsx[22m
+[2m6:31:21 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/ui/select.tsx[22m
+[2m6:31:23 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/ui/dialog.tsx[22m
+[2m6:31:43 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/ui/dialog.tsx[22m
+[2m6:31:44 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/components/layout/DashboardLayout.tsx[22m
+[2m6:32:16 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/login.tsx[22m
+[2m6:32:17 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/user/Dashboard.tsx[22m
+[2m6:32:18 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/doctor/Dashboard.tsx[22m
+[2m6:32:19 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/doctor/Appointments.tsx[22m
+[2m6:32:20 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/admin/Dashboard.tsx[22m
+[2m6:32:20 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/admin/Appointments.tsx[22m
+[2m6:32:45 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/user/Webinars.tsx[22m
+[2m6:32:45 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/user/Reports.tsx[22m
+[2m6:32:46 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/user/Finance.tsx[22m
+[2m6:32:47 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/admin/Doctors.tsx[22m
+[2m6:32:48 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/admin/Webinars.tsx[22m
+[2m6:32:48 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/admin/Support.tsx[22m
+[2m6:32:49 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/admin/Community.tsx[22m
+[2m6:32:50 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/admin/Finance.tsx[22m
+[2m6:33:02 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/admin/Appointments.tsx[22m
+[2m6:35:25 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/user/Dashboard.tsx[22m
+[2m6:35:26 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/admin/Appointments.tsx[22m
+[2m6:36:28 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/not-found.tsx[22m
+[2m6:36:29 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/user/Doctors.tsx[22m
+[2m6:36:29 pm[22m [36m[1m[vite][22m[39m [90m[2m(client)[22m[39m [32mhmr update [39m[2m/src/index.css, /src/pages/admin/Doctors.tsx[22m

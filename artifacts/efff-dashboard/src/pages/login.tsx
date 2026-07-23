@@ -37,12 +37,11 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-[100dvh] flex items-center justify-center p-4 relative overflow-hidden bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-rose-100 via-background to-plum-100 dark:from-rose-950/40 dark:via-background dark:to-plum-950/40">
-      <div className="absolute inset-0 bg-white/40 dark:bg-black/40 backdrop-blur-[100px]" />
+    <div className="min-h-[100dvh] flex items-center justify-center p-4 relative overflow-hidden bg-background">
       
       {/* Decorative blobs */}
-      <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary/20 rounded-full blur-3xl" />
-      <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-accent/20 rounded-full blur-3xl" />
+      <div className="absolute -top-40 -right-40 w-96 h-96 bg-primary/10 rounded-full blur-3xl" />
+      <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-[var(--efff-navy)]/5 rounded-full blur-3xl" />
       
       <motion.div 
         initial={{ opacity: 0, y: 20 }}
@@ -50,31 +49,31 @@ export default function Login() {
         transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         className="w-full max-w-5xl grid md:grid-cols-2 gap-8 z-10"
       >
-        <div className="flex flex-col justify-center space-y-8 p-8 hidden md:flex">
+        <div className="efff-dark-panel hidden flex-col justify-center space-y-8 rounded-2xl p-8 shadow-[0_18px_50px_rgb(0_5_31_/_0.18)] md:flex">
           <div>
             <div className="h-16 w-16 rounded-3xl bg-primary flex items-center justify-center mb-6 shadow-xl shadow-primary/20">
-              <span className="text-primary-foreground font-display font-bold text-4xl">E</span>
+              <span className="text-[var(--efff-navy)] font-display font-bold text-4xl">E</span>
             </div>
-            <h1 className="text-5xl font-display font-semibold tracking-tight mb-4 bg-gradient-to-br from-foreground to-foreground/70 bg-clip-text text-transparent">
+            <h1 className="text-5xl font-display font-semibold tracking-tight mb-4 text-white">
               Own your fertility journey.
             </h1>
-            <p className="text-lg text-muted-foreground leading-relaxed max-w-md">
+            <p className="text-lg text-white/72 leading-relaxed max-w-md">
               EFFF Club is a premium members portal combining concierge healthcare, financial planning, and a supportive community for women.
             </p>
           </div>
         </div>
 
-        <Card className="glass-panel border-white/40 dark:border-white/10 shadow-2xl p-2 sm:p-4">
+        <Card className="border-border bg-white shadow-[0_18px_50px_rgb(0_5_31_/_0.10)] p-2 sm:p-4">
           <CardHeader className="space-y-3 pb-6">
             <CardTitle className="text-2xl text-center">Welcome back</CardTitle>
             <CardDescription className="text-center text-base">Select a role to experience the portal</CardDescription>
           </CardHeader>
           <CardContent>
             <Tabs value={role} onValueChange={handleRoleChange} className="w-full mb-8">
-              <TabsList className="grid w-full grid-cols-3 h-12 p-1 bg-muted/50 rounded-xl">
-                <TabsTrigger value="user" className="rounded-lg data-[state=active]:bg-white dark:data-[state=active]:bg-secondary data-[state=active]:shadow-sm transition-all"><Heart className="w-4 h-4 mr-2" /> User</TabsTrigger>
-                <TabsTrigger value="doctor" className="rounded-lg data-[state=active]:bg-white dark:data-[state=active]:bg-secondary data-[state=active]:shadow-sm transition-all"><Activity className="w-4 h-4 mr-2" /> Doctor</TabsTrigger>
-                <TabsTrigger value="admin" className="rounded-lg data-[state=active]:bg-white dark:data-[state=active]:bg-secondary data-[state=active]:shadow-sm transition-all"><Shield className="w-4 h-4 mr-2" /> Admin</TabsTrigger>
+              <TabsList className="grid w-full grid-cols-3 h-12 p-1 bg-[#f3f4f4] rounded-xl border-0">
+                <TabsTrigger value="user" className="rounded-lg after:hidden data-[state=active]:bg-primary data-[state=active]:text-[var(--efff-navy)] data-[state=active]:shadow-sm transition-all"><Heart className="w-4 h-4 mr-2" /> User</TabsTrigger>
+                <TabsTrigger value="doctor" className="rounded-lg after:hidden data-[state=active]:bg-primary data-[state=active]:text-[var(--efff-navy)] data-[state=active]:shadow-sm transition-all"><Activity className="w-4 h-4 mr-2" /> Doctor</TabsTrigger>
+                <TabsTrigger value="admin" className="rounded-lg after:hidden data-[state=active]:bg-primary data-[state=active]:text-[var(--efff-navy)] data-[state=active]:shadow-sm transition-all"><Shield className="w-4 h-4 mr-2" /> Admin</TabsTrigger>
               </TabsList>
             </Tabs>
 
@@ -87,7 +86,7 @@ export default function Login() {
                   value={email}
                   onChange={e => setEmail(e.target.value)}
                   required 
-                  className="h-12 bg-white/50 dark:bg-black/20 focus-visible:ring-primary/50"
+                  className="h-12 bg-white"
                 />
               </div>
               <div className="space-y-2">
@@ -101,7 +100,7 @@ export default function Login() {
                   value={password}
                   onChange={e => setPassword(e.target.value)}
                   required 
-                  className="h-12 bg-white/50 dark:bg-black/20 focus-visible:ring-primary/50"
+                  className="h-12 bg-white"
                 />
               </div>
               
@@ -116,8 +115,8 @@ export default function Login() {
               </div>
             </form>
 
-            <div className="mt-8 p-4 rounded-xl bg-primary/5 border border-primary/10 text-sm space-y-2">
-              <p className="font-semibold text-primary mb-1">Demo Credentials Selected:</p>
+            <div className="mt-8 p-4 rounded-xl bg-[var(--efff-blue-pale)] border border-[var(--efff-blue-soft)]/50 text-sm space-y-2">
+              <p className="font-semibold text-[var(--efff-navy)] mb-1">Demo Credentials Selected:</p>
               {role === 'user' && <p className="text-muted-foreground">Priya Sharma • Platinum Member • Consultation Pending</p>}
               {role === 'doctor' && <p className="text-muted-foreground">Dr. Jatin Shah • OB-GYN • Mumbai</p>}
               {role === 'admin' && <p className="text-muted-foreground">EFFF Admin • Full Access</p>}
