@@ -1,5 +1,5 @@
-import { Route, Switch, Router as WouterRouter, Redirect } from 'wouter';
-import { AuthProvider, useAuth } from '@/contexts/AuthContext';
+import { Route, Switch, Redirect } from 'wouter';
+import { useAuth } from '@/contexts/AuthContext';
 import Login from '@/pages/login';
 import DashboardLayout from '@/components/layout/DashboardLayout';
 import NotFound from '@/pages/not-found';
@@ -36,30 +36,23 @@ import AdminCommunity from '@/pages/admin/Community';
 import AdminFinance from '@/pages/admin/Finance';
 import AdminSupport from '@/pages/admin/Support';
 
-const getBypassRole = () => {
-  const searchParams = new URLSearchParams(window.location.search);
-  const memberId = searchParams.get('memberId');
-  const role = searchParams.get('role');
-
-  return memberId && (role === 'user' || role === 'doctor' || role === 'admin') ? role : null;
-};
-
 export function AppRoutes() {
-  const bypassRole = getBypassRole();
-  const dashboardPath = bypassRole ? `/${bypassRole}/dashboard${window.location.search}` : null;
-
   return (
     <Switch>
       <Route path="/login">
-        {() => dashboardPath ? <Redirect to={dashboardPath} /> : <Login />}
+        {() => {
+          const { user, authenticated, loading } = useAuth();
+          if (loading) return null;
+          return authenticated && user ? <Redirect to={`/${user.role}/dashboard`} /> : <Login />;
+        }}
       </Route>
       
       {/* Root Redirect */}
       <Route path="/">
         {() => {
-          const { user } = useAuth();
-          if (dashboardPath) return <Redirect to={dashboardPath} />;
-          if (!user) return <Redirect to="/login" />;
+          const { user, authenticated, loading } = useAuth();
+          if (loading) return null;
+          if (!authenticated || !user) return <Redirect to="/login" />;
           return <Redirect to={`/${user.role}/dashboard`} />;
         }}
       </Route>
@@ -67,10 +60,10 @@ export function AppRoutes() {
       {/* Protected Routes Wrapper */}
       <Route path="/:role/:page">
         {(params) => {
-          const { user } = useAuth();
-          const activeRole = bypassRole || user?.role;
-          if (!activeRole) return <Redirect to="/login" />;
-          if (activeRole !== params.role) return <Redirect to={`/${activeRole}/dashboard${bypassRole ? window.location.search : ''}`} />;
+          const { user, authenticated, loading } = useAuth();
+          if (loading) return null;
+          if (!authenticated || !user) return <Redirect to="/login" />;
+          if (user.role !== params.role) return <Redirect to={`/${user.role}/dashboard`} />;
           
           let Component = null;
           
